@@ -1,0 +1,20 @@
+<style>img { max-width: 100%; }</style>
+
+<h1>{{ post.title }}</h1>
+{% if post.photo %}
+	<img src="{{ post.photo.url }}"/>
+{% endif %}
+
+{{ post.content|linebreaks }}
+
+<h3>Comments</h3>
+<a href="{% url 'comment_new' post.pk %}">댓글 쓰기</a>
+
+<ul>
+{% for comment in post.comment_set.all %}
+	<li>
+		{{ comment.message }}
+		<small>by {{ comment.author }}, {{ comment.created_at }}</small>
+	</li>
+{% endfor %}
+</ul>
