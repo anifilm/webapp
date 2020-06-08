@@ -4,7 +4,7 @@
 
 프로젝트 만들기
 
-$ django-admin startproject mysite
+$ django-admin startproject [my-site]
 
 프로젝트 시작
 
@@ -12,6 +12,17 @@ $ python manage.py runserver
 
 
 ## Flask
+
+
+## React
+
+프로젝트 만들기
+
+$ npx create-react-app [name-app]
+
+프로젝트 시작
+
+$ npm start
 
 
 ## code-server
