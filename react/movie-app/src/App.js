@@ -4,7 +4,7 @@ function Food({ name, picture }) {
   return (
     <div>
       <h2>I like {name}</h2>
-      <img src={picture} />
+      {/* <img src={picture} /> */}
     </div>
   );
 }
@@ -24,7 +24,7 @@ const foodILike = [
   },
   {
     name: "Doncasu",
-    image: "https://freshdon.com/wp-content/uploads/2017/08/%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EB%8F%88%EA%B9%8C%EC%8A%A41-1024x683.jpg"
+    image: "https://funshop.akamaized.net//products/0000076768/vs_image800.jpg"
   },
   {
     name: "Kimbap",
