@@ -40,6 +40,17 @@ Vue 프로젝트 매니저 실행
 $ vue ui
 
 
+## Angular
+
+프로젝트 만들기
+
+$ ng new [name-app]
+
+프로젝트 시작
+
+$ ng serve --open
+
+
 ## code-server
 
 sudo docker run -it -p 0.0.0.0:8443:8443 -v "${PWD}:/home/coder/project" codercom/code-server --allow-http
