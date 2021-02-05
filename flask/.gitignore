@@ -1,3 +1,4 @@
 site.db
 __pycache__
-code-server.sh
+*.url
+*.sh
