@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>임채영의 홈페이지</title>
+    <link href="./style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./blog_list.html">Blog</a>
+      <a href="./about_me.html">About Me</a>
+    </nav>
+
+    <h1>첫 번째 크기 헤드라인</h1>
+    <h2>두 번째 크기 헤드라인</h2>
+    <h3>세 번째 크기 헤드라인</h3>
+    <h4>네 번째 크기 헤드라인</h4>
+    <h5>다섯 번째 크기 헤드라인</h5>
+
+    <button onclick="whatTimeIsIt()">현재시간 보기</button>
+    <hr>
+
+    <label for="inputA">a</label>
+    <input id="inputA" value=1 onkeyup="doSomething()">
+    <label for="inputB">b</label>
+    <input id="inputB" value=2 onkeyup="doSomething()">
+
+    <p><span id="valueA">1</span> + <span id="valueB">2</span> = <span id="valueC">3</span>입니다.</p>
+
+    <p>문단은 p로 쓰세요. p는 아마도 Paragraph의 앞글자를 따온 것이겠죠?</p>
+    <a href="https://www.google.com" target="_blank">Go to google</a>
+    <hr>
+    <img src="./images/automation-python.png" width="600px" alt="파이썬 이미지">
+
+    <script type="text/javascript">
+      function doSomething(){
+        let a = document.getElementById("inputA").value;
+        let b = document.getElementById("inputB").value;
+        document.getElementById("valueA").innerHTML = a;
+        document.getElementById("valueB").innerHTML = b;
+        document.getElementById("valueC").innerHTML = Number(a) + Number(b);
+      }
+
+      function whatTimeIsIt(){
+        let d = new Date();
+        let currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
+        let currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";
+        alert("지금은 " + currentDate + ", " + currentTime + " 입니다.");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+nav {
+  background-color: black;
+  font-size: 150%;
+  height: 60px
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
