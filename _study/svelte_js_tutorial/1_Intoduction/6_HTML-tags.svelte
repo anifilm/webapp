@@ -1,1 +1,5 @@
-<h1>Hello world!</h1>
+<script>
+  let string = `this string contains some <strong>HTML!!!</strong>`;
+</script>
+
+<p>{@html string}</p>
