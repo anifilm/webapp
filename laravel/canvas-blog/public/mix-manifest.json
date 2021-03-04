@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/canvas-ui.js": "/js/canvas-ui.js",
+    "/css/canvas-ui.css": "/css/canvas-ui.css",
     "/css/app.css": "/css/app.css"
 }
