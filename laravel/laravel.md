@@ -6,5 +6,6 @@ https://laravel.com/
 https://dev-overload.tistory.com/16
 
 
-라라벨 Canvas 블로그 만들기
-https://www.youtube.com/watch?v=ScY6RLZr5aw&t=1373s&ab_channel=%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94%EC%A0%95%EB%8C%80%EB%A6%AC
+라라벨 블로그 만들기
+https://www.youtube.com/watch?v=HKJDLXsTr8A&t=214s&ab_channel=CodeWithDary
+
