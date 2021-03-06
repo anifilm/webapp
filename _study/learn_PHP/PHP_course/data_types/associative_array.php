@@ -8,10 +8,19 @@
 <?php
 
 // Associative Array
-$cars = array(50.500, 40.700, 60.300);
+$car1["Audi"] = 50.500;
+echo $car1["Audi"]."<br>";
 
-var_dump($cars);
+$car1["addCar"] = 10.0;
 
+print_r($car1); echo "<br>";
+
+$cars = array("Audi" => 50.500, "BMW" => 40.700, "Mercedes" => 60.300);
+print_r($cars); echo "<br>";
+
+foreach ($cars as $key => $value) {
+  echo "My ".$key." has ".$value." mileage<br>";
+}
 
 ?>
 </body>

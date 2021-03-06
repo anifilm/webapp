@@ -20,7 +20,7 @@ $myCar = array("Audi", 2015, 75.304);
 var_dump($myCar); echo "<br>";
 print_r($myCar);  echo "<br>";
 
-$cars2 = array("Volve", "Chevy", "Volkswagen");
+$cars2 = array("Volvo", "Chevy", "Volkswagen");
 
 $cars = array_merge($cars, $cars2);
 print_r($cars); echo "<br>";
