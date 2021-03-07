@@ -1,5 +1,6 @@
 node_modules
 dist
+.idea
 __using_assets__
 __new__
 *.exe
