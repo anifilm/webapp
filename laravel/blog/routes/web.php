@@ -20,7 +20,7 @@ use App\Http\Controllers\PostsController;
 // });
 Route::get('/', [PagesController::class, 'index']);
 
-Route::resource('/bog', PostsController::class);
+Route::resource('/blog', PostsController::class);
 
 Auth::routes();
 
