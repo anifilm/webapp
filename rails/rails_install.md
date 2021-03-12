@@ -43,3 +43,8 @@ $ rbenv rehash
 
 $ gem install bundler
 $ rbenv rehash
+
+
+# rails 설치하기
+
+$ gem install rails
