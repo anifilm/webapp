@@ -1,0 +1,22 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+  <h1>Login</h1>
+</div>
+
+<div class="card-body">
+  <form method="POST">
+    {% csrf_token %}
+    <!-- {{form.as_p}} --> <!-- TODO: 로그인 관련 에러 메시지 출력 관련 수정 필요 -->
+    <label>{{form.username.label}}</label>
+    {{form.username}}
+    <label>{{form.password.label}}</label>
+    {{form.password}}
+
+    <input style="margin-top: 15px;" class="button" type="submit" value="Login">
+  </form>
+  <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+
+{% endblock content %}
