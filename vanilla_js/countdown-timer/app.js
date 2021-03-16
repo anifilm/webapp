@@ -72,8 +72,8 @@ function startTimer() {
     updateInputs();
 
     if (totalSeconds <= 0) {
-      play();
-      stopTimer();
+      play(); // 알람 소리 재생
+      btnStop.click(); // 버튼 클릭 이벤트 발생
     }
   }, 1000);
 }
