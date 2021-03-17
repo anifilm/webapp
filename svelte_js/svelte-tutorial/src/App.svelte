@@ -1,5 +1,6 @@
 <script>
   import '../node_modules/materialize-css/dist/css/materialize.min.css';
+  // 빌드 전에 아래 항목을 주석처리 하면 더 작은 사이즈의 빌드 결과물이 생긴다.
   import '../node_modules/materialize-css/dist/js/materialize.min.js';
 
   import { Router, Route } from "svelte-routing";
