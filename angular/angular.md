@@ -11,4 +11,4 @@ $ ng new 프로젝트명
 
 프로젝트 시작
 
-$ ng serve --open
+$ ng serve -o
