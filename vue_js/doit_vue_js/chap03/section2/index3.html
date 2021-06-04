@@ -1,0 +1,22 @@
+<!-- 전역 컴포넌트 등록하기 -->
+<html>
+  <head>
+    <title>Vue Component Registration</title>
+  </head>
+  <body>
+    <div id="app">
+      <button>컴포넌트 등록</button>
+      <my-component></my-component> <!-- 전역 컴포넌트 표시 -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('my-component', {
+        template: '<div>전역 컴포넌트가 등록되었습니다!</div>' // 전역 컴포넌트 등록
+      });
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

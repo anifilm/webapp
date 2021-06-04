@@ -1,0 +1,43 @@
+<!-- 뷰 라우터 실습 -->
+<html>
+  <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Vue Router Sample</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>뷰 라우터 예제</h1>
+      <p> <!-- URL 값을 변경하는 태그 -->
+        <router-link to="/main">Main 컴포넌트로 이동</router-link>
+        <router-link to="/login">Login 컴포넌트로 이동</router-link>
+      </p>
+      <router-view></router-view> <!-- URL 값에 따라 갱신되는 화면 영역 -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> <!-- 뷰 라우터 CDN 추가 -->
+    <script>
+      // Main, Login 컴포넌트 정의
+      var Main = { template: '<div>main</div>' };
+      var Login = { template: '<div>login</div>' };
+
+      // 각 URL에 맞춰 표시할 컴포넌트 지정
+      var routes = [
+        { path: '/main', component: Main },
+        { path: '/login', component: Login }
+      ];
+
+      // 뷰 라우터 정의
+      var router = new VueRouter({
+        //mode: 'history', // 뷰 라우터 URL 해시 값(#)을 없애는 속성
+        routes
+      });
+
+      // 뷰 인스턴스에 라우터 추가
+      var app = new Vue({
+        router
+      }).$mount('#app');
+    </script>
+  </body>
+</html>
