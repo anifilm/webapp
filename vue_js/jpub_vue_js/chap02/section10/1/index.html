@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Vue.js App</title>
+  <link href="main.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in list"
+        v-bind:key="item.id"
+        v-bind:class="{ strong: item.hp > 300 }">
+        ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+        <span v-if="item.hp > 300">강하다!</span>
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

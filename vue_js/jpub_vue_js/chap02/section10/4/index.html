@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Vue.js App</title>
+  <link href="main.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in list" v-bind:key="item.id" v-if="item.hp">
+        ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+        <span v-if="item.hp < 50">빈사 상태!</span>
+        <!-- 버튼은 v-for 내부에 만들기 -->
+        <button v-on:click="doAttack(index)">공격하기</button>
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

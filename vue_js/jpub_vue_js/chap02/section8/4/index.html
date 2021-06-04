@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Vue.js App</title>
+  <link href="main.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- 대량의 속성을 각각의 속성에 바인딩하면 가독성이 크게 떨어진다. -->
+    <!-- <img v-bind:src="item.src"
+         v-bind:alt="item.alt"
+         v-bind:width="item.width"
+         v-bind:height="item.height"> -->
+    <!-- v-bind 디렉티브의 매개변수 부분을 생략하고 객체를 다음과 같이 전달하면 한 번에 바인딩 할 수 있다. -->
+    <img v-bind="item">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
