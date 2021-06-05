@@ -4,29 +4,27 @@
     <title>Vue Instance Lifecycle</title>
   </head>
   <body>
-    <div id="app">
-      {{ message }}
-    </div>
+    <div id="app">{{ message }}</div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
       new Vue({
-        el: "#app",
+        el: '#app',
         data: {
-          message: "Hello Vue.js!",
+          message: 'Hello Vue.js!'
         },
-        beforeCreate: function() {
-          console.log("beforeCreate");
+        beforeCreate: function () {
+          console.log('beforeCreate');
         },
-        created: function() {
-          console.log("created");
+        created: function () {
+          console.log('created');
         },
-        mounted: function() {
-          console.log("mounted");
+        mounted: function () {
+          console.log('mounted');
         },
-        updated: function() {
-          console.log("updated");
-        },
+        updated: function () {
+          console.log('updated');
+        }
       });
     </script>
   </body>

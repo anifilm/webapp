@@ -4,9 +4,7 @@
     <title>Vue Instance Lifecycle</title>
   </head>
   <body>
-    <div id="app">
-      {{ message }}
-    </div>
+    <div id="app">{{ message }}</div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
@@ -15,18 +13,18 @@
         data: {
           message: 'Hello Vue.js!'
         },
-        beforeCreate: function() {
-          console.log("beforeCreate");
+        beforeCreate: function () {
+          console.log('beforeCreate');
         },
-        created: function() {
-          console.log("created");
+        created: function () {
+          console.log('created');
         },
-        mounted: function() {
-          console.log("mounted");
+        mounted: function () {
+          console.log('mounted');
           this.message = 'Hello Vue!'; // message 값 변경
         },
-        updated: function() {
-          console.log("updated");
+        updated: function () {
+          console.log('updated');
         }
       });
     </script>
