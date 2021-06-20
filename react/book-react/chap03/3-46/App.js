@@ -1,10 +1,10 @@
 import React from 'react';
-import Form from './Form';
+import TextInput from './TextInput';
 
 function App() {
   return (
     <div>
-      <Form />
+      <TextInput />
     </div>
   );
 }
