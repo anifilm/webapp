@@ -1,10 +1,10 @@
 import React from 'react';
-import WidthPrinter from './WidthPrinter';
+import Profile from './Profile';
 
 function App() {
   return (
     <div>
-      <WidthPrinter />
+      <Profile />
     </div>
   );
 }
