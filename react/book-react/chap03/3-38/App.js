@@ -1,33 +1,28 @@
-// 코드 3-39 Profile 컴포넌트가 다시 렌더링되지 않도록 React.memo를 사용한 코드
-import React, { useState } from 'react';
+// 코드 3-38 콘텍스트 API를 사용한 코드
+import React from 'react';
 
 const UserContext = React.createContext('');
 
 function App() {
-  const [username, setUsername] = useState('');
-
   return (
     <div>
-      <UserContext.Provider value={username}>
+      <UserContext.Provider value="mike">
+        <div>상단 메뉴</div>
         <Profile />
+        <div>하단 메뉴</div>
       </UserContext.Provider>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
     </div>
   );
 }
 
-const Profile = React.memo(() => {
+function Profile() {
   return (
     <div>
       <Greeting />
       {/* ... */}
     </div>
   );
-});
+}
 
 function Greeting() {
   return (
