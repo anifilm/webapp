@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16.3": "^1.7.4",
     "moment": "^2.29.1",
     "next": "^11.0.0",
     "react": "^17.0.2",

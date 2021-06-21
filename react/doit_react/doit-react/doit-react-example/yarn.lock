@@ -3790,7 +3790,7 @@ airbnb-js-shims@^2.2.1:
     string.prototype.padstart "^3.0.0"
     symbol.prototype.description "^1.0.0"
 
-airbnb-prop-types@^2.10.0, airbnb-prop-types@^2.14.0:
+airbnb-prop-types@^2.10.0, airbnb-prop-types@^2.14.0, airbnb-prop-types@^2.16.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/airbnb-prop-types/-/airbnb-prop-types-2.16.0.tgz#b96274cefa1abb14f623f804173ee97c13971dc2"
   integrity sha512-7WHOFolP/6cS96PhKNrslCLMYAI8yB1Pp6u6XmxozQOiZbsI5ycglZr5cHhBFfuRcQQjzCMith5ZPZdYiJCxUg==
@@ -7035,7 +7035,34 @@ entities@^2.0.0:
   resolved "https://registry.npmjs.org/entities/-/entities-2.2.0.tgz"
   integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
 
-enzyme-shallow-equal@^1.0.1:
+enzyme-adapter-react-16.3@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16.3/-/enzyme-adapter-react-16.3-1.7.4.tgz#b916c4c9acd503fa389ef2c87ed3293e041ef8cb"
+  integrity sha512-6WftFT7apXfxbcOEGg0F5VwaRPAuOTO751EI9u3YQQE7qQrVOzcCJ6OlYxjoUBnHH1v3ykeZiJwlJBrZhg6WRA==
+  dependencies:
+    enzyme-adapter-utils "^1.14.0"
+    enzyme-shallow-equal "^1.0.4"
+    object.assign "^4.1.2"
+    object.values "^1.1.2"
+    prop-types "^15.7.2"
+    react-is "^16.13.1"
+    react-reconciler "^0.7.0"
+    react-test-renderer "~16.3.0-0"
+
+enzyme-adapter-utils@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-utils/-/enzyme-adapter-utils-1.14.0.tgz#afbb0485e8033aa50c744efb5f5711e64fbf1ad0"
+  integrity sha512-F/z/7SeLt+reKFcb7597IThpDp0bmzcH1E9Oabqv+o01cID2/YInlqHbFl7HzWBl4h3OdZYedtwNDOmSKkk0bg==
+  dependencies:
+    airbnb-prop-types "^2.16.0"
+    function.prototype.name "^1.1.3"
+    has "^1.0.3"
+    object.assign "^4.1.2"
+    object.fromentries "^2.0.3"
+    prop-types "^15.7.2"
+    semver "^5.7.1"
+
+enzyme-shallow-equal@^1.0.1, enzyme-shallow-equal@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/enzyme-shallow-equal/-/enzyme-shallow-equal-1.0.4.tgz"
   integrity sha512-MttIwB8kKxypwHvRynuC3ahyNc+cFbR8mjVIltnmzQ0uKGqmsfO4bfBuLxb0beLNPhjblUEYvEbsg+VSygvF1Q==
@@ -7793,7 +7820,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-fbjs@^0.8.1:
+fbjs@^0.8.1, fbjs@^0.8.16:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -8196,7 +8223,7 @@ function-bind@^1.1.1:
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-function.prototype.name@^1.1.0, function.prototype.name@^1.1.2:
+function.prototype.name@^1.1.0, function.prototype.name@^1.1.2, function.prototype.name@^1.1.3:
   version "1.1.4"
   resolved "https://registry.npmjs.org/function.prototype.name/-/function.prototype.name-1.1.4.tgz"
   integrity sha512-iqy1pIotY/RmhdFZygSSlW0wko2yxkSCKqsuv4pr8QESohpYyG/Z7B/XXvPRKTJS//960rgguE5mSRUsDdaJrQ==
@@ -11786,7 +11813,7 @@ object.entries@^1.1.1:
     define-properties "^1.1.3"
     es-abstract "^1.18.2"
 
-"object.fromentries@^2.0.0 || ^1.0.0", object.fromentries@^2.0.2:
+"object.fromentries@^2.0.0 || ^1.0.0", object.fromentries@^2.0.2, object.fromentries@^2.0.3:
   version "2.0.4"
   resolved "https://registry.npmjs.org/object.fromentries/-/object.fromentries-2.0.4.tgz"
   integrity sha512-EsFBshs5RUUpQEY1D4q/m59kMfz4YJvxuNCJcv/jWwOJr34EaVnG11ZrZa0UHB3wnzV1wx8m58T4hQL8IuNXlQ==
@@ -11812,7 +11839,7 @@ object.pick@^1.3.0:
   dependencies:
     isobject "^3.0.1"
 
-object.values@^1.0.4:
+object.values@^1.0.4, object.values@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/object.values/-/object.values-1.1.4.tgz#0d273762833e816b693a637d30073e7051535b30"
   integrity sha512-TnGo7j4XSnKQoK3MfvkzqKCi0nVe/D9I9IjwTNYdb/fxYHpjrluHVOgw0AF6jrRFGMPHdfuidR09tIDiIvnaSg==
@@ -13666,7 +13693,7 @@ react-is@17.0.2, react-is@^17.0.2:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-"react-is@^16.12.0 || ^17.0.0", react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
+"react-is@^16.12.0 || ^17.0.0", react-is@^16.13.1, react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -13701,6 +13728,16 @@ react-popper@^1.3.7:
     prop-types "^15.6.1"
     typed-styles "^0.0.7"
     warning "^4.0.2"
+
+react-reconciler@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
+  integrity sha512-50JwZ3yNyMS8fchN+jjWEJOH3Oze7UmhxeoJLn2j6f3NjpfCRbcmih83XTWmzqtar/ivd5f7tvQhvvhism2fgg==
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react-redux@^7.2.4:
   version "7.2.4"
@@ -13852,6 +13889,16 @@ react-test-renderer@^17.0.2:
     react-is "^17.0.2"
     react-shallow-renderer "^16.13.1"
     scheduler "^0.20.2"
+
+react-test-renderer@~16.3.0-0:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.3.2.tgz#3d1ed74fda8db42521fdf03328e933312214749a"
+  integrity sha512-lL8WHIpCTMdSe+CRkt0rfMxBkJFyhVrpdQ54BaJRIrXf9aVmbeHbRA8GFRpTvohPN5tPzMabmrzW2PUfWCfWwQ==
+  dependencies:
+    fbjs "^0.8.16"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+    react-is "^16.3.2"
 
 react-textarea-autosize@^7.1.0:
   version "7.1.2"
@@ -14698,7 +14745,7 @@ semver-diff@^3.1.1:
   dependencies:
     semver "^6.3.0"
 
-"semver@2 || 3 || 4 || 5", semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
+"semver@2 || 3 || 4 || 5", semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0, semver@^5.7.1:
   version "5.7.1"
   resolved "https://registry.npmjs.org/semver/-/semver-5.7.1.tgz"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
