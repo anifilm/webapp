@@ -2,7 +2,7 @@ import { configure, setAddon } from '@storybook/react';
 import interopRequireDefault from 'babel-runtime/helpers/interopRequireDefault';
 import JSXAddon from 'storybook-addon-jsx';
 
-import '../src/sass/materialize.scss';
+//import '../src/sass/materialize.scss';
 
 function loadStories() {
   // 스토리 파일을 이곳에 추가할 수 있습니다.
