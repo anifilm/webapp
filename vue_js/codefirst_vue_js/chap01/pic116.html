@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- CDN에서 Vue.js를 읽어 들임 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ myText }}</p> <!-- Vue.js와 연결하는 요소 -->
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myText: 'Hello!!!' // Vue 인스턴스
+        }
+      });
+    </script>
+  </body>
+</html>
