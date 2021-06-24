@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>선택한 라디오 버튼을 표시하는 예제</h2>
+    <div id="app">
+      <label>
+        <input type="radio" value="red" v-model="picked" />
+        red
+      </label>
+      <br />
+      <label>
+        <input type="radio" value="green" v-model="picked" />
+        green
+      </label>
+      <br />
+      <label>
+        <input type="radio" value="blue" v-model="picked" />
+        blue
+      </label>
+      <br />
+      <p>{{ picked }}이 선택됨</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          picked: 'red'
+        }
+      });
+    </script>
+  </body>
+</html>

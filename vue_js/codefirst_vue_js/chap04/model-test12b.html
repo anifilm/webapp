@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>앞뒤의 공백을 자동으로 제거(트림) 하지 않는 예제</h2>
+    <div id="app">
+      <input v-model="myText" style="width: 300px" />
+      <p>앞뒤 공백을 사용 「{{ myText }}」</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myText: ''
+        }
+      });
+    </script>
+  </body>
+</html>

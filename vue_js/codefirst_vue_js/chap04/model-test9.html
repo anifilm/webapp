@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>복수의 선택을 배열로 처리하는 예제</h2>
+    <div id="app">
+      <select v-model="myColor" multiple style="width: 150px; height: 120px">
+        <option>red</option>
+        <option>green</option>
+        <option>blue</option>
+        <option>orange</option>
+        <option>brown</option>
+      </select>
+      <p>선택한 색상은 {{ myColor }} 입니다.</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myColor: []
+        }
+      });
+    </script>
+  </body>
+</html>
