@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>여러가지 데이터형을 표시하는 예제</h2>
+    <div id="app">
+      <p>{{ myNumber }}</p>
+      <p>{{ myText }}</p>
+      <p>{{ myBool }}</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myNumber: 12345,
+          myText: 'Hello!!!',
+          myBool: true
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>배열로 값을 표시하는 예제</h2>
+    <div id="app">
+      <p>{{ myArray }}</p>
+      <p>{{ myArray[0] }}</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myArray: ['다즐링', '얼그레이', '실론']
+        }
+      });
+    </script>
+  </body>
+</html>
