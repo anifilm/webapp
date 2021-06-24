@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>간단한 계산기</h2>
+    <div id="app">
+      <input v-model.number="num1" type="number">
+      <input v-model.number="num2" type="number">
+      <br /><br />
+      <button v-on:click="add">덧셈 계산</button>
+      <button v-on:click="sub">뺄셈 계산</button>
+      <button v-on:click="mul">곱셈 계산</button>
+      <button v-on:click="div">나눗셈 계산</button>
+      <p>결과는 {{ result }} 입니다.</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          num1: 0,
+          num2: 0,
+          result: 0
+        },
+        methods: {
+          add: function () {
+            this.result = this.num1 + this.num2;
+          },
+          sub: function () {
+            this.result = this.num1 - this.num2;
+          },
+          mul: function () {
+            this.result = this.num1 * this.num2;
+          },
+          div: function () {
+            if (this.num2 === 0) {
+              alert('0으로 나눌 수 없습니다.');
+              return;
+            }
+            this.result = this.num1 / this.num2;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
