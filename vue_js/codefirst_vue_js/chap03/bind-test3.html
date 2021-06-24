@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>align 지정 예제</h2>
+    <div id="app">
+      <p align="right">우측정렬 직접 지정</p>
+      <p v-bind:align="myAlign">우측정렬 v-bind로 지정</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myAlign: 'right'
+        }
+      });
+    </script>
+  </body>
+</html>
