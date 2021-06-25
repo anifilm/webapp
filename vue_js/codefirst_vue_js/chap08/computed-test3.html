@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>문장을 입력하면 남은 글자수를 표시하는 예제</h2>
+    <div id="app">
+      <p>감상은 140자 이내로 입력해 주세요.</p>
+      <textarea v-model="myText"></textarea>
+      <p v-bind:style="{color: computedColor}">남은 글자는 {{ remaining }}자 입니다.</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myText: '오늘은 날씨가 좋습니다.'
+        },
+        computed: {
+          // myText의 길이가 변하면 남은 글자수를 계산한다.
+          remaining: function () {
+            return 140 - this.myText.length;
+          },
+          // remaining이 변하면 computedColor을 계산한다.
+          computedColor: function () {
+            col = 'green';
+						if (this.remaining < 20) {
+							col = "orange";
+						}
+						if (this.remaining < 5) {
+							col = "red";
+						}
+            return col;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

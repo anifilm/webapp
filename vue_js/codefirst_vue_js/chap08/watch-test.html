@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>입력문자를 감시하여 금지문자가 입력 되면 얼럿을 띄우는 예제</h2>
+    <div id="app">
+      <p>금지 문자는 「{{ forbiddenText }}」</p>
+      <textarea v-model="inputText"></textarea>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          forbiddenText: '안되',
+          inputText: '오늘은 날씨가 좋습니다.'
+        },
+        watch: {
+          // 입력한 문자열을 감시한다.
+          inputText: function () {
+            var pos = this.inputText.indexOf(this.forbiddenText);
+            if (pos >= 0) {
+              alert(this.forbiddenText + '는 입력할 수 없습니다.');
+              // 입력문자에서 금지 문자를 삭제한다.
+              this.inputText = this.inputText.substr(0, pos);
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

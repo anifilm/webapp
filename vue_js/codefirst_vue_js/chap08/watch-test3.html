@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+  </head>
+  <body>
+    <h2>숫자가 빠르게 올라가는 애니메이션을 보여주며 값이 증가하는 input 태그 예제</h2>
+    <div id="app">
+      <p>값은 {{ animeNumber }} 입니다.</p>
+      <input v-model.number.lazy="myNumber" type="number" />
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myNumber: 0,
+          tweenedNumber: 0
+        },
+        computed: {
+          // tweenedNumber 값이 변경되는 변화중 애니메이션을 산출한다.
+          animeNumber: function () {
+            return this.tweenedNumber.toFixed(0);
+          }
+        },
+        watch: {
+          // myNumber 를 감시하여 값이 변할경우 실행한다.
+          myNumber: function () {
+            // data의 tweenedNumber 프로퍼티를 1초에 myNumber까지 증가시킨다.
+            TweenMax.to(this.$data, 1, { tweenedNumber: this.myNumber });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>문자를 입력하면 그 문자를 포함한 항목만 표시하는 예제</h2>
+    <div id="app">
+      <input v-model="findWord" />
+      <ul>
+        <li v-for="item in findItems">{{ item }}</li>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          findWord: '',
+          items: ['설악산', '한라산', '북한산', '백두산', '지리산']
+        },
+        computed: {
+          // this.findWord가 변하면 그 문자가 포함된 리스트를 계산한다.
+          findItems: function () {
+            if (this.findWord) {
+              return this.items.filter(function (value) {
+                return value.indexOf(this.findWord) > -1;
+              }, this);
+            } else {
+              // this.findWord가 공백일땐 리스트를 그대로 반환한다.
+              return this.items;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

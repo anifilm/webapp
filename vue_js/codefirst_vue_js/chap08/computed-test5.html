@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>적색, 녹색, 청색 의 슬라이더를 움직이면 완성된 색을 표시하는 예제</h2>
+    <div id="app">
+      <p v-bind:style="{backgroundColor: mixColor, color: fontColor}">
+        {{ mixColor }}
+      </p>
+      <input type="range" v-model="R" min="0" max="255" /><br />
+      <input type="range" v-model="G" min="0" max="255" /><br />
+      <input type="range" v-model="B" min="0" max="255" /><br />
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          R: 255,
+          G: 150,
+          B: 100,
+          F: 'black'
+        },
+        computed: {
+          // R,G,B의 값이 변하면 색을 계산한다.
+          mixColor: function () {
+            var ans = 'RGB(' + this.R + ', ' + this.G + ', ' + this.B + ')';
+            return ans;
+          },
+          fontColor: function () {
+            if (this.R < 80 || this.G < 80 || this.B < 80) {
+              return 'white';
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

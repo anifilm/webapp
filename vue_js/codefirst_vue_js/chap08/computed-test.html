@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>금액을 입력하면 소비세가 포함된 금액을 계산하는 예제</h2>
+    <div id="app">
+      <input v-model.number="price" type="number" />원
+      <p>소비세 포함 금액 {{ taxIncluded }}원</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          price: 100
+        },
+        computed: {
+          // price 변하면 소비세 포함 금액이 변한다.
+          taxIncluded: function () {
+            return this.price * 1.08;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+  </head>
+
+  <body>
+    <h2>TweenMax 테스트</h2>
+    <button id="movebtn" type="button" onclick="myMove()">이동</button>
+    <script>
+      function myMove() {
+        // movebtn는 x 프로퍼티를 1초에 500 증가시킨다.
+        TweenMax.to('#movebtn', 1, { x: '500px' });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>단가와 개수를 입력하면 세금포함 금액을 계산하는 예제</h2>
+    <div id="app">
+      <input v-model.number="price" type="number" />원 x
+      <input v-model.number="count" type="number" />개
+      <p>합계 {{ sum }} 원</p>
+      <p>세금 포함 {{ taxIncluded }}원</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          price: 100,
+          count: 1
+        },
+        computed: {
+          // price나 count가 변하면 합계 금액을 계산한다.
+          sum: function () {
+            return this.price * this.count;
+          },
+          // 합계 금액이 변하면 세금 포함 금액을 계산한다.
+          taxIncluded: function () {
+            return this.sum * 1.08;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
