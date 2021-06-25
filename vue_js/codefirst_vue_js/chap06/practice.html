@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>숫자 배열 조작과 구구단 출력</h2>
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in myArray">
+          {{ item }} -
+          <button v-on:click="modifyNumber(index)">변경</button>
+          <button v-on:click="deleteNumber(index)">삭제</button>
+        </li>
+        <br />
+        <button v-on:click="addNumber()">추가</button>
+        <button v-on:click="sortData()">소트</button>
+        <button v-on:click="showGuGu()">구구단 보이기</button>
+        <ul v-if="show">
+          <li v-for="item in myArray">
+            <p v-for="item2 in 9">
+              {{ item }} x {{ item2 }} = {{ item * item2 }}
+            </p>
+          </li>
+        </ul>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myArray: [2, 3, 4, 5, 6, 7, 8, 9],
+          show: false
+        },
+        methods: {
+          sortData: function () {
+            this.myArray = this.myArray.filter(function (item, idx, array) {
+              return array.indexOf(item) === idx;
+            });
+
+            this.myArray.sort(function (a, b) {
+              return a < b ? -1 : 1;
+            });
+          },
+          addNumber: function () {
+            this.myArray.push(1);
+          },
+          modifyNumber: function (index) {
+            this.myArray.splice(index, 1, this.myArray[index] + 1);
+          },
+          deleteNumber: function (index) {
+            this.myArray.splice(index, 1);
+          },
+          showGuGu: function () {
+            this.show = true;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

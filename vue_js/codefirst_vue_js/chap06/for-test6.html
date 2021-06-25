@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>버튼을 클릭하면 배열을 정렬하는 예제</h2>
+    <div id="app">
+      <ul>
+        <li v-for="item in myArray">{{ item }}</li>
+      </ul>
+      <button v-on:click="sortData(myArray)">정렬</button>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          //myArray: ['one','two','three','four','five']
+          myArray: [5, 2, 4, 6, 1, 3, 9, 7]
+        },
+        methods: {
+          // 오름차순 정렬
+          sortData: function (listdata) {
+            listdata.sort(function (a, b) {
+              return a < b ? -1 : 1;
+            });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

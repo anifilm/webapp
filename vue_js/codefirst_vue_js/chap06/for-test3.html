@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>1 x 5 ~ 10 x 5를 반복 표시하는 예제</h2>
+    <div id="app">
+      <ul>
+        <li v-for="n in 10">{{ n }} x 5 = {{ n * 5 }}</li>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>배열 데이터를 테이블로 표시하는 예제</h2>
+    <div id="app">
+      <h3>관심받고 있는 언어 랭킹</h3>
+      <table>
+        <thead>
+          <!-- 테이블 헤드 반복 -->
+          <th v-for="item in header">{{ item }}</th>
+        </thead>
+        <tbody>
+          <!-- 1행 반복 -->
+          <tr v-for="line in ranking">
+            <!-- 1데이터 반복 -->
+            <td v-for="item in line">{{ item }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          header: ['프로그램언어', 2018, 2013, 2008, 2003, 1998],
+          ranking: [
+            ['Java', 1, 2, 1, 1, 16],
+            ['C', 2, 1, 2, 2, 1],
+            ['C++', 3, 4, 3, 3, 2],
+            ['Python', 4, 7, 6, 11, 23],
+            ['JavaScript', 7, 10, 8, 7, 20]
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>
