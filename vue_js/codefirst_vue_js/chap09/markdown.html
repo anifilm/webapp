@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+  </head>
+  <body>
+    <h2>Markdown 에디터</h2>
+    <div id="app">
+      <textarea v-model="input"></textarea>
+      <div v-html="convertMarkdown"></div>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          input: ''
+        },
+        computed: {
+          // input이 변하면 convertMarkdown 실행
+          convertMarkdown: function () {
+            return marked(this.input);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
