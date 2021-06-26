@@ -41,7 +41,7 @@
         <transition>
           <ul v-if="show">
             <li v-for="item in myArray">
-              <p v-for="item2 in 9">{{item}}x{{item2}}={{item * item2}}</p>
+              <p v-for="item2 in 9">{{ item }} x {{ item2 }} = {{ item * item2 }}</p>
             </li>
           </ul>
         </transition>
@@ -72,7 +72,7 @@
             var change_num = this.myArray[index] + 100;
 
             while (true) {
-              if (this.myArray.indexOf(change_num) == -1) break;
+              if (this.myArray.indexOf(change_num) === -1) break;
               else change_num++;
             }
 
