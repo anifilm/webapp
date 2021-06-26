@@ -1,6 +1,6 @@
-import Controller from "./Controller";
-import Store from "./store";
-import storage from './storage';
+import Controller from "./Controller.js";
+import Store from "./store.js";
+import storage from './storage.js';
 
 document.addEventListener('DOMContentLoaded', main);
 

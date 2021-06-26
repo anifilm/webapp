@@ -1,4 +1,4 @@
-import { emit, on } from "../helpers";
+import { emit, on } from "../helpers.js";
 
 const tag = '[View]';
 
