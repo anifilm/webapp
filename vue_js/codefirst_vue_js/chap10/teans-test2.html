@@ -42,14 +42,15 @@
       new Vue({
         el: '#app',
         data: {
-          dataArray: ['벚꽃', '산수유', '진달래', '철죽'],
-          addItem: ''
+          addItem: '',
+          dataArray: ['벚꽃', '산수유', '진달래', '철죽']
         },
         methods: {
           addList: function () {
-            if (this.addItem === '') return;
-            this.dataArray.push(this.addItem);
-            this.addItem = '';
+            if (this.addItem) {
+              this.dataArray.push(this.addItem);
+              this.addItem = '';
+            }
           },
           removeLast: function () {
             var lastIdx = this.dataArray.length - 1;

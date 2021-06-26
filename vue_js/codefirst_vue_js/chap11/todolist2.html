@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>ToDo 리스트</h2>
+    <style>
+      .donestyle {
+        text-decoration: line-through;
+        color: lightgray;
+      }
+    </style>
+
+    <div id="app">
+      <div v-for="todo in todos">
+        <label>
+          <input type="checkbox" v-model="todo.done" />
+          <span v-bind:class="{donestyle: todo.done}">{{todo.text}}</span>
+        </label>
+      </div>
+
+      <p>
+        <input
+          text="text"
+          v-model.trim="addText"
+          v-on:keyup.enter="addToDo"
+          placeholder="할일"
+        />
+      </p>
+      <p>
+        <button v-on:click="cleanToDo">처리완료 삭제</button>
+      </p>
+      <p>{{ remaining }} / {{ todos.length }}건 처리</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          addText: '',
+          todos: [
+            { done: true, text: '아침 먹기' },
+            { done: true, text: '점심 먹기' },
+            { done: false, text: '저녁 먹기' },
+            { done: false, text: '야식 먹기' }
+          ]
+        },
+        methods: {
+          addToDo: function () {
+            if (this.addText) {
+              this.todos.push({ done: false, text: this.addText });
+              this.addText = '';
+            }
+          },
+          cleanToDo: function () {
+            this.todos = this.todos.filter(function (value) {
+              return value.done === false;
+            })
+          }
+        },
+        computed: {
+          remaining: function () {
+            return this.todos.filter(function (value) {
+              return value.done;
+            }).length;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
