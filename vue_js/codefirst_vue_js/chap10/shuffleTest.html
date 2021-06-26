@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>클릭하면 셔플하는 예제 </h2>
+		<button onclick="shuffleData()">셔플</button>
+
+    <script>
+      // 원본 데이터 배열
+      var dataArray = ['one','two','three','four','five'];
+
+      function shuffleData() {
+        // 먼저, 임시로 저장할 배열 공간을 준비
+        var buffer = [];
+        // 원본 배열의 개수
+        var len = this.dataArray.length;
+        // 원래 배열을 감소해가면서 반복, i는 그 시점에서의 개수
+        for (var i = len; len > 0; len--) {
+          // r은 랜덤 수를 뽑아 개수를 곱한 후 소수점 제거한 값
+          var r = Math.floor(Math.random() * len);
+          // 원본 배열에서 랜덤으로 하나씩 뽑아서 임시 배열에 추가
+          buffer.push(this.dataArray[r]);
+          // 원본 배열에서 랜덤으로 하나씩 삭제
+          this.dataArray.splice(r, 1);
+        }
+        // 임시 배열을 원본 배열에 입력
+        this.dataArray = buffer;
+
+        // 셔플 내용 확인
+        console.log(dataArray);
+      }
+    </script>
+  </body>
+</html>

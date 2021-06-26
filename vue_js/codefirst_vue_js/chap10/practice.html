@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>숫자 배열 조작과 구구단 출력</h2>
+    <style>
+      /* 나타나고 있을 때와 사라지고 있을 때 0.5초 */
+      .v-enter-active, .v-leave-active {
+        transition: 0.5s;
+      }
+      /* 나타나기 전의 상태과 사라진 후의 상태는 투명도 0, 오른쪽으로 50 이동*/
+      .v-enter, .v-leave-to {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      /* 이동 트랜지션에 걸리리는 시간(0.5초) */
+      .v-move {
+        transition: 0.5s;
+      }
+    </style>
+
+    <div id="app">
+      <ul>
+        <transition-group>
+          <li v-for="(item, index) in myArray" v-bind:key="item">
+            {{ item }} -
+            <button v-on:click="modifyNumber(index)">변경</button>
+            <button v-on:click="deleteNumber(index)">삭제</button>
+          </li>
+        </transition-group>
+        <br />
+        <button v-on:click="addNumber()">추가</button>
+        <button v-on:click="sortData()">소트</button>
+        <button v-on:click="showGuGu()">구구단 보이기</button>
+
+        <transition>
+          <ul v-if="show">
+            <li v-for="item in myArray">
+              <p v-for="item2 in 9">{{item}}x{{item2}}={{item * item2}}</p>
+            </li>
+          </ul>
+        </transition>
+      </ul>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          myArray: [2, 3, 4, 5, 6, 7, 8, 9],
+          show: false
+        },
+        methods: {
+          sortData: function () {
+            this.myArray = this.myArray.filter(function (item, idx, array) {
+              return array.indexOf(item) === idx;
+            });
+
+            this.myArray.sort(function (a, b) {
+              return a < b ? -1 : 1;
+            });
+          },
+          addNumber: function () {
+            this.myArray.push(1);
+          },
+          modifyNumber: function (index) {
+            var change_num = this.myArray[index] + 100;
+
+            while (true) {
+              if (this.myArray.indexOf(change_num) == -1) break;
+              else change_num++;
+            }
+
+            this.myArray.splice(index, 1, change_num);
+          },
+          deleteNumber: function (index) {
+            this.myArray.splice(index, 1);
+          },
+          showGuGu: function () {
+            this.show = true;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

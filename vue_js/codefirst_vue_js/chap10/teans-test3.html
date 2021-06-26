@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>리스트의 순서가 이동하면서 변하는 애니메이션 예제</h2>
+    <style>
+      /* 이동 트랜지션에 걸리는 시간(0.5초) */
+      .v-move {
+        transition: 0.5s;
+      }
+    </style>
+
+    <div id="app">
+      <transition-group>
+        <li v-for="item in dataArray" v-bind:key="item">{{ item }}</li>
+      </transition-group>
+      <p>
+        <button v-on:click="sortData">소트</button>
+        <button v-on:click="shuffleData">셔플</button>
+      </p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          dataArray: ['one', 'two', 'three', 'four', 'five']
+        },
+        methods: {
+          sortData: function () {
+            this.dataArray.sort(function(a, b) {
+              if (a < b) return -1;
+              if (a > b) return 1;
+              return 0;
+            });
+          },
+          shuffleData: function () {
+            var buffer = [];
+            var len = this.dataArray.length;
+            for (var i = len; len > 0; len--) {
+              var r = Math.floor(Math.random() * len);
+              buffer.push(this.dataArray[r]);
+              this.dataArray.splice(r, 1);
+            }
+            this.dataArray = buffer;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
