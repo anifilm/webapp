@@ -7,18 +7,55 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
+    <h2>배열 데이터를 컴포넌트로 나열하는 예제</h2>
     <div id="app">
-
+      <div v-for="item in dataArray" v-bind:key="item.title">
+        <my-product v-bind:object="item"></my-product>
+      </div>
+      <button v-on:click="sortData">소트</button>
+      <button v-on:click="shuffleData">셔플</button>
     </div>
 
     <script>
+      var MyComponent = {
+        template: `
+          <div style="width: 300px; backgroundColor: #ffddaa;">
+            <p style="backgroundColor: #ffa95e;">{{ object.title }}</p>
+            <p>해설: {{ object.body }}</p>
+          </div>
+        `,
+        props: ['object']
+      };
+
       new Vue({
         el: '#app',
         data: {
-
+          dataArray: [
+            { title: 'AAA', body: 'aaa' },
+            { title: 'BBB', body: 'bbb' },
+            { title: 'CCC', body: 'ccc' }
+          ]
+        },
+        components: {
+          'my-product': MyComponent
         },
         methods: {
-
+          sortData: function () {
+            this.dataArray.sort(function (a, b) {
+              return a.title < b.title ? -1 : 1;
+              return 0;
+            });
+          },
+          shuffleData: function () {
+            var buffer = [];
+            var len = this.dataArray.length;
+            for (var i = len; len > 0; len--) {
+              var r = Math.floor(Math.random() * len);
+              buffer.push(this.dataArray[r]);
+              this.dataArray.splice(r, 1);
+            }
+            this.dataArray = buffer;
+          }
         }
       });
     </script>

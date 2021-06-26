@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>JSON을 읽어 들이는 예제 (JavaScript)</h2>
+    <input type="file" id="loader" />
+
+    <script>
+      var obj = document.getElementById('loader');
+      obj.addEventListener('change', loadFile, false);
+
+      function loadFile(e) {
+        file = e.target.files[0];
+        if (file) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            console.log('>> ' + e.target.result);
+            json = JSON.parse(e.target.result);
+            console.log('>> ' + json[0].title);
+            console.log('>> ' + json[0].body);
+          };
+          reader.readAsText(file);
+        }
+      }
+    </script>
+  </body>
+</html>

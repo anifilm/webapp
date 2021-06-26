@@ -7,18 +7,66 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
+    <h2>퀴즈 맞추기</h2>
     <div id="app">
-
+      <p><input type="file" v-on:change="loadData" /></p>
+      <div v-for="item in dataArray" v-bind:key="item.title">
+        <my-quiz v-bind:object="item"></my-quiz>
+      </div>
+      <br />
+      <button v-if="show" v-on:click="answerQuestion">정답 제출하기</button>
+      <p v-if="showResult">총득점 : {{score}}</p>
     </div>
 
     <script>
+      var MyQuiz = {
+        template: `
+          <div style="width: 600px; backgroundColor: #ffddaa;">
+					  <p style="backgroundColor: #ffa95e;">
+					    문제 {{ object.no }}. {{ object.question }} (배점: {{ object.point }})
+					  </p>
+					  정답 :
+					  <input type="radio" v-model="object.user_answer" value="true"> O &nbsp;
+					  <input type="radio" v-model="object.user_answer" value="false"> X
+				  </div>
+        `,
+        props: ['object']
+      };
+
       new Vue({
         el: '#app',
         data: {
-
+          dataArray: [],
+          show: false,
+          showResult: false,
+          score: 0
+        },
+        components: {
+          'my-quiz': MyQuiz
         },
         methods: {
-
+          loadData: function (e) {
+            file = e.target.files[0];
+            if (file) {
+              var reader = new FileReader();
+              var vm = this;
+              reader.onload = function (e) {
+                vm.dataArray = JSON.parse(e.target.result);
+              };
+              reader.readAsText(file);
+              this.show = true;
+            }
+          },
+          answerQuestion: function () {
+            var score = 0;
+            for (var i = 0; i < this.dataArray.length; i++) {
+              if (this.dataArray[i].user_answer == this.dataArray[i].answer) {
+                score += this.dataArray[i].point;
+              }
+            }
+            this.score = score;
+            this.showResult = true;
+          }
         }
       });
     </script>
