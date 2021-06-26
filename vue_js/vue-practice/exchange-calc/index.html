@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>환율 계산기</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>환율 계산기</h2>
+    <div id="app">
+      <p>
+        <div>대한민국 KRW</div>
+        <input v-model="exchange" type="number"/>
+      </p>
+      <p>
+        <div>미국 USD</div>
+        <input v-model="usd" type="number"/>
+      </p>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          krw: 1128.50,
+          usd: 1.0
+        },
+        computed: {
+          exchange: function() {
+            return this.usd * this.krw;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
