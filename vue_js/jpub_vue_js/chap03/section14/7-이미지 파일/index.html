@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>이미지 파일</h2>
+    <div id="app">
+      <input type="file" v-on:change="handleChange" />
+      <div v-if="preview">
+        <img v-bind:src="preview" />
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          preview: ''
+        },
+        methods: {
+          handleChange: function (event) {
+            var file = event.target.files[0];
+            if (file && file.type.match(/^image\/(png|jpeg)$/)) {
+              this.preview = window.URL.createObjectURL(file);
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
