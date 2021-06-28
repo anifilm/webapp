@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>$el과 $ref는 일시적인 변경</h2>
+    <div id="app">
+      <button v-on:click="handleClick">Count up</button>
+      <button v-on:click="show = !show">표시/비표시</button>
+      <p>
+        <span ref="count" v-if="show">0</span>
+      </p>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          show: true
+        },
+        methods: {
+          handleClick() {
+            var count = this.$refs.count;
+            if (count) {
+              count.innerText = parseInt(count.innerText) + 1;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

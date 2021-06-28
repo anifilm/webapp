@@ -7,19 +7,26 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>공부 전용 파일 타이틀</h2>
-    <div id="app">
-      <!-- 여기 #app 내부에 템플릿을 출력할 것입니다. -->
-    </div>
+    <h2>v-cloak</h2>
+    <style>
+      @keyframes cloak-in {
+        0% { opacity: 0; }
+      }
+      #app {
+        animation: cloak-in 1s;
+      }
+      #app[v-cloak] {
+        opacity: 0;
+      }
+    </style>
+
+    <div id="app" v-cloak>{{ message }}</div>
 
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-
-        },
-        methods: {
-
+          message: 'Hello Vue.js!'
         }
       });
     </script>
