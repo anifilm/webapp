@@ -7,16 +7,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>Vue.js는 어떤 아이인가요?</h2>
+    <h2>이벤트 사용하기</h2>
     <div id="app">
-      <h1>{{ message }}</h1>
+      <button v-on:click="handleClick">Click</button>
     </div>
 
     <script>
       var app = new Vue({
         el: '#app',
-        data: {
-          message: 'Hello Vue.js!'
+        methods: {
+          handleClick: function (event) {
+            alert(event.target); // [object HTMLButtonElement]
+          }
         }
       });
     </script>

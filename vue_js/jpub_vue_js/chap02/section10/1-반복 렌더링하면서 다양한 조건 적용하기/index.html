@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>반복 렌더링하면서 다양한 조건 적용하기</h2>
+    <style>
+      .strong {
+        color: #ff3c7c;
+      }
+    </style>
+
+    <div id="app">
+      <ul>
+        <li
+          v-for="item in list"
+          v-bind:key="item.id"
+          v-bind:class="{ strong: item.hp > 300 }"
+        >
+          ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+          <span v-if="item.hp > 300">강하다!</span>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          list: [
+            { id: 1, name: '슬라임', hp: 100 },
+            { id: 2, name: '고블린', hp: 200 },
+            { id: 3, name: '드래곤', hp: 500 }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>

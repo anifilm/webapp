@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h2>외부에서 데이터 가져와서 출력하기</h2>
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in list" v-bind:key="item.id">
+          ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          // 미리 빈 리스트 준비하기
+          list: []
+        },
+        created: function () {
+          axios.get('list.json').then(function (response) {
+            // 데이터를 읽어 들였다면 list에 할당하기
+            this.list = response.data;
+          }.bind(this)).catch(function (e) {
+            console.error(e);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

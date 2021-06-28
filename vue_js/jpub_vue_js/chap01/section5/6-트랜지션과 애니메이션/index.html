@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>트랜지션과 애니메이션</h2>
+    <style>
+      .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+      }
+      /* opacity:0에서 1까지 페이드인&페이드아웃하기 */
+      .v-enter, .v-leave-to {
+        opacity: 0;
+      }
+    </style>
+
+    <div id="app">
+      <button v-on:click="show = !show">변경하기</button>
+      <transition>
+        <p v-if="show">Hello Vue.js!</p>
+      </transition>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          show: true
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>객체와 배열 내부의 요소 출력하기</h2>
+    <div id="app">
+      <!-- 1. 객체의 속성 출력하기 -->
+      <p>{{ message.value }}</p>
+      <!-- 2. 문자열의 길이 출력하기 -->
+      <p>{{ message.value.length }}</p>
+      <!-- 3. 리스트 내부의 요소 출력하기 -->
+      <p>{{ list[2] }}</p>
+      <!-- 4. 속성을 조합해서 사용하기 -->
+      <p>{{ list[num] }}</p>
+      <!-- v-bind:value로 객체의 속성 값을 출력 (양방향 바인딩 아님 -> 단순 값 출력용, v-model로 양방향 바인딩 사용) -->
+      <input type="text" v-bind:value="message.value" />
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          // 객체 데이터
+          message: {
+            value: 'Hello Vue.js!'
+          },
+          // 배열 데이터
+          list: ['사과', '바나나', '딸기'],
+          // 다른 데이터를 사용해서 list에서 값을 추출하기 위한 요소
+          num: 1
+        }
+      });
+    </script>
+  </body>
+</html>

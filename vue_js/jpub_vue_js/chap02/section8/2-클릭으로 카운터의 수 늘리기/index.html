@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>클릭으로 카운터의 수 늘리기</h2>
+    <div id="app">
+      <!-- count 속성 출력하기 -->
+      <p>{{ count }}번 클릭했습니다.</p>
+      <!-- 이 버튼을 클릭하면 increment 메서드가 호출됩니다. -->
+      <button v-on:click="increment">카운트하기</button>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          count: 0
+        },
+        methods: {
+          // 버튼을 클릭할 때의 핸들러
+          increment: function () {
+            this.count += 1; // 다시 할당하는 처리만 합니다.
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

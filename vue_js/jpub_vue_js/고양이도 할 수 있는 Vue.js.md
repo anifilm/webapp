@@ -3,6 +3,9 @@
 지원 페이지
 https://rintiantta.github.io/jpub-vue/
 
+원서 지원 페이지
+https://github.com/mio3io/cr-vue
+
 Vue.js 공식 사이트
 https://kr.vuejs.org/
 

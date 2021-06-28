@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>클래스와 스타일 데이터 바인딩 2</h2>
+    <style>
+      .item {
+        padding: 4px 8px;
+        transition: background-color 0.4s;
+      }
+      .is-active {
+        background: #ffeaea;
+      }
+    </style>
+
+    <div id="app">
+      <!-- 객체에 데이터 전달하기 -->
+      <button v-on:click="toggleActive">isActive 변경하기</button>
+      <p v-bind:class="classObject" class="item">동적 클래스</p>
+      <p v-bind:style="styleObject" class="item">동적 스타일</p>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          classObject: {
+            child: true,
+            'is-active': true
+          },
+          styleObject: {
+            color: 'red',
+            backgroundColor: 'lightgray'
+          }
+        },
+        methods: {
+          toggleActive() {
+            // 객체 데이터 바인딩에 대한 접근 관련 내용 확인
+            this.classObject['is-active'] = !this.classObject['is-active'];
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

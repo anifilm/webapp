@@ -7,16 +7,17 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>Vue.js는 어떤 아이인가요?</h2>
+    <h2>입력 양식과 동기화하기</h2>
     <div id="app">
-      <h1>{{ message }}</h1>
+      <input v-model="message" />
+      <p>{{ message }}</p>
     </div>
 
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-          message: 'Hello Vue.js!'
+          message: '초기 메시지'
         }
       });
     </script>

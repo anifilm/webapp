@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>여러 개의 속성 데이터 바인딩하기</h2>
+    <div id="app">
+      <!-- 대량의 속성을 각각의 속성에 바인딩하면 가독성이 크게 떨어진다. -->
+      <img
+        v-bind:src="item.src"
+        v-bind:alt="item.alt"
+        v-bind:width="item.width"
+        v-bind:height="item.height"
+      />
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          item: {
+            id: 1,
+            src: 'item1.jpg',
+            alt: '상품1의 섬네일',
+            width: 200,
+            height: 200
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
