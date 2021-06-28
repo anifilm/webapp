@@ -7,19 +7,22 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>제목</h2>
+    <h2>선택 박스</h2>
     <div id="app">
-
+      <select v-model="val">
+        <option disabled="disabled">선택해 주세요.</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+      <p>{{ val }}</p>
     </div>
 
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-
-        },
-        methods: {
-
+          val: ''
         }
       });
     </script>

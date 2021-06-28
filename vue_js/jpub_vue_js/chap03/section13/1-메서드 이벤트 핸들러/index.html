@@ -7,19 +7,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>제목</h2>
+    <h2>메서드 이벤트 핸들러</h2>
     <div id="app">
-
+      <button v-on:click="handleClick">클릭</button>
     </div>
 
     <script>
       var app = new Vue({
         el: '#app',
-        data: {
-
-        },
         methods: {
-
+          handleClick: function () {
+            alert('클릭했어요!');
+          }
         }
       });
     </script>

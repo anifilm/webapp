@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+html {
+	width: 95%;
+  margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+input, button, select, optgroup, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+button {
+	cursor: pointer;
+	padding: 6px 18px;
+	border-radius: 3px;
+	color: #fff;
+	border: 2px;
+	background-color: #ff3c7c;
+	transition: background-color .2s
+}
+button:hover {
+	background-color: #ec1a60;
+}
+button:active {
+	background-color: #ff558e;
+}
+button:disabled {
+	opacity: .5;
+	pointer-events: none;
+}
+
+input {
+	padding: 6px 18px;
+	border-radius: 3px;
+	color: #495057;
+	border: 2px solid #ced4da;
+}
+
+textarea {
+	width: 500px;
+	height: 200px;
+}
+
+select {
+	width: 100px;
+	border: 2px solid #ced4da;
+}

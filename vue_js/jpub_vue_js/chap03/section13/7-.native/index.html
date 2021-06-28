@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>
+      .native (DOM 이벤트라도 $emit을 사용하지 않으면 호출되지 않도록 합니다.)
+    </h2>
+    <div id="app">
+      <!-- 컴포넌트를 클릭하면 핸들러가 호출됨 -->
+      <my-component v-on:click.native="handler"></my-component>
+      <!-- 컴포넌트를 클릭하더라도 핸들러가 호출되지 않음 -->
+      <my-component v-on:click="handler"></my-component>
+    </div>
+
+    <script>
+      var MyComponent = {
+        template: '<div>사용자 정의 컴포넌트 입니다!</div>'
+      };
+
+      var app = new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        },
+        methods: {
+          handler: function (event) {
+            console.log(event);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>이벤트 장식자</h2>
+    <div id="app">
+      <!-- 마우스 오른쪽 버튼을 눌렀을 때 handler 메서드 호출 -->
+      <button v-on:click.right="handler">example</button>
+      <!-- 마우스 오른쪽 버튼을 눌렀을 때 handler 메서드 호출 (컨텍스트 메뉴가 출력되지 않음) -->
+      <button v-on:click.right.prevent="handler">example</button>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        methods: {
+          handler: function (event) {
+            console.log(event);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

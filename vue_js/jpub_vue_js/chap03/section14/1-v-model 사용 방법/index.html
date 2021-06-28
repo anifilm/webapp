@@ -7,19 +7,17 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>제목</h2>
+    <h2>v-model 사용 방법</h2>
     <div id="app">
-
+      <p>{{ message }}</p>
+      <input v-model="message">
     </div>
 
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-
-        },
-        methods: {
-
+          message: 'Hello!'
         }
       });
     </script>

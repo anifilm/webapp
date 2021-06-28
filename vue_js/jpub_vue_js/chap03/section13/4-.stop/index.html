@@ -7,19 +7,21 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2>제목</h2>
+    <h2>.stop (이벤트 버블링을 막습니다.)</h2>
     <div id="app">
-
+      <div v-on:click="handler('div1')">
+        div1
+        <a href="#top" v-on:click.stop="handler('div2')">div2</a>
+      </div>
     </div>
 
     <script>
       var app = new Vue({
         el: '#app',
-        data: {
-
-        },
         methods: {
-
+          handler: function (event) {
+            console.log(event);
+          }
         }
       });
     </script>
