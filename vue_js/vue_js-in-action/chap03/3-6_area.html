@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>넓이 계산 (계산된 속성과 업데이트 이벤트 기록하기)</h2>
+    <div id="app">
+      <p>넓이: {{ area }}</p>
+      <p>
+        <button v-on:click="length += 1">가로 추가</button>
+        <button v-on:click="width += 1">세로 추가</button>
+      </p>
+    </div>
+
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          length: 5,
+          width: 3
+        },
+        computed: {
+          area() {
+            return this.length * this.width;
+          }
+        },
+        watch: {
+          length(newVal, oldVal) {
+            console.log(`이전 세로 길이: ${oldVal} \n  새 세로 길이: ${newVal}`);
+          },
+          width(newVal, oldVal) {
+            console.log(`이전 가로 길이: ${oldVal} \n  새 가로 길이: ${newVal}`);
+          },
+          area(newVal, oldVal) {
+            console.log(`이전 넓이: ${oldVal} \n  새 넓이: ${newVal}`);
+          }
+        },
+        beforeUpdate() {
+          console.log('데이터 변경은 ' + '결과값 변경 이전에 이루어졌습니다.');
+        }
+      });
+    </script>
+  </body>
+</html>

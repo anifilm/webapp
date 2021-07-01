@@ -19,6 +19,11 @@
           <div class="navbar-header">
             <h1 v-text="sitename"></h1>
           </div>
+          <div class="nav navbar-nav navbar-right cart">
+            <span class="glyphicon glyphicon-shopping-cart">
+              {{ cartItemCount }}
+            </span>
+          </div>
         </div>
       </header>
       <main>
@@ -32,6 +37,16 @@
             <h1 v-text="product.title"></h1>
             <p v-html="product.description"></p>
             <p class="price">{{ product.price | formatPrice }}</p>
+            <button
+              class="btn btn-primary btn-lg"
+              v-on:click="addToCart"
+              v-if="canAddToCart"
+            >
+              장바구니 담기
+            </button>
+            <button class="btn btn-primary btn-lg" disabled="true" v-else>
+              장바구니 담기
+            </button>
           </div>
         </div>
       </main>
@@ -44,13 +59,36 @@
         el: '#app',
         data: {
           sitename: 'Vue.js 애완용품샵',
+          showProduct: true, // 상품 페이지를 보여 줄지 체크
           product: {
             id: 1001,
             title: '고양이 사료, 25파운드',
             description:
               '당신의 고양이를 위한 <em>거부할 수 없는</em>, 유기농 25파운드 사료입니다.',
             price: 2000,
-            image: 'assets/images/product-fullsize.png'
+            image: 'assets/images/product-fullsize.png',
+            availableInventory: 5 // 판매 가능한 재고 수량
+          },
+          cart: [] // 카트 아이템을 담을 배열
+        },
+        methods: {
+          addToCart() {
+            // 카트 배열에 상품 추가
+            this.cart.push(this.product.id);
+          },
+          showCheckout() {
+            //this.showProduct = this.showProduct ? false : true;
+            this.showProduct = !this.showProduct;
+          }
+        },
+        computed: {
+          cartItemCount() {
+            // 카트 배열에 상품이 있다면 상품 개수를 반환 아니면 '' 빈문자를 반환
+            return this.cart.length || '';
+          },
+          canAddToCart() {
+            // 이미 장바구니에 담겨 있는 상품의 개수를 비교
+            return this.product.availableInventory > this.cartItemCount;
           }
         },
         filters: {
@@ -70,46 +108,6 @@
             } else {
               return '$' + (price / 100).toFixed(2);
             }
-          }
-        },
-        beforeCreate() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('beforeCreate');
-          }
-        },
-        created() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('created');
-          }
-        },
-        beforeMount() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('beforeMount');
-          }
-        },
-        mounted() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('mounted');
-          }
-        },
-        beforeUpdate() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('beforeUpdate');
-          }
-        },
-        updated() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('updated');
-          }
-        },
-        beforeDestroy() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('beforeDestroy ');
-          }
-        },
-        destroyed() {
-          if (APP_LOG_LIFECYCLE_EVENTS) {
-            console.log('destroyed');
           }
         }
       });
