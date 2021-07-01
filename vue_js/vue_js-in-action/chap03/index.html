@@ -121,6 +121,46 @@
               return '$' + (price / 100).toFixed(2);
             }
           }
+        },
+        beforeCreate() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('beforeCreate');
+          }
+        },
+        created() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('created');
+          }
+        },
+        beforeMount() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('beforeMount');
+          }
+        },
+        mounted() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('mounted');
+          }
+        },
+        beforeUpdate() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('beforeUpdate');
+          }
+        },
+        updated() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('updated');
+          }
+        },
+        beforeDestroy() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('beforeDestroy ');
+          }
+        },
+        destroyed() {
+          if (APP_LOG_LIFECYCLE_EVENTS) {
+            console.log('destroyed');
+          }
         }
       });
     </script>
