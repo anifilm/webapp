@@ -70,59 +70,41 @@
                   <div class="form-group">
                     <div class="col-md-6">
                       <strong>이름:</strong>
-                      <input
-                        v-model.lazy.trim="order.firstName"
-                        class="form-control"
-                      />
+                      <input v-model="order.firstName" class="form-control" />
                     </div>
                     <div class="col-md-6">
                       <strong>성:</strong>
-                      <input
-                        v-model.lazy.trim="order.lastName"
-                        class="form-control"
-                      />
+                      <input v-model="order.lastName" class="form-control" />
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-md-12">
                       <strong>주소:</strong>
-                      <input
-                        v-model.lazy.trim="order.address"
-                        class="form-control"
-                      />
+                      <input v-model="order.address" class="form-control" />
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-md-12">
                       <strong>도시:</strong>
-                      <input
-                        v-model.lazy.trim="order.city"
-                        class="form-control"
-                      />
+                      <input v-model="order.city" class="form-control" />
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                       <strong>주:</strong>
                       <select v-model="order.state" class="form-control">
                         <option disabled value="">주</option>
-                        <option
-                          v-for="(state, key) in states"
-                          v-bind:value="state"
-                        >
-                          {{ key }} {{ state }}
-                        </option>
+                        <option>AL</option>
+                        <option>AR</option>
+                        <option>CA</option>
+                        <option>NV</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-4">
                       <strong>우편번호:</strong>
-                      <input
-                        v-model.lazy.number="order.zip"
-                        class="form-control"
-                        type="number"
-                      />
+                      <input v-model.number="order.zip" class="form-control" />
                     </div>
                   </div>
                   <div class="form-group">
@@ -143,14 +125,14 @@
                       <input
                         type="radio"
                         id="home"
-                        v-bind:value="order.home"
+                        value="자택"
                         v-model="order.method"
                       />
                       <label for="home">자택</label>
                       <input
                         type="radio"
                         id="business"
-                        v-bind:value="order.business"
+                        value="직장"
                         v-model="order.method"
                         style="margin-left: 12px"
                       />
@@ -158,7 +140,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-md-6" style="margin-left: 40px">
+                    <div class="col-md-6" style="margin-left: 40px;">
                       <button
                         type="submit"
                         class="btn btn-primary submit"
@@ -196,13 +178,6 @@
         data: {
           sitename: 'Vue.js 애완용품샵',
           showProduct: false, // 상품 페이지를 보여 줄지 체크
-          states: {
-            AL: '알라바마',
-            AK: '알래스카',
-            AR: '애리조나',
-            CA: '캘리포니아',
-            NV: '네바다'
-          },
           order: {
             firstName: '',
             lastName: '',
@@ -210,12 +185,8 @@
             city: '',
             zip: '',
             state: '',
-            method: '자택 주소', // 기본값 설정
-            home: '자택 주소',
-            business: '직장 주소',
-            gift: '선물로 보내기지 않기', // 기본값 설정
-            sendGift: '선물로 보내기',
-            dontSendGift: '선물로 보내지 않기'
+            method: '자택',
+            gift: false
           },
           product: {
             id: 1001,
