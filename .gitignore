@@ -7,3 +7,4 @@ target
 __using_assets__
 __new__
 *.exe
+*.lnk

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 계산기</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      p, input {
+        font-family: monospace;
+      }
+      p {
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>x <input v-model="x"></p>
+      <p>y <input v-model="y"></p>
+      <p>------------------------</p>
+      <p>= <span v-text="result"></span></p>
+    </div>
+
+    <script type="text/javascript">
+      const isNotNumbericValue = function (value) {
+        return isNaN(value) || !isFinite(value);
+      }
+
+      var calc = new Vue({
+        el: '#app',
+        data: {
+          x: 0,
+          y: 0,
+          lastResult: 0
+        },
+        computed: {
+          result: function () {
+            let x = parseFloat(this.x);
+            if (isNotNumbericValue(x))
+              return this.lastResult;
+
+            let y = parseFloat(this.y);
+            if (isNotNumbericValue(y))
+              return this.lastResult;
+
+            this.lastResult = x + y;
+
+            return this.lastResult;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
