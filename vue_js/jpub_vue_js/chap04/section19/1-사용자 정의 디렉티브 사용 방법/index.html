@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>사용자 정의 디렉티브 사용 방법</h2>
+    <div id="app">
+      <input type="text" v-focus>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        directives: {
+          focus: {
+            // 연결되어 있는 요소가 DOM에 추가될 때
+            inserted: function (el) {
+              el.focus(); // 요소가 선택된 상태로 설정
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

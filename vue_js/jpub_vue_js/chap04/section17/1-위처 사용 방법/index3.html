@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>위처 사용 방법 - 인스턴스 메서드로 등록하는 경우</h2>
+    <div id="app">
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        // ...
+        created: function () {
+          this.$watch('value', function(newVal, oldVal) {
+            // ...
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

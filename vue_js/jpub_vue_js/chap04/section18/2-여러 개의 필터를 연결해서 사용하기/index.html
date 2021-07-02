@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>여러 개의 필터를 연결해서 사용하기</h2>
+    <div id="app">
+      180도는 {{ 180 | radian | round }} 라디안 입니다.
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        filters: {
+          // 소수점 이하 두 번째 자리까지 끊는 필터
+          round: function (val) {
+            return Math.round(val * 100) / 100;
+          },
+          // degree 단위를 radian 단위로 변환하는 필더
+          radian: function (val) {
+            return val * Math.PI / 180;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

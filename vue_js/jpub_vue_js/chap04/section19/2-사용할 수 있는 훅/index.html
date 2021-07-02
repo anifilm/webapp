@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>사용할 수 있는 훅</h2>
+    <div id="app"></div>
+
+    <script>
+      Vue.directive('example', {
+        bind: function (el, binding) {
+          console.log('v-example bind');
+        },
+        inserted: function (el, binding) {
+          console.log('v-example inserted');
+        },
+        update: function (el, binding) {
+          console.log('v-example update');
+        },
+        componentUpdated: function (el, binding) {
+          console.log('v-example componentUpdated');
+        },
+        unbind: function (el, binding) {
+          console.log('v-example unbind');
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

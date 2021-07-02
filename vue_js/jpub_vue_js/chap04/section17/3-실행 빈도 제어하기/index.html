@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  </head>
+  <body>
+    <h2>실행 빈도 제어하기</h2>
+    <div id="app">
+      <input type="text" v-model="value" />
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          value: '편집해 보세요.'
+        },
+        watch: {
+          value: _.debounce(function (newVal) {
+            // 여기에 비용이 높은 처리 작성하기
+            console.log(newVal);
+          }, 3000) // value의 변화가 끝나고 3초 동안 대기하기
+        }
+      });
+    </script>
+  </body>
+</html>

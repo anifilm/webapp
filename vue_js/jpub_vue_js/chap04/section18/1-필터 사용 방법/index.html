@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>필터 사용 방법</h2>
+    <div id="app">
+      {{ price | localeName }}원
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          price: 19800
+        },
+        filters: {
+          localeName: function (val) {
+            return val.toLocaleString();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>위처 사용 방법 - 옵션을 사용하는 경우</h2>
+    <div id="app">
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        // ...
+        watch: {
+          list: {
+            handler: function (newVal, oldVal) {
+              // list가 변경될 때 하고 싶은 처리
+            },
+            deep: true,
+            immediate: true
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

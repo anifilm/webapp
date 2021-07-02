@@ -20,10 +20,12 @@
       }
     </style>
 
-    <div id="app" v-cloak>{{ message }}</div>
+    <div id="app" v-cloak>
+      {{ message }}
+    </div>
 
     <script>
-      var app = new Vue({
+      new Vue({
         el: '#app',
         data: {
           message: 'Hello Vue.js!'

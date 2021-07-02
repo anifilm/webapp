@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>위처 사용 방법 - 옵션을 사용하지 않는 경우</h2>
+    <div id="app">
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        // ...
+        watch: {
+        //<감시할 데이터>: function (<새로운 값>, <이전 값>) {
+            // value가 변화했을 때 하고 싶은 처리
+        //}
+          'item.value': function (newVal, oldVal) {
+            // 객체의 속성도 감시할 수 있음
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

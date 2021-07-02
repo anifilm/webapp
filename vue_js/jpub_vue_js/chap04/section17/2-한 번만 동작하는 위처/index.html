@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>한 번만 동작하는 위처</h2>
+    <div id="app"></div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          edited: false,
+          list: [
+            { id: 1, name: '사과', price: 1000 },
+            { id: 2, name: '바나나', price: 2000 }
+          ]
+        },
+        created: function () {
+          var unwatch = this.$watch('list', function () {
+            // list가 편집되었는지 기록하기
+            this.edited = true
+            // 감시 제거하기
+            unwatch()
+          }, {
+            deep: true
+          })
+        }
+      });
+    </script>
+  </body>
+</html>
