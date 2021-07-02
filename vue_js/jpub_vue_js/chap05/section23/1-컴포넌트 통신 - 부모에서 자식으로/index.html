@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 통신 - 부모에서 자식으로</h2>
+    <div id="app">
+      <!-- 프로퍼티로 문자열 전달하기 -->
+      <comp-child val="자식A"></comp-child>
+      <comp-child val="자식B"></comp-child>
+    </div>
+
+    <script>
+      // 컴포넌트에서 프로퍼티를 전달하기 위한 props를 정의
+      Vue.component('comp-child', {
+        // 템플릿에서 val 사용하기
+        template: '<p>{{ val }}</p>',
+        // 받을 속성 이름 지정하기
+        props: ['val']
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트의 옵션</h2>
+    <div id="app">
+      <my-component></my-component>
+    </div>
+
+    <script>
+      var MyComponent = {
+        /* span이 두 개 이므로 안 됨!
+        template: `
+          <span>Hello</span>
+          <span>Vue.js!</span>
+        ` */
+        // 루트 요소는 하나여야 함 (div로 감싸 주면 된다.)
+        template: `
+          <div>
+            <span>Hello</span>
+            <span>Vue.js!</span>
+          </div>
+        `
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>props로 받을 자료형 지정하기</h2>
+    <div id="app">
+      <comp-child val="Hello Vue.js"></comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: '<p>{{ val }}</p>',
+        props: {
+          val: String // 문자열 자료형의 데이터만 사용 가능
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

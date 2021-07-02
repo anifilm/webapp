@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>부모가 가진 데이터 조작하기</h2>
+    <div id="app">
+      <ul>
+        <comp-child
+          v-for="item in list"
+          v-bind:key="item.id"
+          v-bind="item"
+          v-on:attack="handleAttack"
+        ></comp-child>
+      </ul>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: `
+          <li>
+            {{ name }} HP.{{ hp }} <button v-on:click="doAttack">공격하기</button>
+          </li>
+        `,
+        props: {
+          id: Number,
+          name: String,
+          hp: Number
+        },
+        methods: {
+          // 버튼 클릭 이벤트 핸들러에서 $emit을 호출해서 attack 이벤트 실행하기
+          doAttack: function () {
+            // 매개 변수로 자신의 ID 전달하기
+            this.$emit('attack', this.id);
+          }
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          list: [
+            { id: 1, name: '슬라임', hp: 100 },
+            { id: 2, name: '고블린', hp: 200 },
+            { id: 3, name: '드래곤', hp: 500 }
+          ]
+        },
+        methods: {
+          // attack이 실행된 경우
+          handleAttack: function (id) {
+            // 매개 변수의 ID를 기반으로 요소 검색
+            var item = this.list.find(function (el) {
+              return el.id === id;
+            });
+            // HP가 0보다 크면 10 줄이기
+            if (item !== undefined && item.hp > 0) item.hp -= 10;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

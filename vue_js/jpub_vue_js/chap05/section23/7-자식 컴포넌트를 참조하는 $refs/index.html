@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>자식 컴포넌트를 참조하는 $refs</h2>
+    <div id="app">
+      <comp-child ref="child"></comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: '<div>...</div>',
+        created: function () {
+          // 자기 자신의 이벤트
+          this.$on('open', function () {
+            console.log('무언가 처리하기');
+          });
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        methods: {
+          handleClick: function () {
+            // 자식 컴포넌트의 이벤트 실행하기
+            this.$refs.child.$emit('open');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

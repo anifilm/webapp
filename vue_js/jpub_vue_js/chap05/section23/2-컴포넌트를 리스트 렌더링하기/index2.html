@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트를 리스트 렌더링하기</h2>
+    <div id="app">
+      <ul>
+        <comp-child
+          v-for="item in list"
+          :key="item.id"
+          :name="item.name"
+          :hp="item.hp"
+        ></comp-child>
+      </ul>
+    </div>
+
+    <script>
+      // props로 전달받은 데이터는 마음대로 변경하면 안됨!
+      Vue.component('comp-child', {
+        template: '<li>{{ name }} HP.{{ hp }}</li>',
+        props: ['name', 'hp'],
+        methods: { // 자식 컴포넌트는 부모 컴포넌트에서 전달받은 props의 값을 직접 변경할 수 없다.(오류 발생!)
+          doAttack: function() {
+            // 공격하기
+            this.hp -= 10; // error!
+          }
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          list: [
+            { id: 1, name: '슬라임', hp: 100 },
+            { id: 2, name: '고블린', hp: 200 },
+            { id: 3, name: '드래곤', hp: 500 }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>부모 자식 컴포넌트가 아닌 경우</h2>
+    <div id="app"></div>
+
+    <script>
+      var bus = new Vue({
+        data: {
+          count: 0
+        }
+      });
+
+      Vue.component('component-b', {
+        template: '<p>bus: {{ bus.count }}</p>',
+        computed: {
+          // bus 데이터를 산출 속성에서 사용하기
+          bus: function () {
+            return bus.$data;
+          }
+        },
+        created: function () {
+          bus.$on('bus-event', function () {
+            this.count++;
+          });
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

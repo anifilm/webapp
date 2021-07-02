@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 통신 - 자식에서 부모로</h2>
+    <div id="app">
+      <comp-child v-on:childs-event="parentsMethod"></comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: '<button v-on:click="handleClick">이벤트 실행</button>',
+        methods: {
+          // 버튼 클릭 이벤트 핸들러로 childs-event 실행하기
+          handleClick: function () {
+            this.$emit('childs-event');
+          }
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        methods: {
+          // childs-event가 실행되었을 경우 실행
+          parentsMethod: function () {
+            alert('자식에서 전달받은 이벤트입니다!');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

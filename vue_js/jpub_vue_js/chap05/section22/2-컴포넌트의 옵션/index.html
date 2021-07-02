@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트의 옵션</h2>
+    <div id="app">
+      <my-component></my-component>
+    </div>
+
+    <script>
+      var MyComponent = {
+        template: '<p>{{ message }}</p>',
+        // 데이터는 객체를 리턴하는 함수로 정의
+        data: function () {
+          return {
+            message: 'Hello Vue.js'
+          }
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        }
+      });
+    </script>
+  </body>
+</html>
