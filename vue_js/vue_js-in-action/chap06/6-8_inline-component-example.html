@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>템플릿 인라인 사용하기</h2>
+    <div id="app">
+      <my-component :my-info="message" inline-template>
+        <div>
+          <p>inline-template - {{ myInfo }}</p>
+        </div>
+      </my-component>
+    </div>
+
+    <script type="text/javascript">
+      const MyComponent = {
+        props: ['myInfo']
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        },
+        data: {
+          message: '안녕'
+        }
+      });
+    </script>
+  </body>
+</html>

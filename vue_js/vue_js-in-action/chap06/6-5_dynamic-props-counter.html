@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>전역 카운터를 사용한 동적 속성(props)</h2>
+    <div id="app">
+      <my-component></my-component>
+      <my-component></my-component>
+      <my-component></my-component>
+    </div>
+
+    <script type="text/javascript">
+      const counter = { counter: 0 }; // 참조로 값이 공유된다.
+
+      const MyComponent = {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        data() {
+          return counter;
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -34,7 +34,6 @@
 
     <script>
       var MyBoardList = {
-        props: ['object'],
         template: `
           <div>
             <table id="list">
@@ -54,6 +53,7 @@
             <button v-on:click="boardWrite" style="float: right">글쓰기</button>
           </div>
         `,
+        props: ['object'],
         methods: {
           boardRead: function (info) {
             this.$emit('board-read', info);
@@ -68,7 +68,6 @@
       };
 
       var MyBoardRead = {
-        props: ['object'],
         template: `
           <div>
             <table id="list">
@@ -83,6 +82,7 @@
             <button v-on:click="boardList" style="float: right">목록</button>
           </div>
         `,
+        props: ['object'],
         methods: {
           boardList: function () {
             this.$emit('board-list');
@@ -231,21 +231,7 @@
             a.href = window.URL.createObjectURL(blob);
             a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
             e.initMouseEvent(
-              'click',
-              true,
-              false,
-              window,
-              0,
-              0,
-              0,
-              0,
-              0,
-              false,
-              false,
-              false,
-              false,
-              0,
-              null
+              'click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null
             );
             a.dispatchEvent(e);
           }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>컴포넌트에 리터럴 속성(props) 사용하기</h2>
+    <div id="app">
+      <my-component text="세계"></my-component>
+    </div>
+
+    <script type="text/javascript">
+      const MyComponent = {
+        template: '<div>안녕, {{ text }}!</div>',
+        props: ['text']
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        }
+      });
+    </script>
+  </body>
+</html>

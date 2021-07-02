@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>text/x-template 사용하기</h2>
+    <div id="app">
+      <my-component></my-component>
+    </div>
+
+    <script type="text/x-template" id="my-component">
+      <p>안녕, x-template으로부터</p>
+    </script>
+
+    <script type="text/javascript">
+      const MyComponent = {
+        template: '#my-component'
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        }
+      });
+    </script>
+  </body>
+</html>

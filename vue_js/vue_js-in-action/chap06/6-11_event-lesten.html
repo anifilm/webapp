@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>$emit을 사용해서 부모 카운터 증가시키기</h2>
+    <div id="app">
+      <p>{{ counter }}</p>
+      <button v-on:click="incrementCounter">카운터 증가</button>
+      <p></p>
+      <my-component v-on:increment-me="incrementCounter"></my-component>
+    </div>
+
+    <script type="text/javascript">
+      const MyComponent = {
+        template: `
+          <div>
+            <button v-on:click="childIncrementCounter">자식으로부터 증가</button>
+          </div>
+        `,
+        methods: {
+          childIncrementCounter() {
+            this.$emit('increment-me');
+          }
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        },
+        data: {
+          counter: 0
+        },
+        methods: {
+          incrementCounter() {
+            this.counter++;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

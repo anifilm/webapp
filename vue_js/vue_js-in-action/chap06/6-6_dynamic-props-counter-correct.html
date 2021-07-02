@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>올바른 반환 객체를 가진 카운터 업데이트하기</h2>
+    <div id="app">
+      <my-component></my-component>
+      <my-component></my-component>
+      <my-component></my-component>
+    </div>
+
+    <script type="text/javascript">
+      const MyComponent = {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        data() {
+          return {
+            counter: 0
+          };
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'my-component': MyComponent
+        }
+      });
+    </script>
+  </body>
+</html>
