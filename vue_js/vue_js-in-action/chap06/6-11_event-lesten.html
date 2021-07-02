@@ -11,11 +11,10 @@
     <div id="app">
       <p>{{ counter }}</p>
       <button v-on:click="incrementCounter">카운터 증가</button>
-      <p></p>
       <my-component v-on:increment-me="incrementCounter"></my-component>
     </div>
 
-    <script type="text/javascript">
+    <script>
       const MyComponent = {
         template: `
           <div>

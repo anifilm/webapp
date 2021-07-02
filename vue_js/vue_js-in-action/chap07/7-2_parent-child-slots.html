@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>슬롯 요소에 추가하기</h2>
+    <div id="app">
+      <form-component
+        :author="authorLabel"
+        :title="titleLabel"
+      >
+        <h1>{{ header }}</h1>
+      </form-component>
+    </div>
+
+    <script>
+      const FormComponent = {
+        template: `
+          <div>
+            <form>
+              <slot></slot>
+              <label for="title">{{ title }}</label>
+              <input id="title" type="text" /><br />
+              <label for="author">{{ author }}</label>
+              <input id="author" type="text" /><br />
+              <button>제출하기</button>
+            </form>
+          </div>
+        `,
+        props: ['title', 'author']
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'form-component': FormComponent
+        },
+        data: {
+          titleLabel: '제목: ',
+          authorLabel: '저자: ',
+          header: '책 저자 폼'
+        }
+      });
+    </script>
+  </body>
+</html>

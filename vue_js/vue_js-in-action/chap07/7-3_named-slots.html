@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 코딩 공작소</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+  </head>
+  <body>
+    <h2>지정 슬롯 사용하기</h2>
+    <div id="app">
+      <form-component>
+        <h1>{{ header }}</h1>
+        <label for="title" slot="titleSlot">{{ titleLabel }}</label>
+        <label for="author" slot="authorSlot">{{ authorLabel }}</label>
+      </form-component>
+    </div>
+
+    <script>
+      const FormComponent = {
+        template: `
+          <div>
+            <form>
+              <slot></slot>
+              <slot name="titleSlot"></slot>
+              <input id="title" type="text" /><br />
+              <slot name="authorSlot"></slot>
+              <input id="author" type="text" /><br />
+              <button>제출하기</button>
+            </form>
+          </div>
+        `,
+        props: ['title', 'author']
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          'form-component': FormComponent
+        },
+        data: {
+          titleLabel: '제목: ',
+          authorLabel: '저자: ',
+          header: '책 저자 폼'
+        }
+      });
+    </script>
+  </body>
+</html>

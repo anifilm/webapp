@@ -6,6 +6,10 @@ body {
   max-width: 970px;
 }
 
-button {
+form {
+  margin-left: 10px;
+}
+
+input, button {
   margin-top: 10px;
 }
