@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react quickly</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>속성 다루기</h2>
+    <div id="content"></div>
+
+    <script type="text/babel">
+      class HelloWorld extends React.Component {
+        render() {
+          return (
+            <h1 {...this.props}> {/* 모든 속성을 자식 엘리먼트로 전달 */}
+              Hello {this.props.frameworkName} world!!!
+            </h1>
+          )
+        }
+      }
+      ReactDOM.render(
+        React.createElement(
+          'div',
+          null,
+          React.createElement(HelloWorld, {
+            id: 'ember',
+            frameworkName: 'Ember.js',
+            title: 'A framework for creating ambitious web applications.',
+          }),
+          React.createElement(HelloWorld, {
+            id: 'backbone',
+            frameworkName: 'Backbone.js',
+            title: 'Backbone.js gives structure to web applications...',
+          }),
+          React.createElement(HelloWorld, {
+            id: 'angular',
+            frameworkName: 'Angular.js',
+            title: 'Superheroic JavaScript MVW Framework',
+          }),
+        ),
+        document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>

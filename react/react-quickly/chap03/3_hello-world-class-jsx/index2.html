@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react quickly</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>JSX에서 변수 출력하기</h2>
+    <div id="content"></div>
+
+    <script type="text/babel">
+      let helloWorldReactElement = <h1>Hello world!</h1>;
+      class HelloWrold extends React.Component {
+        render() {
+          return (
+            <div>
+              {helloWorldReactElement}
+              {helloWorldReactElement}
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <HelloWrold />,
+        document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>
