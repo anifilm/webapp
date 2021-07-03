@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>디폴트 슬롯</h2>
+    <div id="app">
+      <comp-child>
+        {{ message }}
+      </comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: '<slot></slot>'
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          message: '여기는 부모의 슬롯 콘텐츠 입니다.'
+        }
+      });
+    </script>
+  </body>
+</html>

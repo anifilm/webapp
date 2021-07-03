@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>이름 있는 슬롯</h2>
+    <div id="app">
+      <comp-child>
+        <header slot="header">
+          Hello Vue.js!
+        </header>
+        Vue.js는 JavaScript 프레임워크 입니다.
+      </comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: `
+          <section class="comp-child">
+            <header>
+              <slot name="header">디폴트 타이틀</slot>
+            </header>
+            <div class="content">
+              <slot>디폴트 콘텐츠</slot>
+            </div>
+            <slot name="footer">
+              <!-- 없을 경우 아무것도 출력하지 않음 -->
+            </slot>
+          </section>
+        `
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

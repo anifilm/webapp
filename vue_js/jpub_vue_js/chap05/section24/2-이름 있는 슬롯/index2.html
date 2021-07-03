@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>이름 있는 슬롯</h2>
+    <div id="app">
+      <comp-child>
+        <template slot="text1">텍스트1</template>
+        <template slot="text2">텍스트2</template>
+      </comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: `
+        <div>
+          <slot name="text1"></slot>
+          <slot name="text2"></slot>
+        </div>
+        `
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

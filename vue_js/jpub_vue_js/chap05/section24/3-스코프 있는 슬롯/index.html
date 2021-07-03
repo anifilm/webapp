@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>스코프 있는 슬롯</h2>
+    <div id="app">
+      <comp-child>
+        <p slot-scope="props">
+          슬롯으로 받은 텍스트 → {{ props.text }}
+        </p>
+      </comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: '<slot text="hello!"></slot>'
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

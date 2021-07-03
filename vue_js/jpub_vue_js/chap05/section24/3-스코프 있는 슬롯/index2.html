@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>스코프 있는 슬롯</h2>
+    <div id="app">
+      <comp-child>
+        <li slot-scope="props">
+          {{ props.item.name }} HP.{{ props.item.hp }}
+        </li>
+      </comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: `
+          <ul>
+            <slot v-for="item in list" v-bind:item="item"></slot>
+          </ul>
+        `,
+        data: function () {
+          return {
+            list: [
+              { id: 1, name: '슬라임', hp: 100 },
+              { id: 2, name: '고블린', hp: 200 },
+              { id: 3, name: '드래곤', hp: 500 }
+            ]
+          };
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

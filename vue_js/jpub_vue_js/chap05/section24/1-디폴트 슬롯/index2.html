@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>디폴트 슬롯</h2>
+    <div id="app">
+      <comp-child></comp-child>
+    </div>
+
+    <script>
+      Vue.component('comp-child', {
+        template: '<slot>아무것도 없었다.</slot>'
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>
