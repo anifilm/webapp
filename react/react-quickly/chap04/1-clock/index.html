@@ -8,24 +8,23 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
-    <h2>컴포넌트 메서드를 호출하여 URL 가져오기</h2>
+    <h2>JSX에서 상태 렌더링하기</h2>
     <div id="content"></div>
 
     <script type="text/babel">
-      class Content extends React.Component {
-        getUrl() {
-          return 'http://webapplog.com';
+      class Clock extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            currentTime: (new Date()).toLocaleString('en')
+          };
         }
         render() {
-          return (
-            <div>
-              <p>Your REST API URL is: <a href={this.getUrl()}>{this.getUrl()}</a></p>
-            </div>
-          );
+          return <div>{this.state.currentTime}</div>
         }
       }
       ReactDOM.render(
-        <Content />,
+        <Clock />,
         document.getElementById('content')
       );
     </script>

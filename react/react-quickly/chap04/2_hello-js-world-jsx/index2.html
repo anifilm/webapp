@@ -8,18 +8,17 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
-    <h2>속성 다루기</h2>
+    <h2>상태 비저장 HelloWorld</h2>
     <div id="content"></div>
 
     <script type="text/babel">
-      class HelloWorld extends React.Component {
-        render() {
-          return (
-            <h1 {...this.props}> {/* 모든 속성을 자식 엘리먼트로 전달 */}
-              Hello {this.props.frameworkName} world!!!
-            </h1>
-          );
-        }
+      // 함수형 컴포넌트 정의
+      const HelloWorld = function (props) {
+        return (
+          <h1 {...props}> {/* 모든 속성을 자식 엘리먼트로 전달 */}
+            Hello {props.frameworkName} world!!!
+          </h1>
+        );
       }
       ReactDOM.render(
         React.createElement(

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react quickly</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>상태를 이용한 Clock 컴포넌트 구현</h2>
+    <div id="content"></div>
+
+    <script type="text/babel">
+      class Clock extends React.Component {
+        constructor(props) {
+          super(props);
+          this.launchClock();
+          this.state = { // 초기 상태에 현재 시간 선언
+            currentTime: (new Date()).toLocaleString('en')
+          };
+        }
+        launchClock() {
+          setInterval(() => {
+            console.log('Updating time...');
+            this.setState({ // 매 초마다 현재 시간으로 상태를 갱신
+              currentTime: (new Date()).toLocaleString('en')
+            });
+          }, 1000);
+        }
+        render() {
+          console.log('Rendering Clock...');
+          return <div>{this.state.currentTime}</div>
+        }
+      }
+      ReactDOM.render(
+        <Clock />,
+        document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>
