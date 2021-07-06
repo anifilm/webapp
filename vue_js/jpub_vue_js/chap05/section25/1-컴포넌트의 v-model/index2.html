@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트의 v-model</h2>
+    <div id="app">
+      <!--<my-calendar
+        v-bind:value="date"
+        v-on:input="date = $event"
+      >
+      </my-calendar>-->
+      <my-calendar v-model="date"></my-calendar>
+    </div>
+
+    <script>
+      Vue.component('my-calendar', {
+        template: '<div class="my-calendar">{{ current }}</div>',
+        model: {
+          // 현재 값을 value가 아니라 current로 할당하고 싶은 경우
+          prop: 'current',
+          // 이벤트를 change로 사용하고 싶은 경우
+          event: 'change'
+        },
+        // props에서 설정하기
+        props: {
+          current: String
+        },
+        created: function () {
+          this.$emit('change', '2021-07-06');
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          date: '2018-01-01'
+        }
+      });
+    </script>
+  </body>
+</html>
