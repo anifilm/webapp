@@ -69,5 +69,5 @@ const Menu = ({ title, recipes }) => (
 
 render(
   <Menu recipes={data} title="맛있는 조리법" />,
-  document.getElementById('react-container'),
+  document.getElementById('react-container')
 );

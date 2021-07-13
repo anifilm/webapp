@@ -3,14 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>리액트 엘리먼트</title>
-  </head>
-  <body>
-    <!-- Target Container -->
-    <div id="react-container"></div>
-
-    <!-- React Library & React DOM-->
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="react-container"></div>
 
     <script>
       const dish = React.createElement('section', { id: 'baked-salmon' },
@@ -34,10 +31,12 @@
         ),
       );
 
-      ReactDOM.render(dish, document.getElementById('react-container'));
+      ReactDOM.render(
+        dish,
+        document.getElementById('react-container')
+      );
 
       console.log('dish element', dish);
-
     </script>
   </body>
 </html>

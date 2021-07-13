@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>프로퍼티를 지정하지 않은 경우 발생하는 알아보기 힘든 오류</title>
+    <script src="https://unpkg.com/prop-types/prop-types.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="react-container"></div>
+
+    <script type="text/babel">
+      const { Component } = React;
+      const { render } = ReactDOM;
+
+      class Summary extends Component {
+        // propTypes를 사용한 타입 검즘
+        static propTypes = {
+          ingredients: PropTypes.array,
+          steps: PropTypes.array,
+          title: PropTypes.string,
+        };
+
+        render() {
+          const { ingredients, steps, title } = this.props;
+          return (
+            <div className="summary">
+              <h1>{title}</h1>
+              <p>
+                <span>재료 {ingredients.length} 종류 | </span>
+                <span>총 {steps.length} 단계</span>
+              </p>
+            </div>
+          );
+        }
+      }
+
+      render(
+        <Summary />,
+        document.getElementById('react-container')
+      );
+    </script>
+  </body>
+</html>

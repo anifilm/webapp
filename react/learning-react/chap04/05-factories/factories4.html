@@ -3,23 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <title>팩토리</title>
-  </head>
-  <body>
-    <!-- Target Container -->
-    <div id="react-container"></div>
-
-    <!-- React Library & React DOM-->
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/react-dom-factories@1.0.2/index.js"></script>
+  </head>
+  <body>
+    <div id="react-container"></div>
 
     <script>
       const { render } = ReactDOM;
 
       const IngredientsList = ({ list }) =>
-        React.createElement('ul', null,
+        React.createElement(
+          'ul',
+          null,
           list.map((ingredient, i) =>
-            React.createElement('li', { key: i }, ingredient),
+            React.createElement('li', { key: i }, ingredient)
           ),
         );
 
@@ -34,8 +33,10 @@
         '마늘 3쪽',
       ];
 
-      render(Ingredients({ list }), document.getElementById('react-container'));
-
+      render(
+        Ingredients({ list }),
+        document.getElementById('react-container')
+      );
     </script>
   </body>
 </html>
