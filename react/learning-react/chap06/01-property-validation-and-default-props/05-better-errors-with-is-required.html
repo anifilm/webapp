@@ -18,8 +18,8 @@
       class Summary extends Component {
         // propTypes를 사용한 타입 검즘
         static propTypes = {
-          ingredients: PropTypes.array,
-          steps: PropTypes.array,
+          ingredients: PropTypes.array.isRequired,
+          steps: PropTypes.array.isRequired,
           title: PropTypes.string,
         };
 
