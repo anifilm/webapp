@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>keep-alive를 사용해서 상태 유지하기</h2>
+    <div id="app">
+      <button v-on:click="current='comp-board'">메시지 목록</button>
+      <button v-on:click="current='comp-form'">입력 양식</button>
+      <keep-alive> <!-- 입력 내용이 제거되지 않도록 keep-alive 처리 -->
+        <div v-bind:is="current"></div>
+      </keep-alive>
+    </div>
+
+    <script>
+      // 메시지 목록 전용 컴포넌트
+      Vue.component('comp-board', {
+        template: '<div>Message Board</div>'
+      });
+      // 입력 양식 전용 컴포넌트
+      Vue.component('comp-form', {
+        template: '<div><textarea v-model="message"></textarea></div>',
+        data: function () {
+          return {
+            message: 'Form'
+          };
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          current: 'comp-board' // 동적으로 변경하기
+        }
+      });
+    </script>
+  </body>
+</html>

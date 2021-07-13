@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>공통 처리는 Mixin으로 만들기</h2>
+    <div id="app">
+      <button v-on:click="current^=1">컴포넌트 변경하기</button>
+      <div v-bind:is="component"></div>
+    </div>
+    <script>
+      var mixin = {
+        created: function () {
+          this.hello();
+        },
+        methods: {
+          hello: function () {
+            console.log('hello from mixin!');
+          }
+        }
+      };
+
+      Vue.component('my-component-a', {
+        mixin: [mixin], // 믹스인 등록
+        template: '<p>MyComponentA</p>'
+      });
+
+      Vue.component('my-component-b', {
+        mixin: [mixin], // 믹스인 등록
+        template: '<p>MyComponentB</p>'
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          componentTypes: ['my-component-a', 'my-component-b'],
+          current: 0
+        },
+        computed: {
+          component: function () {
+            // current와 일치하는 index의 컴포넌트를 사용
+            return this.componentTypes[this.current];
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

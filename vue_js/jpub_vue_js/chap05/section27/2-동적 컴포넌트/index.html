@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>동적 컴포넌트</h2>
+    <div id="app">
+      <button v-on:click="current^=1">컴포넌트 변경하기</button>
+      <div v-bind:is="component"></div>
+    </div>
+
+    <script>
+      // 컴포넌트 A
+      Vue.component('my-component-a', {
+        template: '<div class="my-component-a">component A</div>'
+      });
+      // 컴포넌트 B
+      Vue.component('my-component-b', {
+        template: '<div class="my-component-b">component B</div>'
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          componentTypes: ['my-component-a', 'my-component-b'],
+          current: 0
+        },
+        computed: {
+          component: function () {
+            // current와 일치하는 index의 컴포넌트를 사용
+            return this.componentTypes[this.current];
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

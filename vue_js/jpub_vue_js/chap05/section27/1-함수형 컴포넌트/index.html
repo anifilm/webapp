@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>함수형 컴포넌트</h2>
+    <div id="app">
+      <template functional>
+        <p>단일 파일 컴포넌트라면 렌더링 함수가 필요하지 않음</p>
+      </template>
+    </div>
+
+    <script>
+      Vue.component('functional-component', {
+        functional: true,
+        render: function(createElement, context) {
+          return createElement('div', context.props.message)
+        },
+        props: {
+          message: String
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>
