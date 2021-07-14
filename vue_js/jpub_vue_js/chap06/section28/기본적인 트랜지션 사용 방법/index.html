@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>기본적인 트랜지션 사용 방법</h2>
+    <style>
+      /* 1초 동안 투명도를 변화 */
+      .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+      }
+      /* 더 이상 보이게 되지 않았을 때의 투명도 */
+      .v-enter, .v-leave-to {
+        opacity: 0;
+      }
+    </style>
+
+    <div id="app">
+      <p><button v-on:click="show=!show">변경하기</button></p>
+      <transition>
+        <div v-show="show">트랜지션하고 싶은 요소</div>
+      </transition>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          show: true
+        }
+      });
+    </script>
+  </body>
+</html>

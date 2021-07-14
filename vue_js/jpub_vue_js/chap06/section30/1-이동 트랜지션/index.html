@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+  </head>
+  <body>
+    <h2>이동 트랜지션</h2>
+    <style>
+      /* 1초 동안 요소 이동하기 */
+      .v-move {
+        transition: transform 1s;
+      }
+    </style>
+
+    <div id="app">
+      <p><button v-on:click="order=!order">변경하기</button></p>
+      <!-- transition-group으로 사용할 태그는 속성으로 지정함 -->
+      <transition-group tag="ul" class="list">
+        <li v-for="item in sortedList" v-bind:key="item.id">
+          {{ item.name }} {{ item.price }}원
+        </li>
+      </transition-group>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          order: false,
+          list: [
+            { id: 1, name: '사과', price: 1000 },
+            { id: 2, name: '바나나', price: 2000 },
+            { id: 3, name: '딸기', price: 3000 }
+          ]
+        },
+        computed: {
+          // order 값에 따라 리스트의 순서를 반전하는 산출 속성
+          sortedList: function () {
+            // Lodash의 orderBy 메서드 사용하기
+            return _.orderBy(this.list, 'price', this.order ? 'desc' : 'asc');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

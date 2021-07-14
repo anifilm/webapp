@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>Enter와 Leave에서 서로 다른 스타일 정의하기 (out-in)</h2>
+    <style>
+      .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+      }
+      /* 중첩되도록 선언, 사용 안함
+      .v-leave-active {
+        position: absolute;
+      } */
+      .v-enter, .v-leave-to {
+        opacity: 0;
+      }
+    </style>
+
+    <div id="app">
+      <p><button v-on:click="show=!show">변경하기</button></p>
+      <transition mode="out-in">
+        <div v-if="show" key="a">TRUE</div>
+        <div v-else key="b">FALSE</div>
+      </transition>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          show: true
+        }
+      });
+    </script>
+  </body>
+</html>

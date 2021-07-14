@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>Enter와 Leave에서 서로 다른 스타일 정의하기</h2>
+    <style>
+      .v-enter-active, .v-leave-active {
+        transition: opacity 1s, transform 1s;
+      }
+      /* 출력할 때는 왼쪽에서 오른쪽으로 */
+      .v-enter {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      /* 사라질 때는 아래로 */
+      .v-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    </style>
+
+    <div id="app">
+      <p><button v-on:click="show=!show">변경하기</button></p>
+      <transition>
+        <div v-show="show"><img src="cover-s.png" alt=""></div>
+      </transition>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          show: true
+        }
+      });
+    </script>
+  </body>
+</html>

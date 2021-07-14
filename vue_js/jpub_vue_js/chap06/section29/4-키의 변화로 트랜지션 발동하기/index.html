@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>키의 변화로 트랜지션 발동하기</h2>
+    <style>
+      .v-enter-active {
+        transition: opacity 1s;
+      }
+      /* 살짝 시간을 끌어서 문자 투명도 조정하기 */
+      .v-leave-active {
+        transition: opacity 0.8s ease 0.2s;
+        position: absolute;
+      }
+      .v-enter, .v-leave-to {
+        opacity: 0;
+      }
+    </style>
+
+    <div id="app">
+      <p><button v-on:click="count++">변경하기</button></p>
+      <transition>
+        <div v-bind:key="count">{{ count }}</div>
+      </transition>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          count: 0
+        }
+      });
+    </script>
+  </body>
+</html>

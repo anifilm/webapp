@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>SVG를 트랜지션으로 변경하기</h2>
+    <style>
+      .v-enter-active, .v-leave-active {
+        transition: all 1s;
+      }
+      .v-leave-active {
+        position: absolute;
+      }
+      .v-enter, .v-leave-to {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+    </style>
+
+    <div id="app">
+      <button v-on:click="toggle=!toggle">변경하기</button>
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <!-- SVG 요소에 트랜지션 사용하기 -->
+        <transition>
+          <my-circle v-bind:fill="fill" v-bind:key="fill"></my-circle>
+        </transition>
+      </svg>
+    </div>
+
+    <script>
+      // SVG 요소 컴포넌트 정의하기
+      Vue.component('my-circle', {
+        template: '<circle cx="80" cy="75" r="50" v-bind:fill="fill" />',
+        props: {
+          fill: String
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          toggle: false
+        },
+        computed: {
+          fill: function () {
+            return this.toggle ? 'lightpink' : 'skyblue';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
