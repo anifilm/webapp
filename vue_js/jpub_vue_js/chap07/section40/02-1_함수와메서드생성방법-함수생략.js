@@ -1,0 +1,7 @@
+new Vue({
+  methods: {
+    handleClick() {
+      //...
+    }
+  }
+});
