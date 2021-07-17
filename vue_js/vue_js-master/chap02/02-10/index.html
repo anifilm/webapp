@@ -6,16 +6,39 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h2></h2>
+    <h2>생애주기 훅(lifecycle hook)</h2>
     <div id="app">
-      <p>{{ message }}</p>
+      <p>{{ count }}</p>
     </div>
 
     <script>
-      new Vue({
+      var vm = new Vue({
         el: '#app',
         data: {
-          message: '안녕하세요!'
+          count: 0,
+          timerId: null
+        },
+        created: function () {
+          console.log('created');
+          // 데이터에서 참조 가능
+          console.log(this.count); // 0
+          // DOM 요소가 연결되지 않았으므로 undefined임
+          console.log(this.$el); // undefined
+          // 타이머 시작
+          this.timerId = setInterval(() => {
+            this.count += 1;
+          }, 1000);
+        },
+        mounted: function () {
+          console.log('mounted');
+          // DOM 요소가 연결됨
+          console.log(this.$el);
+        },
+        beforeDestroy: function () {
+          // beforeDestroy -> 개발자 도구 콘솔에서 > vm.$destroy() 입력
+          console.log('beforeDestroy');
+          // 타이머 정리
+          clearInterval(this.timerId);
         }
       });
     </script>

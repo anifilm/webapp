@@ -12,19 +12,14 @@
         <li v-for="item in items" v-bind:key="item.name">
           {{ item.name }}의 개수:
           <!-- v-on 디렉티브 대신 v-model을 사용 -->
-          <input
-            type="number"
-            v-model="item.quantity"
-            min="0"
-          />
+          <input type="number" v-model="item.quantity" min="0" />
         </li>
       </ul>
       <hr />
       <ul>
         <!-- 각 상품의 단가와 구매 개수를 리스트로 나타냄 -->
         <li v-for="item in items" v-bind:key="item.name">
-          {{ item.name }}: {{ item.price }} x {{ item.quantity }} = {{
-          item.price * item.quantity | numberWithDelimiter }}원
+          {{ item.name }}: {{ item.price }} x {{ item.quantity }} = {{ item.price * item.quantity | numberWithDelimiter }}원
         </li>
       </ul>
       <p>{{ items[0].name }}: {{ items[0].price }} x {{ items[0].quantity }}</p>
