@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 설계 - 슬롯 콘텐츠를 살린 헤더 컴포넌트 구현하기</h2>
+    <style>
+      .header h1 {
+        width: 100%;
+        height: 30px;
+        background-color: #f1f1f1;
+        border: 1px solid #d3d3d3;
+        padding: 30px 15px;
+      }
+
+      .content li {
+        width: 100%;
+        height: 30px;
+        padding: 30px 15px;
+        background-color: white;
+        border: 1px solid #d3d3d3;
+        text-align: left;
+      }
+    </style>
+
+    <div id="app">
+      <page-header class="header">
+        <h1 slot="header">
+          겨울 과일
+        </h1>
+      </page-header>
+      <page-content class="content">
+        <ul slot="content">
+          <li>사과</li>
+          <li>딸기</li>
+        </ul>
+      </page-content>
+    </div>
+
+    <script>
+      var headerTemplate = `
+        <div>
+          <slot name="header">No title</slot>
+        </div>
+      `;
+
+      var contentTemplate = `
+        <div>
+          <slot name="content">No contents</slot>
+        </div>
+      `;
+
+      Vue.component('page-header', {
+        template: headerTemplate
+      });
+      Vue.component('page-content', {
+        template: contentTemplate
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

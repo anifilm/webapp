@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트란 무엇인가? - Vue.js의 컴포넌트 시스템</h2>
+    <div id="app">
+      <list-item></list-item>
+    </div>
+
+    <script>
+      // 전역 컴포넌트 정의
+      Vue.component('list-item', {
+        template: '<li>foo</li>'
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

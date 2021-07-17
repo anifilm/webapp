@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트란 무엇인가? - Vue 컴포넌트는 재사용할 수 있는 Vue 인스턴스</h2>
+    <div id="app">
+      <list-item></list-item>
+    </div>
+
+    <script>
+      // 전역 컴포넌트 정의
+      Vue.component('list-item', {
+        template: '<li>foo {{ contents }}</li>',
+        data: function () {
+          return {
+            contents: 'bar'
+          };
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

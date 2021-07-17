@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>Vue 컴포넌트 정의하기 - 템플릿을 만드는 그 외의 방법</h2>
+    <div id="app">
+      <input-date-with-today></input-date-with-today>
+    </div>
+
+    <script>
+      Vue.component('input-date-with-today', {
+        render: function (createElement) {
+          return createElement('input', {
+            attrs: {
+              type: 'date',
+              value: new Date().toISOString().substring(0, 10)
+            }
+          });
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

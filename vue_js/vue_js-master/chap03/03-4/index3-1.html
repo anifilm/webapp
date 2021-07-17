@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 설계 - 슬롯 콘텐츠를 살린 헤더 컴포넌트 구현하기</h2>
+    <div id="app">
+      <page-header>
+        <h1 slot="header">여름 과일</h1>
+      </page-header>
+      <ul>
+        <li>수박</li>
+        <li>망고</li>
+      </ul>
+    </div>
+
+    <script>
+      var headerTemplate = `
+        <div style="color: gray;">
+          <slot name="header">부모 컴포넌트로 부터 전달받은 것이 없으면 이 문장을 표시</slot>
+        </div>
+      `;
+
+      Vue.component('page-header', {
+        template: headerTemplate
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

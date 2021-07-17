@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 간 통신 - 자식 컴포넌트에서 부모 컴포넌트로 데이터 전달하기</h2>
+    <div id="app">
+      <div v-for="fruit in fruits">
+        {{ fruit.name }}:
+        <!-- v-on 디렉티브로 커스텀 이벤트를 탐지 -->
+        <counter-button
+          v-on:increment="incrementCartStatus"
+        ></counter-button>
+      </div>
+      <p>합계: {{ total }}</p>
+    </div>
+
+    <script>
+      var counterButton = Vue.extend({
+        template: `
+          <span>
+            {{ counter }}개
+            <button v-on:click="addToCart">추가</button>
+          </span>
+        `,
+        data: function () {
+          return {
+            counter: 0
+          }
+        },
+        methods: {
+          addToCart: function () {
+            this.counter += 1;
+            this.$emit('increment'); // increment 커스텀 이벤트 발생
+          }
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        components: {
+          'counter-button': counterButton
+        },
+        data: {
+          total: 0,
+          fruits: [
+            { name: '배' },
+            { name: '딸기' }
+          ]
+        },
+        methods: {
+          incrementCartStatus: function () {
+            this.total += 1;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 간 통신 - 부모 컴포넌트에서 자식 컴포넌트로 데이터 전달하기</h2>
+    <div id="app">
+      <ol>
+        <fruits-item-name
+          v-for="fruit in fruitsItems"
+          v-bind:key="fruit.name"
+          v-bind:fruits-item="fruit"
+        ></fruits-item-name>
+      </ol>
+    </div>
+
+    <script>
+      Vue.component('fruits-item-name', {
+        props: {
+          fruitsItem: {
+            type: Object,
+            required: true
+          }
+        },
+        template: '<li>{{ fruitsItem.name }}</li>'
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          fruitsItems: [
+            { name: '배' },
+            { name: '딸기' }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>

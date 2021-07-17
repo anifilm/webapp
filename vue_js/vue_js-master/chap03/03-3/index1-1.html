@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 간 통신 - 부모 컴포넌트에서 자식 컴포넌트로 데이터 전달하기</h2>
+    <div id="app">
+      <item-desc item-name="pen"></item-desc>
+    </div>
+
+    <script>
+      Vue.component('item-desc', {
+        props: {
+          itemName: String
+        },
+        template: '<p>{{ itemName }}은 편리해</p>'
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

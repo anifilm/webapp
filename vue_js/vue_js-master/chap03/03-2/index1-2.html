@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>Vue 컴포넌트 정의하기 - 좀 더 복잡한 컴포넌트를 구현하는 예제</h2>
+    <div id="app">
+      <fruits-list-title></fruits-list-title>
+      <fruits-list-description></fruits-list-description>
+      <fruits-list-table></fruits-list-table>
+    </div>
+
+    <script>
+      Vue.component('fruits-list-title', {
+        template: '<h1>과일 목록</h1>'
+      });
+
+      Vue.component('fruits-list-description', {
+        template: '<p>각 계절 대표적 과일의 목록</p>'
+      });
+
+      Vue.component('fruits-list-table', {
+        template: `
+          <table border="1" width="200px">
+            <tr>
+              <th>계절</th>
+              <th>과일</th>
+            </tr>
+            <tr>
+              <td>봄</td>
+              <td>딸기</td>
+            </tr>
+            <tr>
+              <td>여름</td>
+              <td>수박</td>
+            </tr>
+            <tr>
+              <td>가을</td>
+              <td>포도</td>
+            </tr>
+            <tr>
+              <td>겨울</td>
+              <td>귤</td>
+            </tr>
+          </table>
+        `
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>

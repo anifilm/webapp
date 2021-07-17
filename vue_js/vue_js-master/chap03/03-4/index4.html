@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>컴포넌트의 기초</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>컴포넌트 설계 - 로그인폼 컴포넌트 구현하기</h2>
+    <div id="app">
+      <user-login></user-login>
+    </div>
+
+    <!-- 템플릿 -->
+    <script type="text/x-template" id="login-template">
+      <div id="login-template">
+        <div>
+          <input type="text" placeholder="아이디" v-model="userid">
+        </div>
+        <div>
+          <input type="password" placeholder="패스워드" v-model="password">
+        </div>
+        <button v-on:click="login">로그인</button>
+      </div>
+    </script>
+
+    <script>
+      // 컴포넌트 정의
+      Vue.component('user-login', {
+        template: '#login-template',
+        data: function () {
+          return {
+            userid: '',
+            password: ''
+          };
+        },
+        methods: {
+          login: function () {
+            auth.login(this.userid, this.password);
+          }
+        }
+      });
+
+      // 더미 로그인 처리
+      var auth = {
+        login: function (id, pass) {
+          window.alert(`userid: ${id}\npassword: ${pass}`);
+        }
+      };
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>
