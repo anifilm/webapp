@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 기본 사용법</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>필터</h2>
+    <div id="app">
+      <p>{{ items[0].name }}: {{ items[0].price }} x {{ items[0].quantity }}</p>
+      <p>필터 예제 {{ 1000 | numberWithDelimiter }}</p>
+    </div>
+
+    <script>
+      var items = [
+        {
+          name: '연필',
+          price: 300,
+          quantity: 0
+        },
+        {
+          name: '공책',
+          price: 400,
+          quantity: 0
+        },
+        {
+          name: '지우개',
+          price: 500,
+          quantity: 0
+        }
+      ];
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          items: items
+        },
+        filters: {
+          numberWithDelimiter: function (value) {
+            if (!value) {
+              return '0';
+            }
+            return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

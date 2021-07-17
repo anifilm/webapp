@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 기본 사용법</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>디렉티브 - 리스트 렌더링하기(v-for)</h2>
+    <div id="app">
+      <ul> <!-- 각 상품의 단가와 구매 개수를 리스트로 나타냄 -->
+        <li v-for="item in items" v-bind:key="item.name">
+          {{ item.name }}: {{ item.price }} x {{ item.quantity }} = {{ item.price * item.quantity | numberWithDelimiter }}원
+        </li>
+      </ul>
+      <p>{{ items[0].name }}: {{ items[0].price }} x {{ items[0].quantity }}</p>
+      <p>소계: {{ totalPrice | numberWithDelimiter }}원</p>
+      <p>합계(세금 포함): {{ totalPriceWithTax | numberWithDelimiter }}</p>
+      <!-- 스타일 바인딩(v-bind:style) -->
+      <p v-show="!canBuy" v-bind:style="errorMessageStyle">
+        {{ 1000 | numberWithDelimiter }}원 이상부터 구매 가능
+      </p>
+    </div>
+
+    <script>
+      var items = [
+        {
+          name: '연필',
+          price: 300,
+          quantity: 0
+        },
+        {
+          name: '공책',
+          price: 400,
+          quantity: 0
+        },
+        {
+          name: '지우개',
+          price: 500,
+          quantity: 0
+        }
+      ];
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          items: items
+        },
+        filters: {
+          numberWithDelimiter: function (value) {
+            if (!value) {
+              return '0';
+            }
+            return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+          }
+        },
+        computed: {
+          totalPrice: function () {
+            return this.items.reduce(function (sum, item) {
+              return sum + (item.price * item.quantity);
+            }, 0);
+          },
+          totalPriceWithTax: function () {
+            return Math.floor(this.totalPrice * 1.10);
+          },
+          canBuy: function () {
+            return this.totalPrice >= 1000 // 1000원 이상부터 구매 가능
+          },
+          errorMessageStyle: function () {
+            return { // canBuy가 거짓이면 붉게 표시
+              border: this.canBuy ? '' : '1px solid red',
+              color: this.canBuy ? '' : 'red'
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
