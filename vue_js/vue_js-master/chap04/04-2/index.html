@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Router를 활용한 애플리케이션 개발</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  </head>
+  <body>
+    <h2>기초 라우팅 - 라우팅 설정</h2>
+    <div id="app">
+      <router-link to="/top">최상위 페이지</router-link>
+      <router-link to="/users">사용자 목록 페이지</router-link>
+      <router-view></router-view>
+    </div>
+
+    <script>
+      // 라우트 옵션을 지정해 라우터 인스턴스를 생성
+      var router = new VueRouter({
+        // 컴포넌트를 매핑한 라우트 정의를 배열 형태로 전달
+        routes: [
+          {
+            path: '/top',
+            component: {
+              template: '<div>최상위 페이지</div>'
+            }
+          },
+          {
+            path: '/users',
+            component: {
+              template: '<div>사용자 목록 페이지</div>'
+            }
+          }
+        ]
+      });
+
+      // 라우터 인스턴스를 루트 Vue 인스턴스에 전달
+      new Vue({
+        el: '#app',
+        router: router
+      });
+    </script>
+  </body>
+</html>
