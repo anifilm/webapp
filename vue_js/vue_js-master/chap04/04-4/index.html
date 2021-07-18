@@ -37,7 +37,7 @@
           {{ error }}
         </div>
         <div v-for="user in users" :key="user.id">
-          <router-link :to="{ path: '/users/' + user.id }">{{ user.name }}</router-link>
+          <router-link v-bind:to="{ path: '/users/' + user.id }">{{ user.name }}</router-link>
         </div>
       </div>
     </script>
@@ -78,7 +78,7 @@
             {{ error }}
           </div>
           <div>
-            <input type="button" @click="createUser" value="등록">
+            <input type="button" v-on:click="createUser" value="등록">
           </div>
         </div>
       </div>
@@ -142,13 +142,13 @@
 
       // 가짜 API를 통해 정보를 받아온 흉내를 냄
       var getUsers = function (callback) {
-        setTimeout(function () {
+        setTimeout(() => {
           callback(null, userData);
         }, 1000);
       };
 
       var getUser = function (userId, callback) {
-        setTimeout(function () {
+        setTimeout(() => {
           var filteredUsers = userData.filter(function (user) {
             return user.id === parseInt(userId, 10);
           });
@@ -159,7 +159,7 @@
       // 가짜 API를 통해 정보를 수정한 흉내를 냄
       // 실제 웹 애플리케이션이면 이 부분에서 서버에 POST 요청을 보냄
       var postUser = function (params, callback) {
-        setTimeout(function () {
+        setTimeout(() => {
           // id가 추가될 때마다 자동으로 increment 됨
           params.id = userData.length + 1;
           userData.push(params);
@@ -180,14 +180,13 @@
         methods: {
           login: function () {
             Auth.login(this.email, this.pass, (loggedIn) => {
-                if (!loggedIn) {
-                  this.error = true;
-                } else {
-                  // redirect 파라미터가 있으면 해당 경로로 이동
-                  this.$router.replace(this.$route.query.redirect || '/');
-                }
+              if (!loggedIn) {
+                this.error = true;
+              } else {
+                // redirect 파라미터가 있으면 해당 경로로 이동
+                this.$router.replace(this.$route.query.redirect || '/');
               }
-            );
+            });
           }
         }
       };
