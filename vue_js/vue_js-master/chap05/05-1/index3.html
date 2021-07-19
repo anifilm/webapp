@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>fade 트랜지션 구현하기</h2>
+    <style>
+      .v-enter-active, .v-leave-active {
+        /* 애니메이션 지속시간, 이징 등을 설정 */
+        transition: opacity 500ms ease-out;
+      }
+
+      /* 페이드 인 */
+      .v-enter {
+        /* 페이드 인 시작시 상태 */
+        opacity: 0;
+      }
+      .v-enter-to {
+        /* 페이드 인 종료시 상태 */
+        opacity: 1;
+      }
+
+      /* 페이드 아웃 */
+      v-leave {
+        /* 페이드 아웃 시작시 상태 */
+        opacity: 1;
+      }
+      .v-leave-to {
+        /* 페이드 아웃 종료시 상태 */
+        opacity: 0;
+      }
+    </style>
+
+    <div id="app">
+      <button v-on:click="isShown=!isShown">트랜지션</button>
+      <transition>
+        <p v-show="isShown">Hello, world!</p>
+      </transition>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          isShown: false
+        }
+      });
+    </script>
+  </body>
+</html>

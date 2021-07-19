@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>믹스인 - 전역 믹스인</h2>
+    <div id="app">
+      <login-required-page></login-required-page>
+    </div>
+
+    <script>
+      Vue.mixin({
+        data: function () {
+          return {
+            loggedInUser: null
+          }
+        },
+        created: function () {
+          var auth = this.$options.auth;
+          this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+          if (auth && !this.loggedInUser) {
+            window.alert('이 페이지는 로그인이 필요합니다.');
+          }
+        }
+      });
+
+      var LoginRequiredPage = {
+        auth: true,
+        template: `
+          <div>
+            <p v-if="!loggedInUser">
+              이 페이지는 로그인이 필요합니다.
+            </p>
+            <p v-else>
+              {{ loggedInUser.name }}님으로 로그인 했습니다.
+            </p>
+          </div>
+        `
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          LoginRequiredPage
+        }
+      });
+    </script>
+  </body>
+</html>

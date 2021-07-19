@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>렌더링 함수 - 렌더링 함수 없이는 구현이 까다로운 사례</h2>
+    <div id="app">
+      <my-button href="https://vuejs.org/">anchor</my-button>
+      <my-button tag="span">span</my-button>
+      <my-button>button</my-button>
+    </div>
+
+    <script>
+      var MyButton = {
+        template: `
+          <a v-if="(!tag && href) || tag === 'a'" v-bind:href="href || '#'">
+            <slot></slot>
+          </a>
+          <span v-else-if="tag === 'span'">
+            <slot></slot>
+          </span>
+          <button v-else>
+            <slot></slot>
+          </button>
+        `,
+        props: ['href', 'tag']
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          MyButton: MyButton
+        }
+      });
+    </script>
+  </body>
+</html>

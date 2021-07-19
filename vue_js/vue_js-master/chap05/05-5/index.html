@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="src/all.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>믹스인 - 믹스인으로 기능 재사용하기</h2>
+    <div id="app">
+      <icon-share-button></icon-share-button>
+      <text-share-button></text-share-button>
+    </div>
+
+    <script>
+      // 믹스인 정의
+      var Sharble = {
+        data: function () {
+          return {
+            _isProcessing: false
+          };
+        },
+        created: function () {
+          console.log('Sharable 믹스인의 훅이 호출됨');
+        },
+        methods: {
+          share: function () {
+            if (this._isProcessing) {
+              return;
+            }
+            if (!window.confirm('공유하시겠습니까?')) {
+              return;
+            }
+            this._isProcessing = true;
+            // 실제 구현이라면 SNS 서비스의 API를 호출할 부분
+            setTimeout(() => {
+              window.alert('공유되었습니다.');
+              this._isProcessing = false;
+            }, 1000);
+          }
+        }
+      };
+
+      var IconShareButton = {
+        template: `
+          <button v-on:click="share"><i class="fas fa-share-square"></i></button>
+        `,
+        mixins: [Sharble],
+        created: function () {
+          console.log('IconShareButton의 훅이 호출됨');
+        }
+      };
+
+      var TextShareButton = {
+        template: `
+          <button v-on:click="share">{{ buttonLabel }}</button>
+        `,
+        mixins: [Sharble],
+        data: function () {
+          return {
+            buttonLabel: '공유하기'
+          }
+        },
+        created: function () {
+          console.log('TextShareButton의 훅이 호출됨');
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          IconShareButton,
+          TextShareButton
+        }
+      });
+    </script>
+  </body>
+</html>

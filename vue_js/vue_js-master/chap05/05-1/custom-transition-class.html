@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>커스텀 트랜지션 클래스</h2>
+    <style>
+
+    </style>
+
+    <div id="app">
+      <p><input type="text" v-model="animationClass"></p>
+      <button v-on:click="isShown=!isShown">트랜지션</button>
+      <!-- 요소의 클래스 변경에 트랜지션 애니메이션을 적용하기 위해 enter-active-class 프로퍼티와 leave-active-class 프로퍼티를 지정 -->
+      <transition
+        v-bind:enter-active-class="activeClass"
+        v-bind:leave-active-class="activeClass"
+      >
+        <p v-show="isShown">Hello, world!</p>
+      </transition>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          animationClass: 'bounce',
+          isShown: false
+        },
+        computed: {
+          activeClass: function () {
+            // 활성화할 클래스가 무엇인지 계산. input 필드의 입력값에 따라 변경된다.
+            return this.animationClass + ' animated';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

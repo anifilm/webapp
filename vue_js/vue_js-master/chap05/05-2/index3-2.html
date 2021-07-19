@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>슬롯 - 슬롯의 범위</h2>
+    <div id="app">
+      <!-- 범위를 가지는 슬롯 -->
+      <todo-list v-bind:todos="todos">
+        <li slot-scope="{ todo }" v-if="todo.isCompleted">
+          {{ todo.text }} (완료)
+        </li>
+      </todo-list>
+    </div>
+
+    <script>
+      var TodoList = {
+        template: `
+          <ul>
+            <template v-for="todo in todos">
+              <!-- v-bind 디렉티브를 사용해 todo를 부모 컴포넌트에 전달 -->
+              <slot v-bind:todo="todo">
+                <li v-bind:key="todo.id">
+                  {{ todo.text }}
+                </li>
+              </slot>
+            </template>
+          </ul>
+        `,
+        props: {
+          todos: {
+            type: Array,
+            required: true
+          }
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          TodoList: TodoList
+        },
+        data: {
+          todos: [
+            { id: 1, text: 'C++', isCompleted: true },
+            { id: 2, text: 'JavaScript', isCompleted: false },
+            { id: 3, text: 'Java', isCompleted: true },
+            { id: 4, text: 'Perl', isCompleted: false }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>

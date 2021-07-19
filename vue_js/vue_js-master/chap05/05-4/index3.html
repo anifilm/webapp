@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>렌더링 함수 - 렌더링 함수의 효율성</h2>
+    <div id="app"></div>
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          counter: 0
+        },
+        render: function (createElement) {
+          return createElement('div', [
+            createElement('button', {
+              on: {
+                click: () => (this.counter += 1)
+              }
+            }, ' 클릭 카운트 증가 '),
+            createElement('p', [
+              '클릭 횟수: ',
+              createElement('b', this.counter + '번')
+            ])
+          ]);
+        }
+      });
+    </script>
+  </body>
+</html>

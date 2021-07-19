@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>사용자 정의 디렉티브</h2>
+    <div id="app">
+      <!-- 사용자 정의 디렉티브 사용 -->
+      <img v-fallback-image src="./logo.png" v-bind:alt="altText" />
+    </div>
+
+    <script>
+      // 사용자 정의 디렉티브 정의하기
+      Vue.directive('fallback-image', {
+        bind: function (el, binding) {
+          console.log('bind', binding);
+          el.addEventListener('error', function () {
+            el.src = 'https://dummyimage.com/400x400/000/ffffff.png&text=no+image'
+          })
+        },
+        // update 훅을 이용한 값 수정 탐지하기
+        update: function (el, binding) {
+          console.log('update', binding);
+        }
+      });
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          altText: 'logo'
+        }
+      });
+    </script>
+  </body>
+</html>

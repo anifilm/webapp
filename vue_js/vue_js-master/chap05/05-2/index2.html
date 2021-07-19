@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>슬롯 - 이름을 갖는 슬롯</h2>
+    <div id="app">
+      <my-page>
+        <!-- name 속성값이 header의 <slot>과 치환됨 -->
+        <h1 slot="header">This is my page</h1>
+        <!-- 단일 슬롯과 치환되는 콘텐츠 -->
+        <p>
+          Lorem ipsum dolor sit amet, duo ex illum debet inermis, putant scaevola id vim, cu platonem cotidieque vix. At est atqui efficiendi deterruisset. Sed eu solet antiopam, ex hinc errem altera est. Doming theophrastus ius et, quem latine delicata cum an. Ut aliquid debitis duo, nisl deleniti sit et.
+        </p>
+        <!-- name 속성값이 footer의 <slot>과 치환됨 -->
+        <p slot="footer">This is footer</p>
+      </my-page>
+    </div>
+
+    <script>
+      var MyPage = {
+        template: `
+          <div>
+            <header> <!-- 헤더 슬롯(이름을 갖는 슬롯) -->
+              <slot name="header"></slot>
+            </header>
+            <main> <!-- 바디 슬롯 -->
+              <slot></slot>
+            </main>
+            <footer> <!-- 푸터 슬롯(이름을 갖는 슬롯) -->
+              <slot name="footer"></slot>
+            </footer>
+          </div>
+        `
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          MyPage: MyPage
+        }
+      });
+    </script>
+  </body>
+</html>

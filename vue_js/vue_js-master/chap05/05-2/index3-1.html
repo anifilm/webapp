@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>슬롯 - 슬롯의 범위</h2>
+    <div id="app">
+      <!-- "parent"와 "child" 중 어느 것이 참조되는가 -->
+      <my-button>{{ textLabel }}</my-button>
+    </div>
+
+    <script>
+      var MyButton = {
+        template: `
+          <button>
+            <slot>OK</slot>
+          </button>
+        `,
+        data: function () {
+          return {
+            textLabel: 'child'
+          };
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        components: {
+          MyButton: MyButton
+        },
+        data: {
+          textLabel: 'parent'
+        }
+      });
+    </script>
+  </body>
+</html>

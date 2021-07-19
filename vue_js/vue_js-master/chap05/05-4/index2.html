@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js의 고급 기능</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>렌더링 함수 - 렌더링 함수의 효율성</h2>
+    <div id="app">
+      <my-button href="https://vuejs.org/">anchor</my-button>
+      <my-button tag="span">span</my-button>
+      <my-button>button</my-button>
+    </div>
+
+    <script>
+      var MyButton = {
+        props: ['href', 'tag'],
+        render: function (createElement) {
+          var tag = this.tag || (this.href ? 'a' : 'button');
+          return createElement(tag, {
+              attrs: {
+                href: this.href || '#'
+              }
+            }, this.$slots.default);
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        render: function (createElement) {
+          return createElement(MyButton, {
+            attrs: {
+              href: 'https://vuejs.org/'
+            },
+            props: {
+              tag: 'a'
+            }
+          }, 'anchor');
+        }
+      });
+    </script>
+  </body>
+</html>
