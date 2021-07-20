@@ -1,11 +1,11 @@
 .DS_Store
 .vscode
-node_modules
+node_modules/
 package-lock.json
-dist
-.idea
-target
-__using_assets__
-__new__
+dist/
+.idea/
+target/
+__using_assets__/
+__new__/
 *.exe
 *.lnk
