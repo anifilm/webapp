@@ -8,17 +8,35 @@
   </head>
   <body>
     <div id="app">
-
+      <p>{{ numbers.join(', ') }}</p>
+      <button v-on:click="getNumbers">번호 추첨</button>
     </div>
 
     <script>
       new Vue({
         el: '#app',
         data: {
-
+          numbers: []
         },
         methods: {
-
+          // 랜덤 숫자 생성 함수
+          getNumbers() {
+            this.numbers = []; // 배열 초기화
+            let i = 0;
+            while (i < 6) {
+              let num = Math.floor(Math.random() * 45) + 1;
+              let test = this.numbers.some(e => e === num); // 중복 숫자 체크
+              if (test) console.log('중복제거');
+              else {
+                this.numbers.push(num);
+                i += 1;
+              }
+            }
+          }
+        },
+        created() {
+          // 최초 실행시 랜덤 숫자 생성
+          this.getNumbers();
         }
       });
     </script>
