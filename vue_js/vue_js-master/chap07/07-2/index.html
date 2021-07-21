@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vuex를 이용한 데이터플로 설계 및 상태 관리</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h2>데이터 플로 설계</h2>
+    <div id="app">
+      <counter></counter>
+    </div>
+
+    <script>
+      const store = {
+        // 상태
+        state: {
+          count: 0
+        },
+        // 증가 처리
+        increment() {
+          this.state.count += 1;
+        }
+      };
+
+      Vue.component('counter', {
+        // 뷰
+        template: `
+          <div>
+            <p>{{ count }}</p>
+            <button v-on:click="increment">증가</button>
+          </div>
+        `,
+        // 상태를 뷰에 전달
+        data() {
+          return store.state;
+        },
+        methods: {
+          // 증가 처리 호출
+          increment() {
+            store.increment();
+          }
+        }
+      });
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
+</html>
