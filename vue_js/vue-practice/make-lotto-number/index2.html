@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ numbers.join(', ') }}</p>
+      <button v-on:click="getNumbers">번호 추첨</button>
+    </div>
+
+    <script>
+      // 피셔의 예이츠 셔플
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      new Vue({
+        el: '#app',
+        data: {
+          numbers: []
+        },
+        methods: {
+          // 랜덤 숫자 생성 함수
+          getNumbers() {
+            this.numbers = []; // 배열 초기화
+            // 추출할 번호를 생성 (1-45)
+            let newNums = [];
+            for (let i = 1; i < 46; i++) {
+              newNums.push(i);
+            }
+            // 무작위 섞기
+            shuffle(newNums);
+            // 앞에서 6개의 숫자를 추출
+            this.numbers = newNums.slice(0, 6);
+          }
+        },
+        created() {
+          // 최초 실행시 랜덤 숫자 생성
+          this.getNumbers();
+        }
+      });
+    </script>
+  </body>
+</html>
