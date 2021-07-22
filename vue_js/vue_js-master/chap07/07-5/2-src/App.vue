@@ -17,9 +17,6 @@ export default {
       // 스토어 읽기
       return this.$store.state.tasks;
     }
-  },
-  methods: {
-
   }
 };
 </script>
