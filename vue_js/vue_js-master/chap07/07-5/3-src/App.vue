@@ -38,7 +38,7 @@ export default {
       this.$store.commit('addTask', { name: this.newTaskName });
       this.newTaskName = '';
     },
-    // 태스크 완료 여부 토글
+    // 태스크 완료 상태 토글
     toggleTaskStatus(task) {
       // toggleTaskStatus 뮤테이션 커밋
       this.$store.commit('toggleTaskStatus', { id: task.id });

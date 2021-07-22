@@ -30,11 +30,10 @@ const store = new Vuex.Store({
         name,
         done: false
       });
-
       // 다음에 추가할 태스크의 ID 업데이트
       state.nextTaskId += 1;
     },
-    // 태스크의 완료 상태 토들
+    // 태스크의 완료 상태 토글
     toggleTaskStatus(state, { id }) {
       const filtered = state.tasks.filter(task => {
         return task.id === id;
