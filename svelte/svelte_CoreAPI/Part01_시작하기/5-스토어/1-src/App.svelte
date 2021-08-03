@@ -1,17 +1,12 @@
 <script>
-	import { storeName } from './store.js';
 	import Parent from "./Parent.svelte";
 
 	let name = 'world';
-
-	//console.log(storeName);
-	//console.log($storeName);
-	$storeName = name;
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<Parent />
+	<Parent name={name} />
 </main>
 
 <style>
