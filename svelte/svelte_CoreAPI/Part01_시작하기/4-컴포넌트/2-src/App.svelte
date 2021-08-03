@@ -6,9 +6,6 @@
 
 <main>
 	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
 </main>
 
 <style>

@@ -1,14 +1,17 @@
 <script>
-	import Fruits from "./Fruits.svelte";
-
-	let fruits = ['Apple', 'Banana', 'Cherry', 'Orange', 'Mango'];
+	let text = 'Hello';
 </script>
 
 <main>
-	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
+	<h1>{text}</h1>
+  <!--
+  <input
+    type="text"
+    value={text}
+    on:input={(e) => {text = e.target.value}}
+  /> -->
+  <input type="text" bind:value={text} />
+  <button on:click={() => {text = 'Hello'}}>Click</button>
 </main>
 
 <style>

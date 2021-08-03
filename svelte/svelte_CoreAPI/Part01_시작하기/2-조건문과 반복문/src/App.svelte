@@ -1,14 +1,15 @@
 <script>
-	import Fruits from "./Fruits.svelte";
-
-	let fruits = ['Apple', 'Banana', 'Cherry', 'Orange', 'Mango'];
+	let name = 'world';
+	let toggle = false;
 </script>
 
 <main>
-	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
+	<button on:click={() => {toggle = !toggle}}>Toggle</button>
+	{#if toggle}
+		<h1>Hello {name}!</h1>
+	{:else}
+		<div>No name!</div>
+	{/if}
 </main>
 
 <style>
@@ -23,6 +24,10 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+	}
+	div {
+		margin-top: 65px;
+		font-size: 2em;
 	}
 	@media (min-width: 640px) {
 		main {

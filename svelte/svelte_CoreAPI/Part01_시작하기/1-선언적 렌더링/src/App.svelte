@@ -1,14 +1,16 @@
 <script>
-	import Fruits from "./Fruits.svelte";
+	let name = 'world';
+	let age = 85;
 
-	let fruits = ['Apple', 'Banana', 'Cherry', 'Orange', 'Mango'];
+	setTimeout(() => {
+		name = 'anifilm';
+		age = 44;
+	}, 3000);
 </script>
 
 <main>
-	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
+	<h1>Hello {name}!</h1>
+	<h2>your age: {age}</h2>
 </main>
 
 <style>

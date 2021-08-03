@@ -1,14 +1,9 @@
 <script>
-	import Fruits from "./Fruits.svelte";
-
-	let fruits = ['Apple', 'Banana', 'Cherry', 'Orange', 'Mango'];
+	let name = 'world';
 </script>
 
 <main>
-	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
+	<h1>Hello {name}!</h1>
 </main>
 
 <style>

@@ -1,14 +1,20 @@
 <script>
-	import Fruits from "./Fruits.svelte";
-
+	let name = 'world';
 	let fruits = ['Apple', 'Banana', 'Cherry', 'Orange', 'Mango'];
+
+	function deleteFruit() {
+		fruits = fruits.slice(1);
+	}
 </script>
 
 <main>
-	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
+	<h1>Hello {name}!</h1>
+	<ul>
+		{#each fruits as fruit}
+			<li>{fruit}</li>
+		{/each}
+	</ul>
+	<button on:click={deleteFruit}>Eat it!</button>
 </main>
 
 <style>
@@ -23,6 +29,13 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+	}
+	ul {
+		list-style: none;
+    width: 94%;
+	}
+	button {
+		margin-top: 20px;
 	}
 	@media (min-width: 640px) {
 		main {

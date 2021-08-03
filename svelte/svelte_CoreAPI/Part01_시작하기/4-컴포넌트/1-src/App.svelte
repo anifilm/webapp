@@ -1,14 +1,28 @@
 <script>
-	import Fruits from "./Fruits.svelte";
-
 	let fruits = ['Apple', 'Banana', 'Cherry', 'Orange', 'Mango'];
 </script>
 
 <main>
-	<Fruits fruits={fruits} />
-	<Fruits fruits={fruits} reverse={true} />
-	<Fruits fruits={fruits} slice="-2" />
-	<Fruits fruits={fruits} slice="0, 3" />
+	<h2>Fruits</h2>
+	<ul>
+		{#each fruits as fruit}
+			<li>{fruit}</li>
+		{/each}
+	</ul>
+
+	<h2>Fruits reverse</h2>
+	<ul>
+		{#each [...fruits].reverse() as fruit}
+			<li>{fruit}</li>
+		{/each}
+	</ul>
+
+	<h2>Fruits slice - 2</h2>
+	<ul>
+		{#each fruits.slice(-2) as fruit}
+			<li>{fruit}</li>
+		{/each}
+	</ul>
 </main>
 
 <style>
@@ -23,6 +37,10 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+	}
+	ul {
+		list-style: none;
+    width: 94%;
 	}
 	@media (min-width: 640px) {
 		main {
