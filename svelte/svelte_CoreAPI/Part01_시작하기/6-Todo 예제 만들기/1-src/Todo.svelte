@@ -13,6 +13,10 @@
     isEdit = false;
   }
   function updateTodo() {
+    if (!title.trim()) {
+		  offEdit();
+      return;
+ 	  }
     todo.title = title;
     offEdit();
   }

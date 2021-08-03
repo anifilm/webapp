@@ -6,6 +6,10 @@
   let todos = [];
 
   function createTodo() {
+    if (!title.trim()) {
+		  title = ''
+			return
+ 	  }
     todos.push({
       id,
       title
