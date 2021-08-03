@@ -1,4 +1,5 @@
 <script>
+
   export let todos; // store
   export let todo;
 
@@ -33,6 +34,7 @@
       on:keydown={(e) => {
         e.key === 'Enter' && updateTodo();
       }}
+      autofocus
     />
     <button on:click={updateTodo}>OK</button>
     <button on:click={offEdit}>Cancel</button>
@@ -48,6 +50,14 @@
 <style>
   .todo {
     display: inline-block;
-    width: 190px;
+    width: 210px;
+  }
+  input {
+		border-radius: .2em;
+		padding: .5em 1em;
+		outline: none;
+	}
+  input:focus {
+    border-color: blue;
   }
 </style>

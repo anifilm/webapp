@@ -45,4 +45,12 @@
       max-width: none;
     }
   }
+  input {
+		border-radius: .2em;
+		padding: .5em 1em;
+		outline: none;
+	}
+  input:focus {
+    border-color: blue;
+  }
 </style>
