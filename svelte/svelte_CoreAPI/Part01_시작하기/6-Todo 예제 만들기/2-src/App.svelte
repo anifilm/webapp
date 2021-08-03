@@ -7,8 +7,7 @@
 
   function createTodo() {
     if (!title.trim()) {
-		  title = ''
-			return
+			return;
  	  }
     $storeTodos.push({
       id,
