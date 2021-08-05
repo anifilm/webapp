@@ -1,20 +1,24 @@
 <script>
   let count = 0;
 
-  $: doubled = count * 2;
-  $: if (count >= 10) {
-    alert('count는 10을 넘을 수 없습니다.');
-    count = 9;
+  function handleClick() {
+		console.log('clicked!');
+    count += 1;
   }
 
-  function handleClick() {
-    count += 1;
+  function handleMouseEnter() {
+    console.log('mouseEnter');
+  }
+
+  function handleMouseLeave() {
+    console.log('mouseLeave');
   }
 </script>
 
 <main>
-  <button on:click={handleClick}>Clicked {count}</button>
-  <p>{count} 값의 2배 값은 {doubled} 입니다.</p>
+  <button on:click={handleClick}
+	on:mouseenter={handleMouseEnter}
+	on:mouseleave={handleMouseLeave}>Clicked {count}</button>
 </main>
 
 <style>

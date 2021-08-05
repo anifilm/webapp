@@ -2,10 +2,6 @@
   let count = 0;
 
   $: doubled = count * 2;
-  $: if (count >= 10) {
-    alert('count는 10을 넘을 수 없습니다.');
-    count = 9;
-  }
 
   function handleClick() {
     count += 1;
