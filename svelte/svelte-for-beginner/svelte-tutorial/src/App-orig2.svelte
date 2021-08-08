@@ -1,12 +1,9 @@
 <script>
-  import Child from './Child.svelte';
 
-  let number = 3;
 </script>
 
 <main>
-  <p>{number}</p>
-  <Child bind:number={number} />
+
 </main>
 
 <style>

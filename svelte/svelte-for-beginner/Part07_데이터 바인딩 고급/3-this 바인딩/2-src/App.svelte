@@ -1,12 +1,19 @@
 <script>
   import Child from './Child.svelte';
 
-  let number = 3;
+  let div;
+  let child;
+
+  function handleClick() {
+    console.log(div);
+    console.log(child);
+  }
 </script>
 
 <main>
-  <p>{number}</p>
-  <Child bind:number={number} />
+  <button on:click={handleClick}>This 로그 보기</button>
+  <div bind:this={div}>DIV</div>
+  <Child bind:this={child} />
 </main>
 
 <style>
