@@ -1,15 +1,13 @@
 <script>
-  import Child from "./Child.svelte";
+  import Child from './Child.svelte';
 
-  let info = {
-    name: 'Beomy',
-    job: 'developer',
-    website: 'https://beomy.github.io'
-  };
+  function handleMessage(event) {
+    alert(event.detail.text);
+  }
 </script>
 
 <main>
-	<Child {...info} />
+  <Child on:message={handleMessage} />
 </main>
 
 <style>

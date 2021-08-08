@@ -1,15 +1,9 @@
 <script>
-  import Child from "./Child.svelte";
 
-  let info = {
-    name: 'Beomy',
-    job: 'developer',
-    website: 'https://beomy.github.io'
-  };
 </script>
 
 <main>
-	<Child {...info} />
+
 </main>
 
 <style>

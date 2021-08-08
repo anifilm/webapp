@@ -1,15 +1,11 @@
 <script>
-  import Child from "./Child.svelte";
-
-  let info = {
-    name: 'Beomy',
-    job: 'developer',
-    website: 'https://beomy.github.io'
-  };
+  function handleClick() {
+    alert('click!');
+  }
 </script>
 
 <main>
-	<Child {...info} />
+  <button on:click|once={handleClick}>Click</button>
 </main>
 
 <style>
