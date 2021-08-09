@@ -11,7 +11,7 @@
   onMount(() => {
     return () => {
       console.log('onMount return');
-    }
+    };
   });
 
   onDestroy(() => {

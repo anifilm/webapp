@@ -12,7 +12,7 @@
 
     return () => {
       console.log('destoryed');
-    }
+    };
   });
 </script>
 
