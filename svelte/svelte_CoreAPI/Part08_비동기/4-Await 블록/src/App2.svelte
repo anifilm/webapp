@@ -1,28 +1,26 @@
 <script>
-  let promise = Promise.resolve('Hmm...');
+  let promise;
 
   function fetchName() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve('Heropy');
-      }, 200);
+      }, 2000);
     });
   }
 </script>
 
 <main>
   <button
-    on:click={() => {
+    on:click={async () => {
       promise = fetchName();
+			promise.then((res) => {
+				console.log(res);
+			})
     }}
   >
     Fetch name!
   </button>
-
-	{#await promise then name}
-		<!-- 이행(Fulfilled) -->
-		<h1>{name}</h1>
-	{/await}
 </main>
 
 <style>
