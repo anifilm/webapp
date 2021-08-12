@@ -39,7 +39,10 @@
   {:then movies}
     <ul>
       {#each movies as movie}
-        <li>{movie.Title}</li>
+        <li>
+          <img src={movie.Poster} alt={movie.Title} />
+          <p>{movie.Title}</p>
+        </li>
       {/each}
     </ul>
   {:catch error}
@@ -63,13 +66,19 @@
 
 <style>
   main {
-    /*text-align: center;*/
+    text-align: center;
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
   }
   input {
     width: 500px;
+  }
+  li {
+    list-style: none;
+    width: 300px;
+    display: inline-block;
+    margin: 0 20px 50px 0;
   }
   @media (min-width: 640px) {
     main {
