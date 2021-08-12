@@ -17,11 +17,12 @@
 		try {
 			const res = await axios.get(`https://www.omdbapi.com/?apikey=${apikey}&s=${title}`);
 			movies = res.data.Search;
-		} catch(err) {
+		} catch (err) {
 			//console.log(err.message);
 			error = err;
 		} finally {
 			loading = false;
+			console.log('Done!');
 		}
 	}
 </script>
