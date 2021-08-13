@@ -6,20 +6,11 @@
     { id: 2, title: 'Lunch', done: false },
     { id: 3, title: 'Dinner', done: false }
   ];
-
-  function deleteTodo(event) {
-    // event.detail => `new CustomEvent()`를 통해 이벤트를 초기화 할 때 전달 된 모든 데이터를 반환
-    const todo = event.detail;
-    const index = todos.findIndex(t => t.id === todo.id);
-    console.log(todo);
-    todos.splice(index, 1);
-    todos = todos;
-  }
 </script>
 
 <main>
-  {#each todos as todo (todo.id)}
-    <Todo todo={todo} on:deleteMe={deleteTodo} />
+  {#each todos as todo, index (todo.id)}
+    <Todo bind:todos={todos} todo={todo} index={index} />
   {/each}
 </main>
 
