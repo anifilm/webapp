@@ -1,7 +1,7 @@
 import { writable, derived } from 'svelte/store';
 
 export let count = writable(0);
-export let double = derived(count, ($count) => $count * 2);
+export let double = derived(count, ($count) => {return $count * 2});
 export let total = derived(
   [count, double], ([$count, $double], set) => {
     // 클릭시 마다 구독이 해제 되었다가 재 구독하게 된다.
