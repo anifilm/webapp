@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div>
       <div className="react">{name}</div>
-      <MyComponent>{name}</MyComponent>
+      <MyComponent />
     </div>
   );
 };
