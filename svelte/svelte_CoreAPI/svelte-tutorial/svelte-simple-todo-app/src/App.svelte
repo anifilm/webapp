@@ -8,8 +8,8 @@
   function createTodo() {
     if (!title.trim()) {
       title = '';
-			return;
- 	  }
+      return;
+    }
     $storeTodos.push({
       id,
       title
@@ -36,21 +36,22 @@
 
 <style>
   main {
+    /*text-align: center;*/
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;
+  }
+  input {
+    border-radius: .2em;
+    padding: .5em 1em;
+    outline: none;
+  }
+  input:focus {
+    border-color: blue;
   }
   @media (min-width: 640px) {
     main {
       max-width: none;
     }
-  }
-  input {
-		border-radius: .2em;
-		padding: .5em 1em;
-		outline: none;
-	}
-  input:focus {
-    border-color: blue;
   }
 </style>

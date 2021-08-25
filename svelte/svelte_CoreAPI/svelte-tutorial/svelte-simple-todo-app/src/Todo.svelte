@@ -1,5 +1,4 @@
 <script>
-
   export let todos; // store
   export let todo;
 
@@ -15,9 +14,9 @@
   }
   function updateTodo() {
     if (!title.trim()) {
-		  offEdit();
+      offEdit();
       return;
- 	  }
+    }
     todo.title = title;
     offEdit();
   }
@@ -28,6 +27,7 @@
 
 {#if isEdit}
   <div>
+    <!-- svelte-ignore a11y-autofocus -->
     <input
       type="text"
       bind:value={title}
@@ -53,10 +53,10 @@
     width: 210px;
   }
   input {
-		border-radius: .2em;
-		padding: .5em 1em;
-		outline: none;
-	}
+    border-radius: .2em;
+    padding: .5em 1em;
+    outline: none;
+  }
   input:focus {
     border-color: blue;
   }
