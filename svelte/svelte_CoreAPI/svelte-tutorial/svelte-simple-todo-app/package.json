@@ -10,7 +10,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.0.0-beta3",
     "node-sass": "^6.0.1",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
