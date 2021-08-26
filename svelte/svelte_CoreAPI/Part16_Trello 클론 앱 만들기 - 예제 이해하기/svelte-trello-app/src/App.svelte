@@ -22,7 +22,7 @@
     width: 100vw;
     height: 100vh;
     padding: 30px;
-    border: 8px solid red;
+    border: 10px solid red;
     box-sizing: border-box;
     overflow-x: auto;
     overflow-y: hidden;

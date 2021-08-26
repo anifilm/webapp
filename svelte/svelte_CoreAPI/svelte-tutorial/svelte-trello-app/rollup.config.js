@@ -61,11 +61,7 @@ export default {
     svelte({
 			compilerOptions: {
 				// 개발 모드에서 런타임 검사를 활성화
-				dev: !production,
-				// Svelte 컴포넌트의 CSS를 별도 번들로 생성(오류 발생! 주석처리)
-				//css: (css) => {
-				//	css.write('bundle.css');
-				//},
+				dev: !production
 			},
       // 전처리 옵션을 지정
       preprocess: sveltePreprocess({
@@ -84,7 +80,7 @@ export default {
         }
       })
     }),
-		// 모든 구성 요소의 CSS를 별도의 파일로 추출(성능 향상)
+		// Svelte 컴포넌트의 CSS를 별도 번들로 생성(성능 향상)
 		css({ output: 'bundle.css' }),
 
     // replace~builtins까지는 다음과 같은 순서대로 작성해야 정상적으로 동작함에 주의!
