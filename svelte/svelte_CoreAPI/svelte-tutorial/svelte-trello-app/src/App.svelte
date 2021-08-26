@@ -7,4 +7,8 @@
 </main>
 
 <style lang="scss">
+  $color: red;
+  h1 {
+    color: $color;
+  }
 </style>
