@@ -1,8 +1,8 @@
 <script>
-
+  export let title;
 </script>
 
-<div class="list">number</div>
+<div class="list">{title}</div>
 
 <style lang="scss">
   .list {
