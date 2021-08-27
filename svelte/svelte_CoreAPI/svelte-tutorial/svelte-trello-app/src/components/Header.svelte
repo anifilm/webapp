@@ -12,7 +12,7 @@
     align-items: center;
     img.logo {
       width: 80px;
-      opacity: .9;
+      opacity: .75;
     }
   }
 </style>
