@@ -1,21 +1,43 @@
 <script>
+  import Sortable from 'sortablejs';
   import { onMount } from 'svelte';
   import { lists } from '~/store/list';
 
   import List from './List.svelte';
   import CreateList from './CreateList.svelte';
 
-  // lists 스토어의 값($lists)이 변경되면 아래 반응성 구문이 실행된다.
+  let listsEl;
+  let sortableLists;
+
+  // lists 스토어의 값($lists)이 변경되면 아래의 반응성 구문이 실행된다.
   $: {
     console.log($lists);
   }
+
+  onMount(() => {
+    // for Lists
+    sortableLists = new Sortable(listsEl, {
+      group: 'My Lists',
+      handle: '.list',
+      delay: 50,
+      animation: 100,
+      forceFallback: true,
+      onEnd(event) {
+        //console.log(event);
+        lists.reorder({
+          oldIndex: event.oldIndex,
+          newIndex: event.newIndex
+        });
+      }
+    });
+  });
 </script>
 
 <div class="list-container">
-  <div class="lists">
+  <div bind:this={listsEl} class="lists">
     <!-- <div class="list"></div> -->
     {#each $lists as list (list.id)}
-      <List title={list.title} />
+      <List list={list} sortableLists={sortableLists} />
     {/each}
   </div>
   <!--<div class="create-list"></div>-->
@@ -27,7 +49,7 @@
     width: 100vw;
     height: calc(100vh - 40px);
     padding: 30px;
-    border: 10px solid red;
+    /*border: 10px solid red;*/
     box-sizing: border-box;
     overflow-x: auto;
     overflow-y: hidden;
@@ -38,8 +60,8 @@
       font-size: 0;
       display: inline-block;
       height: 100%;
-      border: 10px solid blue;
-      box-sizing: border-box;
+      /*border: 10px solid blue;*/
+      /*box-sizing: border-box;*/
     }
   }
 </style>
