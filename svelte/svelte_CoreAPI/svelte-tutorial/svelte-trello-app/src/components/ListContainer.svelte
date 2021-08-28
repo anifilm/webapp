@@ -56,10 +56,10 @@
     white-space: nowrap;
     font-size: 0;
     .lists {
-      white-space: nowrap;
-      font-size: 0;
       display: inline-block;
       height: 100%;
+      white-space: nowrap;
+      font-size: 0;
       /*border: 10px solid blue;*/
       /*box-sizing: border-box;*/
     }

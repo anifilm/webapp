@@ -22,14 +22,14 @@
   }
   async function onEditMode() {
     isEditMode = true;
-    //dispatch('editMode', true);
+    dispatch('editMode', true);
     await tick();
     textareaEl && textareaEl.focus();
   }
   function offEditMode() {
     title = '';
     isEditMode = false;
-    //dispatch('editMode', false);
+    dispatch('editMode', false);
   }
 </script>
 

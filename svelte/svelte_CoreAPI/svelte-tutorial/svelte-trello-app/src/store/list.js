@@ -77,7 +77,7 @@ export const cards = {
       const fromList = _find($lists, { id: fromListId });
       const toList = (fromListId === toListId) ? fromList : _find($lists, { id: toListId });
       const clone = _cloneDeep(fromList.cards[oldIndex]);
-      fromList.card.splice(oldIndex, 1);
+      fromList.cards.splice(oldIndex, 1);
       toList.cards.splice(newIndex, 0, clone);
       return $lists;
     });
@@ -105,8 +105,8 @@ export const cards = {
   remove(payload) {
     const { listId, cardId } = payload;
     _lists.update(($lists) => {
-      const foundList = _fild($lists, { id: listId });
-      _remove(foundList.card, { id: cardId });
+      const foundList = _find($lists, { id: listId });
+      _remove(foundList.cards, { id: cardId });
       return $lists;
     });
   }

@@ -21,7 +21,7 @@
 
   onMount(() => {
     // for Cards
-    sortableLists = new Sortable(cardsEl, {
+    sortableCards = new Sortable(cardsEl, {
       group: 'My Cards',
       handle: '.card',
       delay: 50,
@@ -96,6 +96,7 @@
       .list__heading {
         margin-bottom: 10px;
         p {
+          font-size: 13px;
           color: #5e6c84;
           padding: 0 8px;
         }

@@ -29,13 +29,13 @@
   async function onEditMode() {
     isEditMode = true;
     title = list.title;
-    //dispatch('editMode', true);
+    dispatch('editMode', true);
     await tick();
     textareaEl && textareaEl.focus();
   }
   function offEditMode() {
     isEditMode = false;
-    //dispatch('editMode', false);
+    dispatch('editMode', false);
   }
 
   onDestroy(() => {
