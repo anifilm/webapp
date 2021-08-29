@@ -1,14 +1,14 @@
 import { writable } from 'svelte/store';
-import cryptoRandomString from 'crypto-random-string';
+import { v4 as uuid } from 'uuid';
 import _find from 'lodash/find';
 import _remove from 'lodash/remove';
 import _cloneDeep from 'lodash/cloneDeep';
 
-// 10자의 고유(랜덤)한 문자열을 생성하는 함수
-const crypto = () => {
-  return cryptoRandomString({ length: 10 });
+// 12자의 고유(랜덤)한 문자열을 생성하는 함수
+const generateId = () => {
+  return uuid().split('-')[4].toString();
 };
-//console.log(crypto());
+//console.log(uuid().split('-')[4].toString());
 
 // 브라우저의 로컬 스토리지(저장소)에서 `lists` 이름으로 저장된 데이터를 가져옴
 // 데이터가 없다면 빈 배열을 할당
@@ -40,7 +40,7 @@ export const lists = {
     const { title } = payload;
     _lists.update(($lists) => {
       $lists.push({
-        id: crypto(),
+        id: generateId(),
         title: title,
         cards: []
       });
@@ -87,7 +87,7 @@ export const cards = {
     _lists.update(($lists) => {
       const foundList = _find($lists, { id: listId });
       foundList.cards.push({
-        id: crypto(),
+        id: generateId(),
         title: title,
       });
       return $lists;
