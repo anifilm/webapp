@@ -16,7 +16,7 @@
     "access": "public"
   },
   "scripts": {
-    "start": "snowpack dev",
+    "dev": "snowpack dev",
     "build": "snowpack build",
     "test": "web-test-runner \"src/**/*.test.js\""
   },

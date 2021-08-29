@@ -1,10 +1,13 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {
-    public: {url: '/', static: true},
-    src: {url: '/dist'},
+    public: '/',
+    src: '/_dist_',
   },
-  plugins: ['@snowpack/plugin-svelte', '@snowpack/plugin-dotenv'],
+  plugins: [
+    '@snowpack/plugin-svelte',
+    '@snowpack/plugin-dotenv'
+  ],
   routes: [
     /* Example: Enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"},
