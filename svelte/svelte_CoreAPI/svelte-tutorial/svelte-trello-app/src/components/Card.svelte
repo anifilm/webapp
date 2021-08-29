@@ -97,26 +97,26 @@
     :global(&.sortable-chosen) {
       cursor: move;
     }
-  }
-  .title {
-    position: relative;
-    border-radius: 4px;
-    background: #fff;
-    padding: 6px 8px;
-    box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
-    line-height: 30px;
-    user-select: none;
-    &:hover {
-      background: #f5f5f5;
-    }
-    .btn {
-      position: absolute;
-      top: 10px;
-      right: 8px;
-      display: none;
-    }
-    &:hover .btn {
-      display: block;
+    .title {
+      position: relative;
+      border-radius: 4px;
+      background: #fff;
+      padding: 6px 8px;
+      box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
+      line-height: 30px;
+      user-select: none;
+      &:hover {
+        background: #f5f5f5;
+      }
+      .btn {
+        position: absolute;
+        top: 10px;
+        right: 8px;
+        display: none;
+      }
+      &:hover .btn {
+        display: block;
+      }
     }
   }
 </style>
