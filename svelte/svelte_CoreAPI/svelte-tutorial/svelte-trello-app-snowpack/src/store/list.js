@@ -4,11 +4,11 @@ import _find from 'lodash/find';
 import _remove from 'lodash/remove';
 import _cloneDeep from 'lodash/cloneDeep';
 
-// 12자의 고유(랜덤)한 문자열을 생성하는 함수
+// 10자의 고유(랜덤)한 문자열을 생성하는 함수
 const generateId = () => {
-  return uuid().split('-')[4].toString();
+  return uuid().slice(-11, -1);
 };
-//console.log(uuid().split('-')[4].toString());
+//console.log(uuid().slice(-11, -1));
 
 // 브라우저의 로컬 스토리지(저장소)에서 `lists` 이름으로 저장된 데이터를 가져옴
 // 데이터가 없다면 빈 배열을 할당
