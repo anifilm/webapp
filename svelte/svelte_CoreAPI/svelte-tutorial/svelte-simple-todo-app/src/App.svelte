@@ -1,9 +1,15 @@
 <script>
-  import { storeTodos } from './store/index.js';
+  import shortid from 'shortid';
+  import { storeTodos, saveStorage } from './store';
+
   import Todo from './components/Todo.svelte';
 
+  const storageTodos = window.localStorage.getItem('todos');
+  if (storageTodos) {
+    $storeTodos = JSON.parse(storageTodos);
+  }
+
   let title = '';
-  let id = 0;
 
   function createTodo() {
     if (!title.trim()) {
@@ -11,12 +17,13 @@
       return;
     }
     $storeTodos.push({
-      id,
-      title
+      id: shortid.generate(),
+      title: title.trim()
     });
     $storeTodos = $storeTodos;
+    saveStorage();
     title = '';
-    id += 1;
+    console.log($storeTodos);
   }
 </script>
 

@@ -1,13 +1,19 @@
 <script>
+  import { tick } from 'svelte';
+  import { saveStorage } from '../store';
+
   export let todos; // store
   export let todo;
 
   let isEdit = false;
   let title = '';
+  let inputEl;
 
-  function onEdit() {
+  async function onEdit() {
     isEdit = true;
     title = todo.title;
+    await tick();
+    inputEl && inputEl.focus();
   }
   function offEdit() {
     isEdit = false;
@@ -17,27 +23,31 @@
       offEdit();
       return;
     }
-    todo.title = title;
+    todo.title = title.trim();
+    saveStorage();
     offEdit();
   }
   function deleteTodo() {
-    $todos = $todos.filter((t) => t.id !== todo.id);
+    $todos = $todos.filter((t) => {
+      return t.id !== todo.id;
+    });
+    saveStorage();
   }
 </script>
 
 <div class="todo">
-
   {#if isEdit}
     <div class="edit-mode">
-      <!-- svelte-ignore a11y-autofocus -->
       <input
         type="text"
         class="form-control"
         bind:value={title}
-        on:keydown={(e) => {
-          e.key === 'Enter' && updateTodo();
+        bind:this={inputEl}
+        on:keydown={(event) => {
+          event.key === 'Enter' && updateTodo();
+          event.key === 'Escape' && offEdit();
+          event.key === 'Esc' && offEdit(); // for Edge Browser
         }}
-        autofocus
       />
       <button class="btn btn-primary" on:click={updateTodo}>OK</button>
       <button class="btn btn-secondary" on:click={offEdit}>Cancel</button>

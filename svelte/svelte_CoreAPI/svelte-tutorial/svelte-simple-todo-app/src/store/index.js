@@ -1,3 +1,7 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 
-export let storeTodos = writable([]);
+export const storeTodos = writable([]);
+
+export function saveStorage() {
+  window.localStorage.setItem('todos', JSON.stringify(get(storeTodos)));
+}
