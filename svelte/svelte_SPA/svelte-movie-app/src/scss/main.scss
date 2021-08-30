@@ -11,3 +11,20 @@ $color--white-5: rgba($color--white, .05);
 
 $color--primary: #fdc000;
 $color--area: #1c212e;
+
+// @media all and (max-width: 1980px) { STYLES }
+$tablet: "all and (max-width: 1200px)";
+$mobile: "all and (max-width: 720px)";
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 0 0;
+  position: relative;
+  @media #{$tablet} {
+    padding: 40px 40px 0;
+  }
+  @media #{$mobile} {
+    padding: 40px 20px 0;
+  }
+}
