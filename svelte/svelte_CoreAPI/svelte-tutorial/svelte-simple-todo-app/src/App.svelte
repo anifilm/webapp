@@ -1,8 +1,8 @@
 <script>
   import shortid from 'shortid';
-  import { storeTodos, saveStorage } from './store';
+  import { storeTodos, saveStorage } from '~/store';
 
-  import Todo from './components/Todo.svelte';
+  import Todo from '~/components/Todo.svelte';
 
   const storageTodos = window.localStorage.getItem('todos');
   if (storageTodos) {
@@ -47,7 +47,6 @@
 </div>
 
 <style lang="scss">
-  @import "./scss/main.scss";
   .create-todo {
     margin-top: 50px;
     display: flex;

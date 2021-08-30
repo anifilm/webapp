@@ -1,6 +1,6 @@
 <script>
   import { tick } from 'svelte';
-  import { saveStorage } from '../store';
+  import { saveStorage } from '~/store';
 
   export let todos; // store
   export let todo;
@@ -62,7 +62,6 @@
 </div>
 
 <style lang="scss">
-  @import "../scss/main.scss";
   .todo {
     padding: 10px 14px;
     border-radius: 6px;

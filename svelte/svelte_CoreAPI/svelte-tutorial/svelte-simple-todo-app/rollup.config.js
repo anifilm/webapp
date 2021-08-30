@@ -4,7 +4,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
-import preprocess from 'svelte-preprocess';
+import sveltePreprocess from 'svelte-preprocess';
+
+import path from 'path';
+import alias from '@rollup/plugin-alias';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -43,7 +46,11 @@ export default {
 				// enable run-time checks when not in production
 				dev: !production
 			},
-			preprocess: preprocess()
+			preprocess: sveltePreprocess({
+				scss: {
+      		prependData: '@import "./src/scss/main.scss";'
+    		}
+			})
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
@@ -59,6 +66,10 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+
+    alias({
+      entries: [{ find: '~', replacement: path.resolve(__dirname, 'src/') }]
+    }),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

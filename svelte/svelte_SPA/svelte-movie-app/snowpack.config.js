@@ -12,20 +12,7 @@ module.exports = {
     src: '/dist'
   },
   plugins: [
-    ['@snowpack/plugin-svelte', {
-      preprocess: require('svelte-preprocess')({
-        scss: {
-          prependData: '@import "./src/scss/main.scss";'
-        },
-        postcss: {
-          plugins: [
-            // Check package.json browserslist
-            require('autoprefixer')()
-          ]
-        },
-        babel: babelOptions()
-      })
-    }],
+    '@snowpack/plugin-svelte',
     ['@snowpack/plugin-babel', {
       transformOptions: babelOptions()
     }],
