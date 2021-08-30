@@ -103,10 +103,12 @@
         position: relative;
         color: $color--primary;
         font-size: 12px;
+        text-align: left;
       }
       .title {
-        font-size: 15px;
         font-family: 'Oswald', sans-serif;
+        font-size: 15px;
+        text-align: left;
         position: relative;
         color: $color--white;
         overflow: hidden;

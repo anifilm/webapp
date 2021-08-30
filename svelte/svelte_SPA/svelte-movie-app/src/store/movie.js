@@ -8,6 +8,9 @@ export const loading = writable(false);
 export const theMovie = writable({});
 
 export async function searchMovies(payload) {
+  if (get(loading)) return;
+  loading.set(true);
+
   const { title, type, year, number } = payload;
   const OMDB_API_KEY = '8fd5eae9';
 
@@ -28,6 +31,6 @@ export async function searchMovies(payload) {
       });
     }
   }
-
   //console.log(get(movies));
+  loading.set(false);
 }

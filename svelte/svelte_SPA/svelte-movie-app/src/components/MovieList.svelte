@@ -1,7 +1,7 @@
 <script>
   import { movies, message, loading } from '~/store/movie';
 	import MovieCard from '~/components/MovieCard.svelte';
-
+  import Loader from '~/components/Loader.svelte';
 </script>
 
 <div class:no-result={!$movies.length} class="movie-list">
@@ -13,6 +13,9 @@
       <MovieCard movie={movie} />
     {/each}
   </div>
+  {#if $loading}
+    <Loader />
+  {/if}
 </div>
 
 <style lang="scss">
@@ -26,7 +29,6 @@
       padding: 70px 0;
     }
     .message {
-      /*color: $color--primary;*/
       color: $color--white-20;
       font-size: 20px;
       text-align: center;
