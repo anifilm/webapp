@@ -10,7 +10,7 @@
       title = '';
 			return;
  	  }
-    $storeTodos.push({
+    $storeTodos.unshift({
       id,
       title
     });
@@ -24,8 +24,8 @@
   <input
     type="text"
     bind:value={title}
-    on:keydown={(e) => {
-      e.key === 'Enter' && createTodo();
+    on:keydown={(event) => {
+      event.key === 'Enter' && createTodo();
     }}
   />
   <button on:click={createTodo}>Create Todo</button>

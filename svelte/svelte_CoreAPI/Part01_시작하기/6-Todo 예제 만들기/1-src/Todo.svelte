@@ -17,11 +17,13 @@
 		  offEdit();
       return;
  	  }
-    todo.title = title;
+    todo.title = title.trim();
     offEdit();
   }
   function deleteTodo() {
-    todos = todos.filter((t) => t.id !== todo.id);
+    todos = todos.filter((t) => {
+      return t.id !== todo.id;
+    });
     //console.log(todos);
   }
 </script>

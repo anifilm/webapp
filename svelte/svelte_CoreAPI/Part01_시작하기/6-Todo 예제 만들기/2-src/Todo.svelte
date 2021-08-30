@@ -17,11 +17,13 @@
 		  offEdit();
       return;
  	  }
-    todo.title = title;
+    todo.title = title.trim();
     offEdit();
   }
   function deleteTodo() {
-    $todos = $todos.filter((t) => t.id !== todo.id);
+    $todos = $todos.filter((t) => {
+      return t.id !== todo.id;
+    });
   }
 </script>
 
@@ -30,8 +32,8 @@
     <input
       type="text"
       bind:value={title}
-      on:keydown={(e) => {
-        e.key === 'Enter' && updateTodo();
+      on:keydown={(event) => {
+        event.key === 'Enter' && updateTodo();
       }}
     />
     <button on:click={updateTodo}>OK</button>

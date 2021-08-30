@@ -16,7 +16,7 @@
       title = '';
       return;
     }
-    $storeTodos.push({
+    $storeTodos.unshift({
       id: shortid.generate(),
       title: title.trim()
     });
