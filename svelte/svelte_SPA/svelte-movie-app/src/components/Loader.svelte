@@ -4,7 +4,7 @@
   export let fixed;
 </script>
 
-<div style="transform: scale({scale})" class:absolute class:fixed class="loading">
+<div style="transform: scale({scale})" class:absolute={absolute} class:fixed={fixed} class="loading">
   <!-- Spinners HTML -->
   <div class="spinner">
     <div class="bounce1"></div>
