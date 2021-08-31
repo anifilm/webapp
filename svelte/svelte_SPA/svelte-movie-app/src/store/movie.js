@@ -7,6 +7,12 @@ export const message = writable('Search for the movie title!');
 export const loading = writable(false);
 export const theMovie = writable({});
 
+export function initMovies() {
+  movies.set([]);
+  message.set('Search for the movie title!');
+  loading.set(false);
+}
+
 export async function searchMovies(payload) {
   if (get(loading)) return;
   loading.set(true);
@@ -32,7 +38,7 @@ export async function searchMovies(payload) {
   const pageLength = Math.ceil(total / 10);
   if (pageLength > 1) {
     for (let page = 2; page <= pageLength; page += 1) {
-      if (page > payload.number / 10) break;
+      if (page > (payload.number / 10)) break;
       const res = await _fetchMovie({
         ...payload,
         page: page
