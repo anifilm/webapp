@@ -1,12 +1,12 @@
 <script>
-  import { link } from 'svelte-spa-router';
+  import { link, push } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
   import Logo from '~/components/Logo.svelte';
 
   const menus = [
     {
       href: '/',
-      name: 'Search',
+      name: 'Search'
       //path: '/'
     },
     {
@@ -17,7 +17,7 @@
     {
       href: '/about',
       name: 'About',
-      path: '/about'
+      path: /^\/about/
     }
   ];
 </script>
@@ -26,15 +26,22 @@
   <Logo />
   <nav>
     <ul>
-      {#each menus as {href, name, path} (name)}
+      {#each menus as { href, name, path } (name)}
         <li>
-          <a use:link use:active={path} href={href}>{name}</a>
+          <a use:link use:active={path} {href}>{name}</a>
         </li>
       {/each}
     </ul>
   </nav>
-  <div class="user">
-    <img src="/assets/svelte.png" alt="User" />
+  <div
+    class="user"
+    on:click={() => {
+      // URL Decoder/Encoder - https://meyerweb.com/eric/tools/dencoder/
+      //push('/about?name=Netlify&image=%2Fassets%2Fnetlify.png');
+      push('/about');
+    }}
+  >
+    <img src="/assets/svelte.png" alt="Svelte Logo" />
   </div>
 </header>
 
@@ -78,7 +85,7 @@
       bottom: 0;
       right: 40px;
       margin: auto;
-      transition: .4s;
+      transition: 0.4s;
       &:hover {
         background-color: lighten($color--area, 20%);
       }
