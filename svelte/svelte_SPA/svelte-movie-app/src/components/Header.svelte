@@ -1,7 +1,6 @@
 <script>
   import { link } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
-
   import Logo from '~/components/Logo.svelte';
 
   const menus = [
@@ -11,7 +10,7 @@
       //path: '/'
     },
     {
-      href: '/movie/tt4520988',
+      href: '/movie/tt0111161',
       name: 'Movie',
       path: '/movie/*'
     },

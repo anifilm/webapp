@@ -1,6 +1,6 @@
 <script>
-  import _upperFirst from 'lodash/upperFirst';
   import { searchMovies } from '~/store/movie';
+  import _upperFirst from 'lodash/upperFirst';
 
   const types = ['movie', 'series', 'episode'];
   const years = [];
@@ -9,17 +9,23 @@
   }
   const numbers = [10, 20, 30];
 
+  const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
   let title = '';
   let type = 'movie';
   let year = '';
   let number = 10;
 
   function apply() {
+    if (korean.test(title.trim())) {
+      alert('한글 검색은 지원하지 않습니다.');
+      title = '';
+      return;
+    }
     if (!title.trim()) {
       title = '';
       return;
     }
-    console.log(title.trim(), type, year, number);
     searchMovies({
       title: title.trim(),
       type: type,

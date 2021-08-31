@@ -1,7 +1,7 @@
 <script>
-  export let scale;
-  export let absolute;
-  export let fixed;
+  export let scale = false;
+  export let absolute = false;
+  export let fixed = false;
 </script>
 
 <div style="transform: scale({scale})" class:absolute={absolute} class:fixed={fixed} class="loading">
