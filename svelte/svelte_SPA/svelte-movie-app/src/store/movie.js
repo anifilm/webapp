@@ -10,28 +10,40 @@ export const theMovie = writable({});
 export async function searchMovies(payload) {
   if (get(loading)) return;
   loading.set(true);
+  message.set('');
 
-  const { title, type, year, number } = payload;
-  const OMDB_API_KEY = '8fd5eae9';
+  let total = 0;
 
-  message.set(''); // 추후 수정 필요
+  try {
+    const res = await _fetchMovie({
+      ...payload,
+      page: 1
+    });
+    const { Search, totalResults } = res.data;
+    movies.set(Search);
+    total = parseInt(totalResults, 10);
+  } catch (message) {
+    movies.set([]);
+    message.set(message);
+    loading.set(false);
+    return;
+  }
 
-  const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}`);
-  const { Search, totalResults } = res.data;
-  movies.set(Search);
-
-  const pageLength = Math.ceil(totalResults / 10);
+  const pageLength = Math.ceil(total / 10);
   if (pageLength > 1) {
     for (let page = 2; page <= pageLength; page += 1) {
-      if (page > (number / 10)) break;
-      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`);
+      if (page > payload.number / 10) break;
+      const res = await _fetchMovie({
+        ...payload,
+        page: page
+      });
       const { Search } = res.data;
       movies.update(($movies) => {
         return _unionBy($movies, Search, 'imdbID');
       });
     }
   }
-  //console.log(get(movies));
+
   loading.set(false);
 }
 
@@ -39,10 +51,33 @@ export async function searchMovieWithId(id) {
   if (get(loading)) return;
   loading.set(true);
 
-  const OMDB_API_KEY = '8fd5eae9';
-
-  const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}&plot=full`);
+  const res = await _fetchMovie({
+    id: id
+  });
   theMovie.set(res.data);
 
   loading.set(false);
+}
+
+function _fetchMovie(payload) {
+  const { title, type, year, page, id } = payload;
+  const OMDB_API_KEY = '8fd5eae9';
+
+  const url = id
+    ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}&plot=full`
+    : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`;
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await axios.get(url);
+      //console.log(res.data);
+      if (res.data.Error) {
+        reject(res.data.Error);
+      }
+      resolve(res);
+    } catch (error) {
+      console.log(error.response.status);
+      reject(error.message);
+    }
+  });
 }
