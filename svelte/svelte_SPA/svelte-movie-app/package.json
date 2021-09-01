@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "snowpack build",
-    "dev": "snowpack dev"
+    "dev": "netlify dev",
+    "dev:snowpack": "snowpack dev"
   },
   "keywords": [],
   "author": "",

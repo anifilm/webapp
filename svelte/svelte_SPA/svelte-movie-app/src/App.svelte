@@ -4,7 +4,16 @@
   import routes from '~/routes';
   import Header from '~/components/Header.svelte';
   import Footer from './components/Footer.svelte';
+
+  import axios from 'axios';
+
+  async function test() {
+    const res = await axios.get('/.netlify/functions/test');
+    console.log(res);
+  }
+  test();
 </script>
+
 
 <Header />
 {#key $location}
