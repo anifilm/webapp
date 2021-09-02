@@ -1,14 +1,9 @@
 <script>
-  import { name, greeting } from './store.js';
+
 </script>
 
 <main>
-  <h1>{$greeting}</h1>
-  <input bind:value={$name}>
 
-  <button on:click={() => {$name += '!'}}>
-    Add exclamation mark!
-  </button>
 </main>
 
 <style>
