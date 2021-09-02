@@ -1,17 +1,18 @@
 <script>
-	let list = [
-    {id: 1, text: 'test1'},
-    {id: 2, text: 'test2'},
-    {id: 3, text: 'test3'},
-  ];
+  import { flip } from 'svelte/animate';
+
+	let items = [1];
 
   function addItem() {
-    const id = Math.max(...list.map(x => x.id)) + 1;
-    list = [...list, {id, text: `test${id}`}];
+    items.unshift(Math.max(...items) + 1);
+    items = items;
   }
   function removeItem() {
-    list.shift();
-    list = list;
+    if (items.length === 1) {
+      return;
+    }
+    items.shift();
+    items = items;
   }
 </script>
 
@@ -20,8 +21,8 @@
   <button on:click={removeItem}>Remove</button>
 
   <ul>
-    {#each list as { id, text } (id)}
-      <li>{id} - {text}</li>
+    {#each items as item (item)}
+      <div animate:flip>{item}</div>
     {/each}
   </ul>
 </main>

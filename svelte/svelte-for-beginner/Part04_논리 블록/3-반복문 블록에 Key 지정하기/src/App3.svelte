@@ -9,12 +9,10 @@
     const id = Math.max(...list.map(x => x.id)) + 1;
     list = [...list, {id, text: `test${id}`}];
   }
-
   function removeItem() {
     list.shift();
     list = list;
   }
-
   function resetItem() {
     list = [
       {id: 1, text: 'test1'},
