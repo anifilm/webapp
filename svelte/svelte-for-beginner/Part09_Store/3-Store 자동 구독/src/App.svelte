@@ -1,13 +1,16 @@
 <script>
   import { count } from './store.js';
+
+  import Incrementer from './Incrementer.svelte';
+  import Decrementer from './Decrementer.svelte';
+	import Resetter from './Resetter.svelte';
 </script>
 
 <main>
   <h1>The count is {$count}</h1>
-
-  <button on:click={count.increment}>+</button>
-  <button on:click={count.decrement}>-</button>
-  <button on:click={count.reset}>reset</button>
+  <Incrementer />
+  <Decrementer />
+  <Resetter />
 </main>
 
 <style>

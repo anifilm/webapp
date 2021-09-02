@@ -8,10 +8,12 @@ const _fruits = writable([
 
 export let fruits = {
   ..._fruits, // set, update, subscribe
-  getList: () => {
-    return get(_fruits).map((f) => {return f.name});
+  getList() {
+    return get(_fruits).map((f) => {
+      return f.name;
+    });
   },
-  setItem: (name) => {
+  setItem(name) {
     _fruits.update((f) => {
       f.push({
         id: f.length + 1,
