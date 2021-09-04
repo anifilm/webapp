@@ -1,1 +1,3 @@
-$ npm init @vitejs/app
+$ npm init vite@latest
+
+$ yarn create vite
