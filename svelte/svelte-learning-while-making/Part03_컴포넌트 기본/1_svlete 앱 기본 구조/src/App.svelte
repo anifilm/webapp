@@ -7,6 +7,9 @@
 </main>
 
 <style>
+	h1 {
+		color: red;
+	}
 	main {
 		text-align: center;
 		padding: 1em;
