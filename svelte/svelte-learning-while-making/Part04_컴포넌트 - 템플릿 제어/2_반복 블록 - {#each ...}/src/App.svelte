@@ -24,12 +24,12 @@
 </script>
 
 <main>
-  <!-- 응용 -->
+  <!-- 기본 -->
   <ul>
-    {#each todos as {id, content, done} (id)}
+    {#each todos as todo}
       <div>
-        <span><input type="checkbox" bind:checked={done} /></span>
-        <span>{content}</span>
+        <span>{todo.id}</span>
+        <span>{todo.content}</span>
       </div>
     {/each}
   </ul>
