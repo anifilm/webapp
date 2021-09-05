@@ -10,9 +10,9 @@
   <button on:click={handleClick}>호출</button>
 
   {#if login}
-    <p>현재 login은 {login}입니다.</p>
+    <p>현재 login은 참입니다.</p>
   {:else}
-    <p>현재 login은 {login}입니다.</p>
+    <p>현재 login은 거짓입니다.</p>
   {/if}
 </main>
 
