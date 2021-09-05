@@ -1,9 +1,16 @@
 <script>
   import PanelComponent from './PanelComponent.svelte';
+
+  let count = 0;
+
+  function incrementCount(event) {
+    console.log(event.detail.message);
+    count += 1;
+  }
 </script>
 
 <main>
-  <PanelComponent />
+  <PanelComponent {count} on:increment={incrementCount} />
 </main>
 
 <style>

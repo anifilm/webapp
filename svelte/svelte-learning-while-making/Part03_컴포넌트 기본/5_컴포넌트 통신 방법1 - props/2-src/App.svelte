@@ -1,9 +1,18 @@
 <script>
-  import PanelComponent from './PanelComponent.svelte';
+  import Child from './Child.svelte';
+
+  let value = 0;
+
+  function handleValueAdd(event, param) {
+    //console.log(event);
+    value += param;
+  }
 </script>
 
 <main>
-  <PanelComponent />
+  <p>value: {value}</p>
+
+  <Child {handleValueAdd} />
 </main>
 
 <style>

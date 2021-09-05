@@ -1,9 +1,11 @@
 <script>
-  import PanelComponent from './PanelComponent.svelte';
+  import Child from './Child.svelte';
+
+  let value = 12;
 </script>
 
 <main>
-  <PanelComponent />
+  <Child carryValue={value} />
 </main>
 
 <style>

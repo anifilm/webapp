@@ -1,14 +1,16 @@
 <script>
-  import PanelComponent from './PanelComponent.svelte';
+  let value = '안녕하세요. svelte 강좌 입니다.';
+  let active = false;
 </script>
 
 <main>
-  <PanelComponent />
+  <p>{value}</p>
+  <input type="checkbox" bind:checked={active} /> {active}
 </main>
 
 <style>
   main {
-    /*text-align: center;*/
+    text-align: center;
     padding: 1em;
     max-width: 240px;
     margin: 0 auto;

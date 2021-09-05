@@ -1,9 +1,15 @@
 <script>
   import PanelComponent from './PanelComponent.svelte';
+
+  let count = 0;
+
+  function incrementCount() {
+    count += 1;
+  }
 </script>
 
 <main>
-  <PanelComponent />
+  <PanelComponent {count} {incrementCount} />
 </main>
 
 <style>

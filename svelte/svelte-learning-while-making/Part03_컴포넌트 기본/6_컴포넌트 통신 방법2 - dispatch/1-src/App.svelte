@@ -1,9 +1,16 @@
 <script>
-  import PanelComponent from './PanelComponent.svelte';
+  import First from './First.svelte';
+
+  let value = 0;
+
+  function handleValueAdd(event) {
+    value += event.detail.value;
+  }
 </script>
 
 <main>
-  <PanelComponent />
+  <p>value: {value}</p>
+  <First on:add={handleValueAdd} />
 </main>
 
 <style>

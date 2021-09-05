@@ -1,9 +1,20 @@
 <script>
+  import { setContext } from 'svelte';
+
   import PanelComponent from './PanelComponent.svelte';
+
+  let count = 0;
+
+  function incrementCount() {
+    count += 1;
+  }
+
+  setContext('incrementCount', incrementCount);
+  //setContext('count', count);
 </script>
 
 <main>
-  <PanelComponent />
+  <PanelComponent {count} />
 </main>
 
 <style>
