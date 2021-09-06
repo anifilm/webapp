@@ -1,9 +1,14 @@
 <script>
-
+  let boxChecked = false;
 </script>
 
 <main>
+  <label>
+    <input type="checkbox" bind:checked={boxChecked} />
+    체크 박스 예제
+  </label>
 
+  <button disabled={!boxChecked}>전송</button>
 </main>
 
 <style>

@@ -1,9 +1,13 @@
 <script>
+  import CountComp from './CountComp.svelte';
 
+  let viewValue = 0;
 </script>
 
 <main>
+  <h2>{viewValue}</h2>
 
+  <CountComp bind:count={viewValue} />
 </main>
 
 <style>

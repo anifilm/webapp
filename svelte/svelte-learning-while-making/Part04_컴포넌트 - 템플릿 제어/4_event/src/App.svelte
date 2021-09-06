@@ -1,9 +1,11 @@
 <script>
-
+  function handleClick() {
+    alert('호출');
+  }
 </script>
 
 <main>
-
+  <button on:click={handleClick}>클릭</button>
 </main>
 
 <style>
