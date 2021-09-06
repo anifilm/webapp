@@ -17,7 +17,7 @@
       <form action="/add" method="post">
         <div class="ui big fluid action input">
           <input type="text" name="title" placeholder="Enter Todo..." />
-          <button class="ui blue button" type="submit">Add</button>
+          <button class="ui blue button" type="submit">추가</button>
         </div>
       </form>
 
@@ -25,16 +25,51 @@
 
       {% for todo in todo_list %}
       <div class="ui segment">
-        <p class="ui big header">
-          &nbsp&nbsp{{ todo.title }}
-        </p>
-        {% if todo.complete == False %}
-        <a class="ui gray button" href="/edit/{{ todo.id }}"><i class="square outline icon"></i></a>
+        {% if todo.editable == True %}
+          <p class="ui big header">
+            <form action="/edit_complete/{{ todo.id }}" method="post">
+              <div class="ui big fluid input">
+                <input type="text" name="title" value="{{ todo.title }}" />
+              </div>
+              <p style="margin-top: 10px;">
+                {% if todo.complete == False %}
+                  <a class="ui gray button" href="/done/{{ todo.id }}">
+                    <i class="square outline icon"></i>진행중
+                  </a>
+                {% else %}
+                  <a class="ui green button" href="/done/{{ todo.id }}">
+                    <i class="check square icon"></i>완료됨
+                  </a>
+                {% endif %}
+                <button class="ui green button" type="submit">
+                  <i class="check icon"></i>완료
+                </button>
+                <button class="ui button" type="cancel">
+                  <i class="x icon"></i>취소
+                </button>
+              </p>
+            </form>
+          </p>
         {% else %}
-        <a class="ui green button" href="/edit/{{ todo.id }}"><i class="check square icon"></i></a>
+          <p class="ui big header" style="margin-top: 20px; margin-bottom: 27px">
+            &nbsp&nbsp{{ todo.title }}
+          </p>
+          {% if todo.complete == False %}
+            <a class="ui gray button" href="/done/{{ todo.id }}">
+              <i class="square outline icon"></i>진행중
+            </a>
+          {% else %}
+            <a class="ui green button" href="/done/{{ todo.id }}">
+              <i class="check square icon"></i>완료됨
+            </a>
+          {% endif %}
+          <a class="ui blue button" href="/edit/{{ todo.id }}">
+            <i class="edit icon"></i>수정
+          </a>
+          <a class="ui red button" href="/delete/{{ todo.id }}">
+            <i class="trash icon"></i>삭제
+          </a>
         {% endif %}
-        <a class="ui blue button" href="/edit/{{ todo.id }}"><i class="edit icon"></i></a>
-        <a class="ui red button" href="/delete/{{ todo.id }}"><i class="trash icon"></i></a>
       </div>
       {% endfor %}
     </div>
