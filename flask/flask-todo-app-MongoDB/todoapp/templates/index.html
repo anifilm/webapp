@@ -33,12 +33,12 @@
 						<div class="col-lg-12">
 							<div class="btn-toolbar">
 								<div class="btn-group">
-									<a type="button" href="#" class="btn btn-warning">
+									<a type="button" href="{{ url_for('main.delete_completed') }}" class="btn btn-warning">
 										DELETE COMPLETED
 									</a>
 								</div>
 								<div class="btn-group">
-									<a type="button" href="#" class="btn btn-warning">
+									<a type="button" href="{{ url_for('main.delete_all') }}" class="btn btn-warning">
 										DELETE ALL
 									</a>
 								</div>
@@ -48,7 +48,7 @@
 
 					<ul class="list-group t20">
 						{% for todo in todos %}
-						<a href="#">
+						<a href="{{ url_for('main.complete_todo', oid=todo._id )}}">
 							<li class="list-group-item {% if todo.complete %}todo-completed{% endif %}">
 								{{ todo.text }}
 							</li>
