@@ -1,11 +1,14 @@
-.DS_Store
-.vscode
+.vscode/
 node_modules/
 package-lock.json
 dist/
 .idea/
+out/
 target/
 __using_assets__/
 __new__/
+.env
 *.exe
 *.lnk
+
+.DS_Store
