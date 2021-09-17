@@ -1,5 +1,5 @@
 {
-    "python.defaultInterpreterPath": ".\\venv\\Scripts\\python.exe",
+    "python.defaultInterpreterPath": "./venv/bin/python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
@@ -7,6 +7,6 @@
     "python.formatting.provider": "black",
     "python.linting.flake8Args": [
         "--max-line-length=120",
-        "--ignore=E302"
+        "--ignore=E265,E302,E501"
     ]
 }
