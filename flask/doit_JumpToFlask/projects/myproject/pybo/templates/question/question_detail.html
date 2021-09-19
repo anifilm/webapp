@@ -117,8 +117,7 @@
               </div>
             {% endif %}
             <div>
-                <a href="{{ url_for('comment.create_answer', answer_id=answer.id) }}"
-                   class="small"><small>댓글 추가 ..</small></a>
+                <a href="{{ url_for('comment.create_answer', answer_id=answer.id) }}" class="small"><small>댓글 추가 ..</small></a>
             </div>
             <!-- 답변 댓글 End -->
           </div>
@@ -143,8 +142,7 @@
           rows="5"
         {% endif %}
         name="content" id="content" class="form-control"
-      >
-      </textarea>
+      ></textarea>
     </div>
     <input
       {% if not g.user %}
