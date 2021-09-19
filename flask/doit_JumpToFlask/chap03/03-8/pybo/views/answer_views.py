@@ -3,10 +3,10 @@ from datetime import datetime
 from flask import Blueprint, url_for, request, render_template, g
 from werkzeug.utils import redirect
 
-from .auth_views import login_required
-from .. import db
-from ..forms import AnswerForm
-from ..models import Question, Answer
+from pybo import db
+from pybo.forms import AnswerForm
+from pybo.models import Question, Answer
+from pybo.views.auth_views import login_required
 
 bp = Blueprint("answer", __name__, url_prefix="/answer")
 

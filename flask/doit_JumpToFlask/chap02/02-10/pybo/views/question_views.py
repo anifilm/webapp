@@ -2,9 +2,9 @@ from datetime import datetime
 from flask import Blueprint, render_template, request, url_for
 from werkzeug.utils import redirect
 
-from .. import db
-from ..models import Question
-from ..forms import QuestionForm, AnswerForm
+from pybo import db
+from pybo.forms import QuestionForm, AnswerForm
+from pybo.models import Question
 
 bp = Blueprint("question", __name__, url_prefix="/question")
 

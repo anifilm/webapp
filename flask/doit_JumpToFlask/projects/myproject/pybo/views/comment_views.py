@@ -3,10 +3,10 @@ from datetime import datetime
 from flask import Blueprint, url_for, request, render_template, g, flash
 from werkzeug.utils import redirect
 
-from .auth_views import login_required
-from .. import db
-from ..forms import CommentForm
-from ..models import Question, Comment, Answer
+from pybo import db
+from pybo.forms import CommentForm
+from pybo.models import Question, Comment, Answer
+from pybo.views.auth_views import login_required
 
 bp = Blueprint("comment", __name__, url_prefix="/comment")
 
