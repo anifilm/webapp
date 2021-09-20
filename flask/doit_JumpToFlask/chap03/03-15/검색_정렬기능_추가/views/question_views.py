@@ -108,7 +108,6 @@ def modify(question_id):
         return redirect(url_for("question.detail", question_id=question_id))
     if request.method == "POST":
         form = QuestionForm()
-        form.label = "질문 수정"
         if form.validate_on_submit():
             form.populate_obj(question)
             question.modify_date = datetime.now()  # 수정일시 저장
