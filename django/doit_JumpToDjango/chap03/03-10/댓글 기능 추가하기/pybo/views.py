@@ -251,7 +251,7 @@ def comment_modify_answer(request, comment_id):
 @login_required(login_url="common:login")
 def comment_delete_answer(request, comment_id):
     """
-    pybo 질문댓글삭제
+    pybo 답변 댓글 삭제
     """
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
