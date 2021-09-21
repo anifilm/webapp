@@ -83,6 +83,10 @@
             <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
           </li>
         {% endif %}
+      {% elif page_number >= question_list.number|add:-6 and page_number <= question_list.number|add:6 %}
+        <li class="page-item">
+          <a class="page-link" data-page="{{ page_number }}" href="#">...</a>
+        </li>
       {% endif %}
     {% endfor %}
     <!-- 다음 페이지 -->
