@@ -137,7 +137,7 @@
     <div class="form-group">
       <textarea
         {% if not g.user %}
-          rows="3" disabled
+          rows="5" disabled
         {% else %}
           rows="5"
         {% endif %}
@@ -170,5 +170,6 @@
       }
     });
   });
+var simplemde = new SimpleMDE({ element: $("#MyID")[0] });
 </script>
 {% endblock %}

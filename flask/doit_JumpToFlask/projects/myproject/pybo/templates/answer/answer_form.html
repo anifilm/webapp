@@ -2,14 +2,21 @@
 
 {% block content %}
 <div class="container my-3">
+  <h5 class="border-bottom pb-2">답변 수정</h5>
   <form class="post-form" method="post">
     {{ form.csrf_token }}
     {% include "form_errors.html" %}
     <div class="form-group">
-      <label for="content">답변 내용</label>
+      <label for="content">작성 내용</label>
       <textarea class="form-control" name="content" id="content" rows="10">{{ form.content.data or '' }}</textarea>
     </div>
-    <button type="submit" class="btn btn-primary">저장하기</button>
+    <button type="submit" class="btn btn-primary">수정하기</button>
   </form>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+var simplemde = new SimpleMDE({ element: $("#MyID")[0] });
+</script>
 {% endblock %}
