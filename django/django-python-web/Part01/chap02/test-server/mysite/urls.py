@@ -20,12 +20,11 @@ from . import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    path("admin/", admin.site.urls),
     # shkim
-    path('', views.HomeView.as_view(), name='home'),
-    path('auth/', views.auth_view, name='auth'),
+    path("", views.HomeView.as_view(), name="home"),
+    path("auth/", views.auth_view, name="auth"),
     # path('cookie/', views.cookie_view, name='cookie'),
-    path('cookie/', views.cookie_view_post, name='cookie'),
+    path("cookie/", views.cookie_view_post, name="cookie"),
     # path('cookie/post/', views.cookie_view_post, name='cookie_post'),
 ]

@@ -1,7 +1,7 @@
 from urllib.request import Request, HTTPCookieProcessor, build_opener
 
 
-url = 'http://127.0.0.1:8000/cookie/'
+url = "http://127.0.0.1:8000/cookie/"
 
 # first request (GET) with cookie handler
 
@@ -13,16 +13,16 @@ req = Request(url)
 res = opener.open(req)
 
 print(res.info())
-print(res.read().decode('utf-8'))
+print(res.read().decode("utf-8"))
 
 # second request (POST)
 print("-------------------------------------------------------")
 
 data = "language=python&framework=django"
-encData = bytes(data, encoding='utf-8')
+encData = bytes(data, encoding="utf-8")
 
 req = Request(url, encData)
 res = opener.open(req)
 
 print(res.info())
-print(res.read().decode('utf-8'))
+print(res.read().decode("utf-8"))
