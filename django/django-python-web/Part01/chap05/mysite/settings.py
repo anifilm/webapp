@@ -31,8 +31,8 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]  # 기본값
 # Application definition
 
 INSTALLED_APPS = [
-    #"books.apps.BooksConfig",
-    'books',
+    # "books.apps.BooksConfig",
+    "books",
     "polls.apps.PollsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -121,3 +121,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+# 장고의 디폴트 설정을 유지하면서 로깅을 설정
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "mysite.log"),
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "polls": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+        },
+    },
+}
