@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>임채영의 홈페이지</title>
-    <link href="./style.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <nav>
@@ -18,7 +18,7 @@
     <h5>다섯 번째 크기 헤드라인</h5>
 
     <button onclick="whatTimeIsIt()">현재시간 보기</button>
-    <hr>
+    <hr />
 
     <label for="inputA">a</label>
     <input id="inputA" value=1 onkeyup="doSomething()">
@@ -33,7 +33,7 @@
     <img src="./images/automation-python.png" width="600px" alt="파이썬 이미지">
 
     <script type="text/javascript">
-      function doSomething(){
+      function doSomething() {
         let a = document.getElementById("inputA").value;
         let b = document.getElementById("inputB").value;
         document.getElementById("valueA").innerHTML = a;
@@ -41,7 +41,7 @@
         document.getElementById("valueC").innerHTML = Number(a) + Number(b);
       }
 
-      function whatTimeIsIt(){
+      function whatTimeIsIt() {
         let d = new Date();
         let currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
         let currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";
