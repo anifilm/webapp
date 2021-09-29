@@ -15,9 +15,26 @@ https://startbootstrap.com/
 https://fontawesome.com/
 
 
+
 프로젝트 만들기
 
 $ django-admin startproject config .
+
+
+애플리케이션 생성
+
+$ python manage.py startapp blog
+
+
+기본 테이블 생성
+
+$ python manage.py migrate
+
+
+데이터베이스 변경사항 반영
+
+$ python manage.py makemigrations
+$ python manage.py migrate
 
 
 프로젝트 시작
