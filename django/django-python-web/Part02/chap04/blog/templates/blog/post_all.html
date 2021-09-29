@@ -3,7 +3,7 @@
 
 {% for post in posts %}
 <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-{{ post.modify_dt|date:"Y년 m월 d일" }}
+{{ post.modify_dt|date:"Y년 M d일" }}
 <p>{{ post.description }}</p>
 {% endfor %}
 
