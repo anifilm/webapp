@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 class TestView(TestCase):
     def setUp(self):
         self.client = Client()
+
         self.user_trump = User.objects.create_user(username="trump", password="somepassword")
         self.user_obama = User.objects.create_user(username="obama", password="somepassword")
 

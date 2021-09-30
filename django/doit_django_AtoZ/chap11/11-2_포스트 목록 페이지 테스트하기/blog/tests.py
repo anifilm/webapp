@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
-from bs4 import BeautifulSoup
 from .models import Post
+from bs4 import BeautifulSoup
 
 
 class TestView(TestCase):
