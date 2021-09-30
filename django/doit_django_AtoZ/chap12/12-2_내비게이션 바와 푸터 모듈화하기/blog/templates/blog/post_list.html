@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+
+{% block main_area %}
+<h1>Blog</h1>
+{% if post_list.exists %}
+  {% for post in post_list %}
+  <!-- Blog Post -->
+  <div class="card mb-4">
+    {% if post.head_image %}
+    <img class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post }} head image">
+    {% endif %}
+    <div class="card-body">
+      {% if not post.hook_text %}
+      <h2 class="card-title mb-4">{{ post.title }}</h2>
+      {% else %}
+      <h2 class="card-title">{{ post.title }}</h2>
+      <h5 class="text-muted mb-4">{{ post.hook_text }}</h5>
+      {% endif %}
+      <p class="card-text mb-4">{{ post.content|truncatewords:45 }}</p>
+      <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+    </div>
+    <div class="card-footer text-muted">
+      Posted on {{ post.created_at }} by
+      <a href="#">작성자명 (개발예정...)</a>
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+<h3>아직 게시물이 없습니다.</h3>
+{% endif %}
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">
+  <li class="page-item">
+    <a class="page-link" href="#">&larr; Older</a>
+  </li>
+  <li class="page-item disabled">
+    <a class="page-link" href="#">Newer &rarr;</a>
+  </li>
+</ul>
+{% endblock %}
