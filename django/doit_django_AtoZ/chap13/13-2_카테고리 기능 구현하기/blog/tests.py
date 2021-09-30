@@ -87,14 +87,17 @@ class TestView(TestCase):
         post_001_card = main_area.find("div", id="post-1")  # id가 post-1인 div를 찾아서, 그 안에
         self.assertIn(self.post_001.title, post_001_card.text)  # title이 있는지
         self.assertIn(self.post_001.category.name, post_001_card.text)  # category가 있는지
+        self.assertIn(self.post_001.author.username.capitalize(), post_001_card.text)  # 작성자명이 있는지
 
         post_002_card = main_area.find("div", id="post-2")
         self.assertIn(self.post_002.title, post_002_card.text)
         self.assertIn(self.post_002.category.name, post_002_card.text)
+        self.assertIn(self.post_002.author.username.capitalize(), post_002_card.text)
 
         post_003_card = main_area.find("div", id="post-3")
         self.assertIn("미분류", post_003_card.text)
         self.assertIn(self.post_003.title, post_003_card.text)
+        self.assertIn(self.post_003.author.username.capitalize(), post_003_card.text)
 
         # Post가 없는 경우
         Post.objects.all().delete()
