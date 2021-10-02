@@ -60,21 +60,44 @@
 
     {% include "blog/footer.html" %}
 
+    <!-- Modal -->
+    <div class="modal fade" id="searchError" tabindex="-1" role="dialog" aria-labelledby="searchErrorModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="searchErrorLabel">오류</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>검색어가 너무 짧습니다.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Custom Javascript for searchPost -->
     <script>
       function searchPost() {
-          let searchValue = document.getElementById('search-input').value.trim();
-          if (searchValue.length > 1) {
-              location.href="/blog/search/" + searchValue + "/";
-          } else {
-              alert('검색어('+ searchValue +')가 너무 짧습니다.');
-          }
+        let searchValue = document.getElementById('search-input').value.trim();
+        if (searchValue.length > 1) {
+          location.href='/blog/search/' + searchValue + '/';
+        } else if (searchValue.length === 0) {
+          return;
+        } else {
+          //alert('검색어('+ searchValue +')가 너무 짧습니다.');
+          $('#searchError').modal('show'); // 오류 메시지 모달 출력
+        }
       };
 
       document.getElementById('search-input').addEventListener('keyup', function(event) {
-          if (event.key === 'Enter') {
-              searchPost();
-          }
+        if (event.key === 'Enter') {
+          searchPost();
+        }
       });
     </script>
 
