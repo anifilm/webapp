@@ -376,7 +376,7 @@ class TestView(TestCase):
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, "html.parser")
 
-        self.assertEqual("Blog- Edit Comment", soup.title.text)
+        self.assertEqual("Blog - Edit Comment", soup.title.text)
         update_comment_form = soup.find("form", id="comment-form")
         content_textarea = update_comment_form.find("textarea", id="id_content")
         self.assertIn(self.comment_001.content, content_textarea.text)
