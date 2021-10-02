@@ -1,8 +1,4 @@
-Django To Do List App With User Registration & Login
-https://youtu.be/llbtoQTt4qw
-
-https://github.com/divanov11/Django-To-Do-list-with-user-authentication
-
+## Django To Do List App With User Registration & Login
 
 
 # 프로젝트 생성 및 기본 구성
