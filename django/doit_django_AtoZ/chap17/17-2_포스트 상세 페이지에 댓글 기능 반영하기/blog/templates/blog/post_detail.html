@@ -78,6 +78,7 @@
         </div>
         <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
       </form>
+
       {% if post.comment_set.exists %}
         {% for comment in post.comment_set.iterator %}
         <!-- Single Comment -->
