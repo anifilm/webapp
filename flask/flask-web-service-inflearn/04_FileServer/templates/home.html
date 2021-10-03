@@ -19,6 +19,7 @@
       <tr>
         <th></th>
         <th>이름</th>
+        <th></th>
         <th>만든 날짜</th>
         <th>마지막으로 수정한 날짜</th>
         <th>파일 크기</th>
@@ -40,7 +41,8 @@
         <td class="badge badge-pill badge-light align-middle">{{info['name'].split(".")[1].lower()}}</td>
         {% endif %}
 
-        <td class="text-left">{{ info['name']}}</td>
+        <td class="text-left"><a href="down/{{ info['name'] }}" name="download" class="text-reset">{{ info['name'] }}</a></td>
+        <td><a href="del/{{ info['name'] }}" name="delete">[삭제]</a></td>
         <td>{{ info['create'].strftime("%Y-%m-%d") }}</td>
         <td>{{ info['modify'].strftime("%Y-%m-%d") }}</td>
         <td>{{ info['size'] }}</td>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, send_file
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
@@ -6,7 +6,6 @@ from werkzeug.utils import secure_filename
 
 import os
 import datetime
-import time
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret"
@@ -23,8 +22,13 @@ def stamp2real(stamp):
 def info(filename):
     ctime = os.path.getctime(filename)  # 만든시간
     mtime = os.path.getmtime(filename)  # 수정시간
-    size = os.path.getsize(filename)    # 파일크기 (단위: bytes)
+    size = os.path.getsize(filename)  # 파일크기 (단위: bytes)
     return ctime, mtime, size
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("deny.html", pwd=os.getcwd() + "\\uploads"), 404
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -53,6 +57,19 @@ def main_page():
     return render_template(
         "home.html", form=form, pwd=os.getcwd() + "\\uploads", infos=infos
     )
+
+
+@app.route("/down/<path:filename>")
+def down_page(filename):
+    return send_file(
+        "uploads/" + filename, attachment_filename=filename, as_attachment=True
+    )
+
+
+@app.route("/del/<path:filename>")
+def delete_page(filename):
+    os.remove("uploads/" + filename)
+    return '<script>location.href = "/";</script>'
 
 
 if __name__ == "__main__":
