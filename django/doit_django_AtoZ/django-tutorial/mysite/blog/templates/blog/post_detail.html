@@ -73,9 +73,13 @@
       <div class="mb-4">
         {% if user.is_authenticated %}
         <!-- Comment form-->
-        <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+        <form id="comment-form" method="post" action="{{ post.get_absolute_url }}new_comment/">
           {% csrf_token %}
-          <div class="form-group">{{ comment_form|crispy }}</div>
+          <div class="form-group">
+            <!--{{ comment_form|crispy }}-->
+            <label for="content">Comment</label>
+            <textarea class="form-control" name="content" id="content" rows="3" required>{{ comment_form.content.value|default_if_none:'' }}</textarea>
+          </div>
           <button type="submit" class="btn btn-primary btn-sm float-right">Submit</button>
         </form>
         {% else %}
