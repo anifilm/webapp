@@ -1,0 +1,18 @@
+h1 {
+  text-align: center;
+  color: aqua;
+}
+
+table {
+  float: right;
+  border: 2px solid #444444;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: bisque;
+}
+
+td {
+  text-align: center;
+}
