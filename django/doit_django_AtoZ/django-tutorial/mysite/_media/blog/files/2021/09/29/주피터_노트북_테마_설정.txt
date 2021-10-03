@@ -1,0 +1,30 @@
+주피터 노트북 테마 설정
+
+
+## 설치
+
+$ pip install jupyterthemes
+
+
+
+## 설정
+
+- for desktop
+
+$ jt -t oceans16 -f hack -T -N -fs 12 -nfs 11 -tfs 14
+
+
+- for notebook
+
+$ jt -t onedork -f bitstream -T -N -fs 12 -nf opensans -nfs 10
+
+
+
+테마적용(-t): oceans16
+폰트적용(-f) : hack
+폰트사이즈 적용 (-fs): 12
+노트북 폰트 사이즈 (-nfs) : 11
+마크다운 폰트 사이즈(-tfs) : 14
+툴바보이기(-T)
+이름&로고 보이기 (-N)
+
