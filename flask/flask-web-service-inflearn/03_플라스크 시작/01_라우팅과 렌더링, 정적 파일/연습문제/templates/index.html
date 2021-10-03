@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <h2>{{ name }} 님의 통계입니다.</h2>
+    <hr />
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>레벨</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ name }}</td>
+          <td>Lv 1</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+  </body>
+</html>
