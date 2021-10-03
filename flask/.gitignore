@@ -1,6 +1,6 @@
 !.vscode/
 .ipynb_checkpoints/
 __pycache__/
-venv
+venv/
 site.db
 강의자료
