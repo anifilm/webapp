@@ -14,8 +14,9 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <form action="/fileUpload" method="POST" enctype="multipart/form-data" class="custom-file">
-          <input type="file" name="file" id="bfile" />
+        <form action="/" method="POST" enctype="multipart/form-data">
+          {{ form.csrf_token() }}
+          {{ form.files(size=20) }}
           <input type="submit" class="btn btn-outline-dark" />
         </form>
       </div>
