@@ -9,6 +9,10 @@ import morgan from 'morgan';
 import path from 'path';
 
 // Routes
+import postRoutes from "./routes/api/post";
+//import userRoutes from "./routes/api/user";
+//import authRoutes from "./routes/api/auth";
+//import searchRoutes from "./routes/api/search";
 
 const app = express();
 const { MONGO_URI } = config;
@@ -26,6 +30,7 @@ mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    //useCreateIndex: true,
   })
   .then(() => {
     console.log('MongoDB connecting Success!!');
@@ -37,5 +42,9 @@ mongoose
 
 // Use routes
 app.get('/');
+app.use('/api/post', postRoutes);
+//app.use("/api/user", userRoutes);
+//app.use("/api/auth", authRoutes);
+//app.use("/api/search", searchRoutes);
 
 export default app;

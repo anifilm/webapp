@@ -2,12 +2,12 @@ import express from 'express';
 
 // Model
 import Post from '../../models/post';
-import User from '../../models/user';
-import Category from '../../models/category';
-import Comment from '../../models/comment';
+//import User from '../../models/user';
+//import Category from '../../models/category';
+//import Comment from '../../models/comment';
 
-import '@babel/polyfill';
-import auth from '../../middleware/auth';
+//import '@babel/polyfill';
+//import auth from '../../middleware/auth';
 import moment from 'moment';
 
 const router = express.Router();
@@ -21,8 +21,9 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req, 'req');
+    console.log(req);
     const { title, contents, fileUrl, creator } = req.body;
+
     const newPost = await Post.create({
       title,
       contents,
