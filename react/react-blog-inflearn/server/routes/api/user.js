@@ -2,8 +2,9 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import config from '../../config/index';
-//import auth from '../../middleware/auth';
+import config from '../../config';
+import auth from '../../middleware/auth';
+
 const { JWT_SECRET } = config;
 
 // Model
@@ -18,7 +19,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
-    if (!user) throw Error('No users');
+    if (!users) throw Error('No users');
     res.status(200).json(users);
   } catch (e) {
     console.log(e);
@@ -36,13 +37,13 @@ router.post('/', (req, res) => {
 
   // Simple validation
   if (!name || !email || !password) {
-    return res.status(400).json({ msg: '모든 필드를 채워주세요' });
+    return res.status(400).json({ msg: '모든 필드를 채워주세요.' });
   }
 
   // Check for existing user
   User.findOne({ email }).then((user) => {
     if (user) {
-      return res.status(400).json({ msg: '이미 가입된 유저가 존재합니다' });
+      return res.status(400).json({ msg: '이미 가입된 사용자가 존재합니다.' });
     }
     const newUser = new User({
       name,
