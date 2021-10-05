@@ -4,9 +4,33 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./server/server.js --exec babel-node",
+    "prebuild": "cd client && npm run build",
+    "build": "babel server --out-dir build",
+    "build:server": "babel server --out-dir build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.9",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.13"
+  }
 }
