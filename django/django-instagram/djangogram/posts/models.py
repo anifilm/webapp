@@ -1,4 +1,5 @@
 from django.db import models
+
 from djangogram.users import models as user_model
 
 
@@ -23,7 +24,7 @@ class Post(TimeStamedModel):
 
 class Comment(TimeStamedModel):
     author = models.ForeignKey(
-        user_model.User, null=True, on_delete=models.CASCADE, related_name="post_author"
+        user_model.User, null=True, on_delete=models.CASCADE, related_name="comment_author"
     )
     posts = models.ForeignKey(
         Post, null=True, on_delete=models.CASCADE, related_name="comment_post"
