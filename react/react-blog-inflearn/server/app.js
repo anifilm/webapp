@@ -9,8 +9,8 @@ import morgan from 'morgan';
 import path from 'path';
 
 // Routes
-import postRoutes from "./routes/api/post";
-//import userRoutes from "./routes/api/user";
+import postRoutes from './routes/api/post';
+import userRoutes from './routes/api/user';
 //import authRoutes from "./routes/api/auth";
 //import searchRoutes from "./routes/api/search";
 
@@ -39,11 +39,10 @@ mongoose
     console.log(e);
   });
 
-
 // Use routes
 app.get('/');
 app.use('/api/post', postRoutes);
-//app.use("/api/user", userRoutes);
+app.use('/api/user', userRoutes);
 //app.use("/api/auth", authRoutes);
 //app.use("/api/search", searchRoutes);
 
