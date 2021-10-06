@@ -10,6 +10,7 @@
 
 <div>{{ object.content|linebreaks }}</div>
 
+<!-- 원본 상단에 위치하는 것을 하단으로 이동시킴 -->
 <p class="mt-5">
   {% if object.get_next %}
   <a href="{{ object.get_next.get_absolute_url }}" title="View previous post">
