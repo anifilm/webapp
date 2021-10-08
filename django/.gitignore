@@ -1,5 +1,10 @@
 !.vscode/
 .ipynb_checkpoints/
 __pycache__/
-venv/
+
+# for venv
+Include/
+Lib/
+Scripts/
+
 site.db
