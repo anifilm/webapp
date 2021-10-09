@@ -1,0 +1,8 @@
+!.vscode/
+.ipynb_checkpoints/
+__pycache__/
+
+# for venv
+Include/
+Lib/
+Scripts/
