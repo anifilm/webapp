@@ -7,7 +7,7 @@ base_dir = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
 @dataclass
 class Config:
     """
-    기본 Confuguration
+    기본 Configuration
     """
 
     BASE_DIR = base_dir
