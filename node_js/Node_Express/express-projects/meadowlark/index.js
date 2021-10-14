@@ -1,5 +1,8 @@
-const express = require('express');
-const expressHandlebars = require('express-handlebars');
+import express from 'express';
+import expressHandlebars from 'express-handlebars';
+import path from 'path';
+
+const __dirname = path.resolve();
 
 const app = express();
 
