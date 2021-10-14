@@ -1,19 +1,20 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const nunjucks = require('nunjucks');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import nunjucks from 'nunjucks';
 
-const dotenv = require('dotenv');
-dotenv.config();
+//import dotenv from 'dotenv';
+//dotenv.config();
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+const port = process.env.PORT || '3000';
+app.set('port', port);
 
 // view engine setup
 app.set('view engine', 'html');
@@ -48,4 +49,8 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(port, function () {
+  console.log(`The serveris running, please open your browser at http://localhost:${port}\n`);
+});
+
+//export default app;
