@@ -2,9 +2,9 @@ import express from 'express';
 import expressHandlebars from 'express-handlebars';
 import path from 'path';
 
-const __dirname = path.resolve();
-
 import getFortune from './lib/fortune.js';
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -18,9 +18,9 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 
-app.use(express.static(__dirname + '/public'));
-
 const port = process.env.PORT || 3000;
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
   res.render('home');

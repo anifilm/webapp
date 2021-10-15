@@ -17,4 +17,4 @@ const serverError = (err, req, res, next) => {
   res.render('500');
 };
 
-export { home, about, notFound, serverError };
+export default { home, about, notFound, serverError };

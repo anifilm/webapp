@@ -2,7 +2,7 @@ import express from 'express';
 import expressHandlebars from 'express-handlebars';
 import path from 'path';
 
-import * as handlers from './lib/handlers';
+import handlers from './lib/handlers';
 
 const __dirname = path.resolve();
 

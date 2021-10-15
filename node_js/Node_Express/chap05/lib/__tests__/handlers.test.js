@@ -1,4 +1,4 @@
-import * as handers from '../handlers';
+import handers from '../handlers';
 
 test('home page renders', () => {
   const req = {};
