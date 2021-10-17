@@ -21,7 +21,7 @@ app.set('view engine', 'html');
 nunjucks.configure('views', {
   autoescape: true,
   express: app, // app 객체 연결
-  //watch: true,  // (오류발생! 확인 필요) - true, HTML 파일이 변경될 때 템플릿 엔진을 다시 렌더링함
+  watch: true,  // HTML 파일이 변경될 때 템플릿 엔진을 다시 렌더링함
 });
 
 app.use(logger('dev'));
