@@ -32,6 +32,36 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 17.1 질의
+app.get('/search', function(req, res) {
+  console.log(req.query);
+  res.send(JSON.stringify(req.query)+'\n');
+});
+
+app.get('/params/:role/:name/:status', function(req, res) {
+  console.log(req.params);
+  console.log(req.route);
+  res.send();
+});
+
+app.post('/body', function(req, res) {
+  console.log(req.body);
+  res.send(JSON.stringify(req.body)+'\n');
+});
+
+app.post('/upload', function(req, res) {
+  console.log(req.files.archive);
+  // req.files.archive.path를 읽음
+  // 데이터 처리
+  // 데이터 저장
+  res.send();
+});
+
+app.get('/route', function(req, res) {
+  console.log(req.route);
+  res.send();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
