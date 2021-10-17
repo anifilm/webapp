@@ -1,9 +1,9 @@
 import createError from 'http-errors';
 import express from 'express';
-import expressHandlebars from 'express-handlebars';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import nunjucks from 'nunjucks';
 
 //import dotenv from 'dotenv';
 //dotenv.config();
@@ -16,15 +16,13 @@ const app = express();
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-// 핸들바 뷰 엔진 설정
-app.engine(
-  'hbs',
-  expressHandlebars({
-    defaultLayout: 'layout',
-    extname: 'hbs',
-  }),
-);
-app.set('view engine', 'hbs');
+// 넌적스 뷰 엔진 설정
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app, // app 객체 연결
+  watch: true,  // HTML 파일이 변경될 때 템플릿 엔진을 다시 렌더링함
+});
 
 app.use(logger('dev'));
 app.use(express.json());
