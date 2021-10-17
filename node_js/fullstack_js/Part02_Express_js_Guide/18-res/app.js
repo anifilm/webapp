@@ -35,6 +35,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.get('/render', function (req, res) {
+  res.render('render');
+});
+
+app.get('/render-title', function (req, res) {
+  res.render('index', {title: 'Express.js Guide'});
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
