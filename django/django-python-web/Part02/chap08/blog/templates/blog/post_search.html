@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}post_search.html{% endblock %}
+
+{% block content %}
+<h1>Blog Search</h1>
+<br />
+
+<form action="." method=post>
+  {% csrf_token %}
+  {{ form.as_table }}
+  <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
+</form>
+<br /><br />
+
+{% if object_list %}
+
+  {% for post in object_list %}
+  <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+  <span style="color: gray; font-size: 10px;">{{ post.modify_dt|date:"Y년 M d일" }}</span>
+  <p class="mt-3 mb-5">{{ post.description }}</p>
+  {% endfor %}
+
+{% elif search_term %}
+<i>Search Word( <b>{{ search_term }}</b> ) Not Found!</i>
+{% endif %}
+
+{% endblock %}
