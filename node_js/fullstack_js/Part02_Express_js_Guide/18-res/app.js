@@ -35,12 +35,79 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// 18장 응답
 app.get('/render', function (req, res) {
   res.render('render');
 });
 
 app.get('/render-title', function (req, res) {
-  res.render('index', {title: 'Express.js Guide'});
+  res.render('index', { title: 'Express.js Guide' });
+});
+
+app.get('/locals', function (req, res) {
+  res.locals = { title: 'Express.js Guide' };
+  res.render('index');
+});
+
+app.get('/set-html', function (req, res) {
+  // 코드
+  res.set('Content-Type', 'text/html');
+  res.end(`
+    <html>
+    <body>
+      <h1>Express.js Guide</h1>
+    </body>
+    </html>
+  `);
+});
+
+app.get('/set-csv', function (req, res) {
+  const body = `title tags
+Express Guide, node.js express.js
+Repid Prototyping with JS, backbone.js, node.js, mongodb
+JavaScript: The Good Parts, javascript
+`;
+  res.set({
+    'Content-Type': 'text/plain',
+    'Content-Length': body.length,
+    'Set-Cookie': ['type=reader', 'language=javascript'],
+  });
+  res.end(body);
+});
+
+app.get('/status', function (req, res) {
+  res.status(200).send('alive');
+});
+
+app.get('/send-ok', function (req, res) {
+  //res.send(200, { message: 'Data was submitted successfully.' });
+  res.status(200).send({ message: 'Data was submitted successfully.' });
+});
+
+app.get('/send-err', function (req, res) {
+  //res.send(500, { message: 'Opps, the server is down.' });
+  res.status(500).send({ message: 'Opps, the server is down.' });
+});
+
+app.get('/send-buf', function (req, res) {
+  res.set('Content-Type', 'text/plain');
+  res.send(new Buffer('CSV data in text format'));
+});
+
+app.get('/json', function (req, res) {
+  res.status(200).json([
+    { title: 'Express.js Guide', tags: 'node.js, express.js' },
+    { title: 'Rapid Prototyping with JS', tags: 'backbone.js, node.js, mongodb' },
+    { title: 'JavaScript: The Good Parts', tags: 'javascript' },
+  ]);
+});
+
+app.get('/jsonp', function (req, res) {
+  res.status(200).jsonp([
+    { title: 'Express.js Guide', tags: 'node.js, express.js' },
+    { title: 'Rapid Prototyping with JS', tags: 'backbone.js, node.js, mongodb' },
+    { title: 'JavaScript: The Good Parts', tags: 'javascript' },
+  ]);
 });
 
 // catch 404 and forward to error handler
