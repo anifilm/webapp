@@ -1,13 +1,10 @@
 //import createError from 'http-errors';
 import express from 'express';
-import expressHandlebars from 'express-handlebars';
-//import http from 'http';
 import path from 'path';
 import lessMiddleware from 'less-middleware';
 
 import favicon from 'serve-favicon';
 import logger from 'morgan';
-//import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -56,22 +53,14 @@ app.locals.moment = moment;
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-// 핸들바 뷰 엔진 설정
-app.engine(
-  'hbs',
-  expressHandlebars({
-    defaultLayout: 'layout',
-    extname: 'hbs',
-  }),
-);
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(favicon(path.join('public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cookieParser('CEAF3FA4-F385-49AA-8FE4-54766A9874F1'));
 app.use(
