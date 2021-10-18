@@ -14,7 +14,7 @@ const Task = mongoose.model('task', taskSchema);
  */
 
 const list = function (req, res, next) {
-  Task.find(function (error, tasks) {
+  Task.find({ completed: 'false' },function (error, tasks) {
     if (error) return next(error);
     res.render('tasks', {
       title: 'Todo List',
@@ -54,7 +54,8 @@ const markAllCompleted = function(req, res, next) {
 };
 
 const completed = function (req, res, next) {
-  req.db.tasks.find({ completed: true }).toArray(function (error, tasks) {
+  // TODO: completed: true인 항목만 보기
+  Task.find({ completed: 'true' }, function (error, tasks) {
     res.render('tasks_completed', {
       title: 'Completed',
       tasks: tasks || [],

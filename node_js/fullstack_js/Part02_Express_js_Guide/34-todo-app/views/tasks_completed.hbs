@@ -14,3 +14,20 @@
 </div>
 
 <h1>{{title}}</h1>
+
+<div class="list">
+  {{#if tasks}}
+    {{#each tasks as |task index|}}
+    <div class="item">
+      <div class="num"><span>{{index}}</span>.&nbsp;</div>
+      <div class="name completed-task">
+        <span class="name">{{task.name}} <small>(Completed at: {{task.completeTime}})</small></span>
+      </div>
+    </div>
+    {{/each}}
+  {{else}}
+  <div class="item">
+    No tasks.
+  </div>
+  {{/if}}
+</div>

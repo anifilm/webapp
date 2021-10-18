@@ -36,13 +36,19 @@
     {{#each tasks as |task index|}}
     <div class="item">
       <div class="action">
+        <form action="/tasks/{{task._id}}" method="POST">
+          <input type="hidden" value="{{task._id}}" name="id">
+          <input type="hidden" value="true" name="completed">
+          <input type="hidden" value="{{_csrf}}" name="_csrf">
+          <button type="submit" class="btn btn-success btn-xs task-done">done</button>
+        </form>
       </div>
       <div class="num"><span>{{index}}</span>.&nbsp;</div>
       <div class="name">
-        <span class="name">{{task.name}}</span>
+        <span class="name">{{task.name}} <small>(Created at: {{task.createTime}})</small></span>
       </div>
       <div class="delete">
-        <a href="" class="btn btn-danger btn-xs task-delete" data-task-id="{{task._id}}.toString()">delete</a>
+        <a href="" class="btn btn-danger btn-xs task-delete" data-task-id="{{task._id}}" data-cstf="{{_csrf}}">delete</a>
       </div>
     </div>
     {{/each}}
