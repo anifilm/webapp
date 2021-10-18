@@ -7,7 +7,7 @@ import lessMiddleware from 'less-middleware';
 
 import favicon from 'serve-favicon';
 import logger from 'morgan';
-import bodyParser from 'body-parser';
+//import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -22,19 +22,34 @@ dotenv.config();
 const userId = process.env.USER_ID;
 const userPw = process.env.USER_PW;
 
-import mongoskin from 'mongoskin';
-const db = mongoskin.db(`mongodb+srv://${userId}:${userPw}@cluster0.ehk3h.mongodb.net/expressTodoApp?retryWrites=true&w=majority`, { safe: true });
+import mongoose from 'mongoose';
+const db = mongoose
+  .connect(
+    `mongodb+srv://${userId}:${userPw}@cluster0.ehk3h.mongodb.net/expressTodoApp?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      //useCreateIndex: true,
+    },
+  )
+  .then(() => {
+    console.log('MongoDB connecting Success!!');
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
 import routes from './routes';
 import tasks from './routes/tasks';
 
 const app = express();
 
-app.use(function (req, res, next) {
-  req.db = {};
-  req.db.tasks = db.collection('tasks');
-  next();
-});
+// TODO: mongoskin에서 mongoose로 db관련 수정 필요
+//app.use(function (req, res, next) {
+//  req.db = {};
+//  req.db.tasks = db.collection('tasks');
+//  next();
+//});
 app.locals.appname = 'Express.js Todo App';
 app.locals.moment = moment;
 
@@ -53,10 +68,10 @@ app.set('view engine', 'hbs');
 
 app.use(favicon(path.join('public', 'favicon.ico')));
 app.use(logger('dev'));
-//app.use(express.json());
-//app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cookieParser('CEAF3FA4-F385-49AA-8FE4-54766A9874F1'));
 app.use(
@@ -86,10 +101,10 @@ app.use(function (req, res, next) {
 
 app.get('/', routes.index);
 app.get('/tasks', tasks.list);
-//app.post('/tasks', tasks.markAllCompleted)
-//app.post('/tasks', tasks.add);
-//app.post('/tasks/:task_id', tasks.markCompleted);
-//app.delete('/tasks/:task_id', tasks.del);
+app.post('/tasks', tasks.markAllCompleted)
+app.post('/tasks', tasks.add);
+app.post('/tasks/:task_id', tasks.markCompleted);
+app.delete('/tasks/:task_id', tasks.del);
 app.get('/tasks/completed', tasks.completed);
 
 app.all('*', function (req, res) {
