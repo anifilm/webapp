@@ -33,11 +33,11 @@
     </form>
   </div>
   {{#if tasks}}
-    {{#each tasks as |task|}}
+    {{#each tasks as |task index|}}
     <div class="item">
       <div class="action">
       </div>
-      <div class="num"><span>{{@index}}</span>.&nbsp;</div>
+      <div class="num"><span>{{index}}</span>.&nbsp;</div>
       <div class="name">
         <span class="name">{{task.name}}</span>
       </div>
