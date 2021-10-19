@@ -14,7 +14,7 @@ const Task = mongoose.model('task', taskSchema);
  */
 
 const list = function (req, res, next) {
-  Task.find({ completed: 'false' },function (error, tasks) {
+  Task.find({ completed: 'false' }, function (error, tasks) {
     if (error) return next(error);
     res.render('tasks', {
       title: 'Todo List',
@@ -39,14 +39,14 @@ const add = function (req, res, next) {
   });
 };
 
-const markAllCompleted = function(req, res, next) {
+const markAllCompleted = function (req, res, next) {
   if (!req.body.all_done || req.body.all_done !== 'true') return next();
   req.db.tasks.update({
     completed: false
   }, {$set: {
     completeTime: new Date(),
     completed: true
-  }}, {multi: true}, function(error, count){
+  }}, {multi: true}, function (error, count){
     if (error) return next(error);
     console.info('Marked %s task(s) completed.', count);
     res.redirect('/tasks');
@@ -63,7 +63,7 @@ const completed = function (req, res, next) {
   });
 };
 
-const markCompleted = function(req, res, next) {
+const markCompleted = function (req, res, next) {
   if (!req.body.completed) return next(new Error('Param is missing.'));
   var completed = req.body.completed === 'true';
   req.db.tasks.updateById(req.task._id, {$set: {completeTime: completed ? new Date() : null, completed: completed}}, function(error, count) {
@@ -74,8 +74,8 @@ const markCompleted = function(req, res, next) {
   })
 };
 
-const del = function(req, res, next) {
-  req.db.tasks.removeById(req.task._id, function(error, count) {
+const del = function (req, res, next) {
+  req.db.tasks.removeById(req.task._id, function (error, count) {
     if (error) return next(error);
     if (count !==1) return next(new Error('Something went wrong.'));
     console.info('Deleted task %s with id=%s completed.', req.task.name, req.task._id);

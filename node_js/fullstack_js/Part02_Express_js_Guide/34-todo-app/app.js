@@ -20,7 +20,7 @@ const userId = process.env.USER_ID;
 const userPw = process.env.USER_PW;
 
 import mongoose from 'mongoose';
-const db = mongoose
+mongoose
   .connect(
     `mongodb+srv://${userId}:${userPw}@cluster0.ehk3h.mongodb.net/expressTodoApp?retryWrites=true&w=majority`,
     {
@@ -41,14 +41,8 @@ import tasks from './routes/tasks';
 
 const app = express();
 
-// TODO: mongoskin에서 mongoose로 db관련 수정 필요
-//app.use(function (req, res, next) {
-//  req.db = {};
-//  req.db.tasks = db.collection('tasks');
-//  next();
-//});
 app.locals.appname = 'Express.js Todo App';
-app.locals.moment = moment;
+//app.locals.moment = moment;
 
 const port = process.env.PORT || '3000';
 app.set('port', port);
@@ -56,6 +50,16 @@ app.set('port', port);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+import hb from 'hbs';
+hb.registerHelper('num', function (index) {
+  return index + 1;
+});
+hb.registerHelper('dateFormat', function (date, options) {
+  const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "YYYY/MM/DD"
+  return moment(date).format(formatToUse);
+});
+
 
 app.use(favicon(path.join('public', 'favicon.ico')));
 app.use(logger('dev'));

@@ -19,11 +19,11 @@
   {{#if tasks}}
     {{#each tasks as |task index|}}
     <div class="item">
-      <div class="num completed-task"><span>{{index}}</span>.&nbsp;</div>
+      <div class="num completed-task"><span>{{num index}}</span>.&nbsp;</div>
       <div class="name completed-task">
         {{task.name}}
         <span class="time">
-          <small>(Completed at: 2021/10/19{{task.completeTime}})</small>
+          <small>(Completed at: {{dateFormat task.completeTime}})</small>
         </span>
       </div>
     </div>

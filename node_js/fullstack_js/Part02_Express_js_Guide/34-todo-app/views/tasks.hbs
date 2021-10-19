@@ -45,11 +45,11 @@
           <button type="submit" class="btn btn-success btn-xs task-done">done</button>
         </form>
       </div>
-      <div class="num"><span>{{index}}</span>.&nbsp;</div>
+      <div class="num"><span>{{num index}}</span>.&nbsp;</div>
       <div class="name">
         {{task.name}}
         <span class="time">
-          <small>(Created at: 2021/10/19{{task._createTime}})</small>
+          <small>(Created at: {{dateFormat task.createTime }})</small>
         </span>
       </div>
       <div class="delete">
