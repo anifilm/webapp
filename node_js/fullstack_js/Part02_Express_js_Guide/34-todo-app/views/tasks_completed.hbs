@@ -13,15 +13,18 @@
   </ul>
 </div>
 
-<h1>{{title}}</h1>
+<hr />
 
 <div class="list">
   {{#if tasks}}
     {{#each tasks as |task index|}}
     <div class="item">
-      <div class="num"><span>{{index}}</span>.&nbsp;</div>
+      <div class="num completed-task"><span>{{index}}</span>.&nbsp;</div>
       <div class="name completed-task">
-        <span class="name">{{task.name}} <small>(Completed at: {{task.completeTime}})</small></span>
+        {{task.name}}
+        <span class="time">
+          <small>(Completed at: 2021/10/19{{task.completeTime}})</small>
+        </span>
       </div>
     </div>
     {{/each}}
