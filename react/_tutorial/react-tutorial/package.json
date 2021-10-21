@@ -1,5 +1,5 @@
 {
-  "name": "react-router-v4",
+  "name": "react-tutorial",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,8 +15,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
