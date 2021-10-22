@@ -3,9 +3,10 @@
 __pycache__/
 
 # for venv
+etc/
 Include/
 Lib/
 Scripts/
+share/
 
-site.db
 강의자료
