@@ -1,0 +1,17 @@
+{
+  "name": "chap02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "2_8_5_index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fxjs": "^0.21.3",
+    "nightmare": "^3.0.2",
+    "vo": "^4.0.2"
+  }
+}
