@@ -1,6 +1,5 @@
 import createError from 'http-errors';
 import express from 'express';
-import expressHandlebars from 'express-handlebars';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';

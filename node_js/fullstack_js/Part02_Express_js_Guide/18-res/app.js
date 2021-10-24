@@ -1,6 +1,5 @@
 import createError from 'http-errors';
 import express from 'express';
-import expressHandlebars from 'express-handlebars';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -16,14 +15,8 @@ const app = express();
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-// 핸들바 뷰 엔진 설정
-app.engine(
-  'hbs',
-  expressHandlebars({
-    defaultLayout: 'layout',
-    extname: 'hbs',
-  }),
-);
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
