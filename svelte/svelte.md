@@ -3,10 +3,10 @@ SVELTE
 https://svelte.dev/
 
 
-$ npx degit sveltejs/template my-svelte-project
+$ npx degit sveltejs/template 프로젝트명
 # or download and extract this .zip file
 
-$ cd my-svelte-project
+$ cd 프로젝트명
 
 # to use TypeScript run:
 # node scripts/setupTypeScript.js

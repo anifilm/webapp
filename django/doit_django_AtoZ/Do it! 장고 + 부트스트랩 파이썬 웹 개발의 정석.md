@@ -16,27 +16,30 @@ https://fontawesome.com/
 
 
 
-프로젝트 만들기
+# 프로젝트 만들기
 
-$ django-admin startproject config .
+$ mkdir 프로젝트명
+$ cd 프로젝트명
 
-
-애플리케이션 생성
-
-$ python manage.py startapp blog
+$ django-admin startproject mysite .
 
 
-기본 테이블 생성
+# 애플리케이션 생성
+
+$ python manage.py startapp polls
+
+
+# 기본 테이블 생성
 
 $ python manage.py migrate
 
 
-데이터베이스 변경사항 반영
+# 데이터베이스 변경사항 반영
 
 $ python manage.py makemigrations
 $ python manage.py migrate
 
 
-프로젝트 시작
+# 프로젝트 시작
 
 $ python manage.py runserver
