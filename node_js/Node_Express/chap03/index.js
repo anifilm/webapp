@@ -48,5 +48,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`The serveris running, please open your browser at http://localhost:${port}`);
+  console.log(`The server is running, please open your browser at http://localhost:${port}`);
 });

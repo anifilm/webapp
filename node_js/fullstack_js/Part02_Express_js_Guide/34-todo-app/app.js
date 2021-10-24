@@ -110,7 +110,7 @@ if ('development' == app.get('env')) {
 }
 
 app.listen(port, function () {
-  console.log(`The serveris running, please open your browser at http://localhost:${port}\n`);
+  console.log(`The server is running, please open your browser at http://localhost:${port}\n`);
 });
 
 //export default app;
