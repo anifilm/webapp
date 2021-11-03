@@ -6,11 +6,11 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        valueModel: "South Korea"
-      };
-    }
-  };
+export default {
+  data() {
+    return {
+      valueModel: "South Korea"
+    };
+  }
+};
 </script>

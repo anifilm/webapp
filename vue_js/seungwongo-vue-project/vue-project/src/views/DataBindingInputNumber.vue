@@ -6,11 +6,11 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        numberModel: 3
-      };
-    }
-  };
+export default {
+  data() {
+    return {
+      numberModel: 3
+    };
+  }
+};
 </script>

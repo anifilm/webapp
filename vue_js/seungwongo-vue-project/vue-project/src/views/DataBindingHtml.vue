@@ -6,11 +6,11 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        htmlString: '<p style="color: red;">This is a red string.</p>'
-      };
-    }
+export default {
+  data() {
+    return {
+      htmlString: '<p style="color: red;">This is a red string.</p>'
+    };
   }
+}
 </script>

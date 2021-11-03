@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label><input type="checkbox" v-model="checked" /> {{ checked }}</label>
+    <img v-bind:src="imgSrc" />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      checked: true
+      imgSrc: 'https://kr.vuejs.org/images/logo.png'
     };
   }
 };

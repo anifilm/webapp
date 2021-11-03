@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import DataBinding from '../views/DataBindingCheckbox2.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import DataBinding from '../views/DataBindingClass.vue';
 
 const routes = [
   {
@@ -21,11 +21,11 @@ const routes = [
     name: 'DataBinding',
     component: DataBinding
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;

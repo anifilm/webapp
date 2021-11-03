@@ -3,11 +3,11 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        title: "World"
-      };
-    }
-  };
+export default {
+  data() {
+    return {
+      title: "World"
+    };
+  }
+};
 </script>

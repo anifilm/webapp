@@ -10,11 +10,11 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        city: "064"
-      };
-    }
-  };
+export default {
+  data() {
+    return {
+      city: "064"
+    };
+  }
+};
 </script>
