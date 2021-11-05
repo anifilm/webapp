@@ -9,7 +9,9 @@
 import ChildComponent from './ChildComponent5.vue';
 
 export default {
-  components: { ChildComponent },
+  components: {
+    ChildComponent
+  },
   computed: {
     msg() {
       return this.$refs.child_component.msg;

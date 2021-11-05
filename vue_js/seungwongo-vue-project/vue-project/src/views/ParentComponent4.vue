@@ -6,7 +6,9 @@
 import ChildComponent from './ChildComponent4.vue';
 
 export default {
-  components: { ChildComponent },
+  components: {
+    ChildComponent
+  },
   methods: {
     sendMessage(data) {
       console.log(data);

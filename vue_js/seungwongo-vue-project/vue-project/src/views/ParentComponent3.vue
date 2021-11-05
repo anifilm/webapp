@@ -9,7 +9,9 @@
 import ChildComponent from './ChildComponent3.vue';
 
 export default {
-  components: { ChildComponent },
+  components: {
+    ChildComponent
+  },
   methods: {
     changeChildData() {
       this.$refs.child_component.msg = '부모 컴포넌트가 변경한 데이터';
