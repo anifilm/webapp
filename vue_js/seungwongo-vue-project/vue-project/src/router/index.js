@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import DataBinding from '@/views/DataBindingList2.vue';
 import Component from '@/views/ProvideInject.vue'
-import Composition from '@/views/CompositionAPI.vue'
+import Composition from '@/views/CompositionAPI4.vue'
 
 const routes = [
   {
