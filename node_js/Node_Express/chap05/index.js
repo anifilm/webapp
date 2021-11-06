@@ -8,17 +8,11 @@ const __dirname = path.resolve();
 
 const app = express();
 
-// 핸들바 뷰 엔진 설정
-app.engine(
-  'hbs',
-  expressHandlebars({
-    defaultLayout: 'main',
-    extname: 'hbs',
-  }),
-);
-app.set('view engine', 'hbs');
-
 const port = process.env.PORT || 3000;
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
 
