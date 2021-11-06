@@ -18,7 +18,7 @@ import ModalLayout from './SlotModalLayout';
 
 export default {
   components: {
-    'modal-layout': ModalLayout
+    ModalLayout
   }
 };
 </script>

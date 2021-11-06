@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/databinding">Data Binding</router-link> |
-      <router-link to="/components">Components</router-link> |
+      <router-link to="/component">Component</router-link> |
+      <router-link to="/composition">Composition</router-link> |
       <router-link to="/about">About</router-link>
     </div>
 
