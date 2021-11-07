@@ -155,7 +155,6 @@ def test_tweet(api):
 
     # tweet 확인
     resp = api.get("/timeline/1")
-    print(resp.data.decode("utf-8"))
     tweets = json.loads(resp.data.decode("utf-8"))
 
     assert resp.status_code == 200
