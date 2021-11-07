@@ -226,7 +226,8 @@ def create_app(test_config=None):
                 "exp": datetime.utcnow() + timedelta(seconds=60 * 60 * 24),
             }
             token = jwt.encode(payload, app.config["JWT_SECRET_KEY"], "HS256")
-            return jsonify({"access_token": token})
+
+            return jsonify({"user_id": user_id, "access_token": token})
         else:
             return "", 401
 
@@ -264,9 +265,13 @@ def create_app(test_config=None):
 
         return "", 200
 
+    @app.route("/timeline/<int:user_id>", methods=["GET"])
+    def timeline(user_id):
+        return jsonify({"user_id": user_id, "timeline": get_timeline(user_id)})
+
     @app.route("/timeline", methods=["GET"])
     @login_required
-    def timeline():
+    def user_timeline():
         user_id = g.user_id
 
         return jsonify({"user_id": user_id, "timeline": get_timeline(user_id)})
