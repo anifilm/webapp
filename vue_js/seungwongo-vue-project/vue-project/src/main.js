@@ -5,5 +5,5 @@ import mixins from './mixin';
 
 const app = createApp(App);
 app.use(router);
-app.mixin(mixins);
+app.mixin(mixins); // mixin 전역 등록
 app.mount('#app');
