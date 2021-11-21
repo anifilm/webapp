@@ -18,15 +18,16 @@
           <td>
             <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
             {% if question.answer_set|length > 0 %}
-              <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
+            <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
             {% endif %}
           </td>
           <td>{{ question.create_date|datetime }}</td>
+        </tr>
         {% endfor %}
       {% else %}
-        <tr>
-          <td colspan="3">질문이 없습니다.</td>
-        </tr>
+      <tr>
+        <td colspan="3">질문이 없습니다.</td>
+      </tr>
       {% endif %}
     </tbody>
   </table>
