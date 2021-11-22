@@ -1,5 +1,6 @@
-from datetime import datetime
 from flask import Blueprint, render_template, request, url_for, g, flash
+
+from datetime import datetime
 from sqlalchemy import func
 from werkzeug.utils import redirect
 
