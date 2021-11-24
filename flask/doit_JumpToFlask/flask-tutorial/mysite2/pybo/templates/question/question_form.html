@@ -6,11 +6,14 @@
   <form method="POST" class="post-form my-3">
     {{ form.csrf_token }}
     <!-- 오류표시 Start -->
+    <!--
     {% for field, errors in form.errors.items() %}
     <div class="alert alert-danger" role="alert">
       <strong>{{ form[field].label }}</strong>: {{ ', '.join(errors) }}
     </div>
     {% endfor %}
+    -->
+    {% include "form_errors.html" %}
     <!-- 오류표시 End -->
     <div class="form-group">
       <label for="subject">제목</label>

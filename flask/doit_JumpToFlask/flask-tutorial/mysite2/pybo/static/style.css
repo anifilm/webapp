@@ -1,0 +1,10 @@
+.comment {
+  border-top: 1px dotted #ddd;
+  font-size: 0.95em;
+}
+.delete {
+  color: red;
+}
+.delete:hover {
+  color: red;
+}
