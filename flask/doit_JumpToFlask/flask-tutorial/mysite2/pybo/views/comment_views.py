@@ -71,7 +71,7 @@ def create_answer(answer_id):
         )
         db.session.add(comment)
         db.session.commit()
-        return redirect(url_for('question.detail', question_id=answer.question.id))
+        return redirect('{}#answer_{}'.format(url_for('question.detail', question_id=answer.question.id), answer_id))
     return render_template('comment/comment_form.html', form=form)
 
 @bp.route('/modify/answer/<int:comment_id>', methods=('GET', 'POST'))
@@ -87,7 +87,7 @@ def modify_answer(comment_id):
             form.populate_obj(comment)
             comment.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
-            return redirect(url_for('question.detail', question_id=comment.answer.question.id))
+            return redirect('{}#answer_{}'.format(url_for('question.detail', question_id=comment.answer.question.id), comment.answer.id))
     else:
         form = CommentForm(obj=comment)
     return render_template('comment/comment_form.html', form=form)

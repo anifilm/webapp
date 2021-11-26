@@ -1,8 +1,10 @@
 from flask import Flask
+
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from flaskext.markdown import Markdown
 from sqlalchemy import MetaData
+
+from flaskext.markdown import Markdown
 
 import config
 
@@ -27,7 +29,7 @@ def create_app():
         migrate.init_app(app, db, render_as_batch=True)
     else:
         migrate.init_app(app, db)
-    from . import models
+    #from . import models
 
     # 블루프린트
     from .views import (

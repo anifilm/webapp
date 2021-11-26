@@ -6,7 +6,7 @@ from werkzeug.utils import redirect
 
 from pybo import db
 from pybo.forms import QuestionForm, AnswerForm
-from pybo.models import Question
+from pybo.models import Question, Answer, User, question_voter
 from pybo.views.auth_views import login_required
 
 bp = Blueprint('question', __name__, url_prefix='/question')
@@ -28,13 +28,12 @@ def detail(question_id):
 @login_required
 def create():
     form = QuestionForm()
-    print(form.validate_on_submit())
     if request.method == 'POST' and form.validate_on_submit():
         question = Question(
             subject=form.subject.data,
             content=form.content.data,
             create_date=datetime.now(),
-            user=g.uesr,
+            user=g.user,
         )
         db.session.add(question)
         db.session.commit()
