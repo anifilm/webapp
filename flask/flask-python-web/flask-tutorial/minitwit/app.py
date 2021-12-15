@@ -1,3 +1,10 @@
+"""
+    MiniTwit
+    ~~~~~~~~
+    A microblogging application written with Flask and sqlite3.
+    :copyright: (c) 2010 by Armin Ronacher.
+    :license: BSD, see LICENSE for more details.
+"""
 from __future__ import with_statement
 import time
 from sqlite3 import dbapi2 as sqlite3
