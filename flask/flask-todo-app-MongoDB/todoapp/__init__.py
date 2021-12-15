@@ -12,7 +12,7 @@ user_pw = os.getenv('USER_PW')
 def create_app():
     app = Flask(__name__)
 
-    app.config['MONGO_URI'] = f'mongodb+srv://{user_id}:{user_pw}@cluster0.yhhud.mongodb.net/my-mongodb?retryWrites=true&w=majority'
+    app.config['MONGO_URI'] = f'mongodb+srv://{user_id}:{user_pw}@cluster0.yhhud.mongodb.net/flask-todo-app?retryWrites=true&w=majority'
 
     mongo.init_app(app)
 

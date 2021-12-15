@@ -1,0 +1,69 @@
+<table class="table table-sm">
+  <thead class="text-center">
+    <tr>
+      <th>상태</th>
+      <th class="text-left">내용</th>
+      <th class="text-left">중요도</th>
+      <th>수정</th>
+      <th>삭제</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for todo in todos %}
+    <tr>
+      <td class="text-center align-middle">
+        <a href="./done?_id={{ todo['_id'] }}">
+          <input type="image" src="static/images/{{todo['done']}}.png" width="30" alt="Submit ME" />
+        </a>
+      </td>
+      <td>
+        <strong>{{ todo["contents"] }}</strong><br />
+        {{ todo["date"].strftime("%Y-%m-%d") }}
+      </td>
+
+      {% if todo["primary"] == "Low" %}
+      <td class="badge badge-success mt-3">{{ todo["primary"] }}</td>
+      {% elif todo["primary"] == "Medium" %}
+      <td class="badge badge-warning mt-3">{{ todo["primary"] }}</td>
+      {% elif todo["primary"] == "High" %}
+      <td class="badge badge-danger mt-3">{{ todo["primary"] }}</td>
+      {% else %}
+      <td class="badge badge-light mt-3">{{ todo["primary"] }}</td>
+      {% endif %}
+
+      <td class="text-center align-middle">
+        <a href="./update?_id={{ todo['_id'] }}">
+          <img src="{{ url_for('static', filename='images/edit.png') }}" width="30" />
+        </a>
+      </td>
+
+      <td class="text-center align-middle">
+        <img src="{{ url_for('static', filename='images/trash.png') }}" width="30" data-toggle="modal" data-target="#exampleModal" />
+      </td>
+    </tr>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">삭제 경고</h5>
+            <!--
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            -->
+          </div>
+          <div class="modal-body">
+            정말로 삭제 하시겠습니까?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+            <a href="./delete?_id={{ todo['_id'] }}"><button type="button" class="btn btn-danger">삭제</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </tbody>
+</table>
