@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export FLASK_APP=app.py
+export FLASK_APP=Project
 export FLASK_ENV=development
 flask run
