@@ -1,4 +1,5 @@
 {
+    "terminal.integrated.cwd": ".\\flask-tutorial",
     "python.defaultInterpreterPath": ".\\venv\\Scripts\\python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
