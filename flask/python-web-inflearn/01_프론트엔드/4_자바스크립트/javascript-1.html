@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>남박사의 파이썬으로 웹사이트 만들기</title>
+  </head>
+  <body>
+    <button id="btn">클릭</button>
+    <button id="btn" onclick="alert('안녕')">클릭</button>
+
+    <script>
+      const btn = document.querySelector('#btn');
+      btn.addEventListener('click', () => {
+        alert('안녕');
+      });
+    </script>
+  </body>
+</html>
