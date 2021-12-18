@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>남박사의 파이썬으로 웹사이트 만들기</title>
+  </head>
+  <body>
+    <div id="result"></div>
+
+    <li id="python">파이썬</li>
+    <li id="python2" class="cname">파이썬2</li>
+
+    <button onclick="c()">클릭</button>
+    <button onclick="d()">클릭</button>
+    <button onclick="e()">클릭</button>
+
+    <script>
+      function c() {
+        const result = document.querySelector('#result');
+        const elem = document.querySelector('#python');
+        result.innerHTML = elem.constructor.name;
+      }
+
+      function d() {
+        const result = document.querySelector('#result');
+        const elem = document.getElementsByTagName('li');
+        result.innerHTML = elem.constructor.name;
+      }
+
+      function e() {
+        const result = document.querySelector('#result');
+        const elem = document.getElementsByClassName('cname');
+        result.innerHTML = elem.constructor.name;
+      }
+    </script>
+  </body>
+</html>

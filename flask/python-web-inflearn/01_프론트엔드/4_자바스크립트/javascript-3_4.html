@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>남박사의 파이썬으로 웹사이트 만들기</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <form>
+      비밀번호: <input type="password" id="password">
+      비밀번호 확인: <input type="password" id="password_re">
+      <input type="button" value="회원가입" onclick="join()">
+    </form>
+
+    <script>
+      function join() {
+        const p = $('#password').val();
+        const p_re = $('#password_re').val();
+
+        if (p != p_re) {
+          alert('비밀번호가 일치 하지 않습니다.');
+          return false;
+        } else {
+          alert('회원가입 완료!');
+        }
+      }
+    </script>
+  </body>
+</html>

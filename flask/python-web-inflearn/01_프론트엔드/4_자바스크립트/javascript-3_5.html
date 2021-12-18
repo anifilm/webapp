@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>남박사의 파이썬으로 웹사이트 만들기</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <p onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">마우스 포인터를 올려보세요.</p>
+
+    <script>
+      function mouseOver(o) {
+        o.style.color = 'yellow';
+        o.style.backgroundColor = 'blue';
+        o.style.cursor = 'pointer';
+      }
+
+      function mouseOut(o) {
+        o.style.color = '';
+        o.style.backgroundColor = '';
+        o.style.cursor = '';
+      }
+    </script>
+  </body>
+</html>
