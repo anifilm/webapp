@@ -42,17 +42,14 @@
       <header id="header">
         <section class="h_inner">
           <h1 class="logo">
-            <a href="index.html">
+            <a href="./index.html">
               <div class="sprite_insta_icon"></div>
-              <div>
-                <div class="sprite_write_logo"></div>
-              </div>
+              <div class="sprite_write_logo"></div>
             </a>
           </h1>
 
-          <div class="search_field">
-            <input type="text" placeholder="검색" tabindex="0" />
-
+          <div class="search_box">
+            <input type="text" placeholder="검색" id="search-field" />
             <div class="fake_field">
               <span class="sprite_small_search_icon"></span>
               <span>검색</span>
@@ -60,10 +57,10 @@
           </div>
 
           <div class="right_icons">
-            <a href="./new_post.html"><div class="sprite_camera_icon"></div></a>
-            <a href="./login.html"><div class="sprite_compass_icon"></div></a>
-            <a href="./follow.html"><div class="sprite_heart_icon_outline"></div></a>
-            <a href="./profile.html"><div class="sprite_user_icon_outline"></div></a>
+            <a href="new_post.html"><div class="sprite_camera_icon"></div></a>
+            <a href="login.html"><div class="sprite_compass_icon"></div></a>
+            <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
+            <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
           </div>
         </section>
       </header>
@@ -75,19 +72,20 @@
               <header class="top">
                 <div class="user_container">
                   <div class="profile_img">
-                    <img src="./images/thumb.jpeg" alt="" />
+                    <img src="./images/thumb.jpeg" alt="프로필이미지" />
                   </div>
                   <div class="user_name">
-                    <div class="nick_name">KindTiger</div>
-                    <div class="country">Seoul, South Korea</div>
+                    <div class="nick_name m_text">KindTiger</div>
+                    <div class="country s_text">Seoul, South Korea</div>
                   </div>
                 </div>
+
                 <div class="sprite_more_icon"></div>
               </header>
 
               <div class="img_section">
                 <div class="trans_inner">
-                  <div><img src="./images/img_section/img02.jpg" alt="" /></div>
+                  <div><img src="./images/img_section/img02.jpg" alt="visual02" /></div>
                 </div>
               </div>
 
@@ -96,29 +94,25 @@
                   <div class="heart_btn">
                     <div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
                   </div>
-                  <div>
-                    <div class="sprite_bubble_icon"></div>
-                  </div>
-                  <div>
-                    <div class="sprite_share_icon"></div>
-                  </div>
+                  <div class="sprite_bubble_icon"></div>
+                  <div class="sprite_share_icon" data-name="share"></div>
                 </div>
-
                 <div class="right_icon">
-                  <div class="sprite_bookmark_outline"></div>
+                  <div class="sprite_bookmark_outline" data-name="bookmark"></div>
                 </div>
               </div>
 
-              <div class="count_likes">
-                <span class="count">좋아요 2,351 개</span>
+              <div class="likes m_text">
+                <span class="count">좋아요 2,346개</span>
               </div>
 
-              <div class="commet_container">
-                <div class="commet">
-                  <div class="nick_name">popo213</div>
-                  <div>우와...너무 축하해...!!!</div>
+              <div class="comment_container">
+                <div class="comment">
+                  <div class="comment-detail">
+                    <div class="nick_name m_text">popo213</div>
+                    <div>우와...너무 축하해...!!!</div>
+                  </div>
                 </div>
-
                 <div class="small_heart">
                   <div class="sprite_small_heart_icon_outline"></div>
                 </div>
@@ -126,10 +120,9 @@
 
               <div class="timer">1시간 전</div>
 
-              <div class="commit_field">
-                <input type="text" placeholder="댓글달기.." />
-
-                <div class="upload_btn">게시</div>
+              <div class="comment_field">
+                <input type="text" placeholder="댓글달기..." />
+                <div class="upload_btn m_text">게시</div>
               </div>
             </article>
           </div>
