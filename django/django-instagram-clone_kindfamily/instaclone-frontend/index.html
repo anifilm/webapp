@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>instagram</title>
+    <title>instagram - clone</title>
 
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
@@ -99,7 +99,13 @@
                     <div class="country s_text">Seoul, South Korea</div>
                   </div>
                 </div>
-                <div class="sprite_more_icon" data-name="more"></div>
+                <div class="sprite_more_icon" data-name="more">
+                  <ul class="toggle_box">
+                    <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
+                     <li>수정</li>
+                     <li>삭제</li>
+                  </ul>
+                </div>
               </header>
 
               <div class="img_section">
@@ -113,21 +119,24 @@
               <div class="bottom_icons">
                 <div class="left_icons">
                   <div class="heart_btn">
-                    <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+                    <div class="sprite_heart_icon_outline" name="37" data-name="heartbeat"></div>
                     <div class="sprite_bubble_icon"></div>
                     <div class="sprite_share_icon" data-name="share"></div>
                   </div>
                 </div>
 
                 <div class="right_icon">
-                  <div class="sprite_bookmark_outline" data-name="bookmark"></div>
+                  <div class="sprite_bookmark_outline" name="37" data-name="bookmark"></div>
                 </div>
               </div>
 
-              <div class="likes m_text">좋아요 <span id="count">2,345</span> 개</div>
+              <div class="likes m_text">
+                <span id="like-count-37">좋아요 2,345개</span>
+                <span id="bookmark-count-37"></span>
+              </div>
 
               <div class="comment_container">
-                <div class="comment">
+                <div class="comment" id="comment-list-ajax-post37">
                   <div class="comment-detail">
                     <div class="nick_name m_text">dongdong2</div>
                     <div>강아지가 너무 귀여워요~!</div>
@@ -140,7 +149,7 @@
 
               <div class="timer">1시간 전</div>
 
-              <div class="comment_field">
+              <div class="comment_field" id="add-comment-post37">
                 <input type="text" placeholder="댓글달기..." />
                 <div class="upload_btn m_text" data-name="comment">게시</div>
               </div>
@@ -183,7 +192,9 @@
                 </div>
               </div>
 
-              <div class="likes m_text">좋아요 <span id="count">2,345</span> 개</div>
+              <div class="likes m_text">
+                <span id="count">좋아요 2,345개</span>
+              </div>
 
               <div class="comment_container">
                 <div class="comment">
@@ -240,7 +251,9 @@
                 </div>
               </div>
 
-              <div class="likes m_text">좋아요 <span id="count">2,345</span> 개</div>
+              <div class="likes m_text">
+                <span id="count">좋아요 2,345개</span>
+              </div>
 
               <div class="comment_container">
                 <div class="comment">
@@ -296,7 +309,9 @@
                 </div>
               </div>
 
-              <div class="likes m_text">좋아요 <span id="count">2,345</span> 개</div>
+              <div class="likes m_text">
+                <span id="count">좋아요 2,345개</span>
+              </div>
 
               <div class="comment_container">
                 <div class="comment">
@@ -352,7 +367,9 @@
                 </div>
               </div>
 
-              <div class="likes m_text">좋아요 <span id="count">2,345</span> 개</div>
+              <div class="likes m_text">
+                <span id="count">좋아요 2,345개</span>
+              </div>
 
               <div class="comment_container">
                 <div class="comment">
@@ -408,7 +425,9 @@
                 </div>
               </div>
 
-              <div class="likes m_text">좋아요 <span id="count">2,345</span> 개</div>
+              <div class="likes m_text">
+                <span id="count">좋아요 2,345개</span>
+              </div>
 
               <div class="comment_container">
                 <div class="comment">
@@ -429,8 +448,9 @@
                 <div class="upload_btn m_text" data-name="comment">게시</div>
               </div>
             </article>
-
           </div>
+
+          <input type="hidden" id="page" value="0">
 
           <div class="side_box">
             <div class="user_profile">
