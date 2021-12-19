@@ -196,7 +196,7 @@ body {
   cursor: pointer;
 }
 .sprite_heart_icon_outline.on {
-  background: url("../imgs/background01.png") no-repeat -26px -261px;
+  background: url("../images/background01.png") no-repeat -26px -261px;
 }
 .contents .likes {
   padding: 5px 20px;
@@ -280,6 +280,7 @@ body {
   align-items: center;
   font-size: 14px;
   color: #262626;
+  margin-bottom: 5px;
 }
 .side_box .detail .id {
   margin-bottom: 5px;
