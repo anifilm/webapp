@@ -189,7 +189,7 @@ def board_edit(idx):
 
         if session.get("id") != data.get("writer_id"):
             flash("해당 글의 수정 권한이 없습니다.")
-            return redirect(url_for("lists"))
+            return redirect(url_for("board_view", idx=idx))
 
         board.update_one(
             {"_id": ObjectId(idx)},
@@ -209,14 +209,15 @@ def board_edit(idx):
     else:
         if session.get("id") != data.get("writer_id"):
             flash("해당 글의 수정 권한이 없습니다.")
-            return redirect(url_for("lists"))
+            return redirect(url_for("board_view", idx=idx))
+
     return render_template("edit.html", data=data)
 
 
 @app.route("/delete/<idx>", methods=["GET", "POST"])
 @login_required
 def board_delete(idx):
-    return render_template("delete.html")
+    return redirect(url_for("lists"))
 
 
 @app.route("/register", methods=["GET", "POST"])
