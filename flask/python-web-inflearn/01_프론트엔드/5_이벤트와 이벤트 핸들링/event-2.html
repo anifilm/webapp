@@ -14,9 +14,32 @@
   </head>
   <body>
     <img src="./images/Firefox_update_1605682015070.webp" width="600px" alt="이미지">
+    <br>
+
+    <textarea cols="30" rows="8" onkeyup="keyup(this)"></textarea><br>
+    남은글자: <span id="remain">100</span>
+    <br><br>
+
+    <input type="text" id="name" value="이름을 입력하세요.">
 
     <script>
+      let name = document.querySelector('#name');
+      name.addEventListener('focus', function (event) {
+        if (name.value == '이름을 입력하세요.') {
+          name.value = '';
+        }
+      });
+      name.addEventListener('blur', function (event) {
+        if (name.value == '') {
+          name.value = '이름을 입력하세요.';
+        }
+      })
 
+      function keyup(elem) {
+        let len = elem.value.length;
+        let remain = 100 - len;
+        document.querySelector('#remain').innerHTML = remain;
+      }
     </script>
   </body>
 </html>

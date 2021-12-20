@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>남박사의 파이썬으로 웹사이트 만들기</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <form id="joinForm">
+      <div>
+        <label for="name">이름</label>
+        <input type="text" id="name" />
+      </div>
+      <div>
+        <label for="email">이메일</label>
+        <input type="email" id="email" />
+      </div>
+      <input type="submit" value="회원가입" />
+    </form>
+
+    <script>
+      const form = document.querySelector('#joinForm');
+      form.addEventListener('submit', function (event) {
+        if (form.name.value.length == 0) {
+          alert('이름을 입력하세요.');
+          event.preventDefault();
+          form.name.focus();
+          return;
+        }
+        if (form.email.value.length == 0) {
+          alert('이메일을 입력하세요.');
+          event.preventDefault();
+          form.email.focus();
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
