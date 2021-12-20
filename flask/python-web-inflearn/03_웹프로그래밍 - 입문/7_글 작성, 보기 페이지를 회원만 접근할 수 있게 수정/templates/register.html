@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flask Board</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          alert("{{ messages[-1] }}");
+        </script>
+      {% endif %}
+    {% endwith %}
+    <table>
+      <form name="form" action="/register" method="POST">
+        <thead>
+          <caption>회원 등록</caption>
+        </thead>
+        <tbody>
+          <tr>
+            <td>이메일</td>
+            <td><input type="email" name="email"></td>
+          </tr>
+          <tr>
+            <td>이름</td>
+            <td><input type="text" name="name"></td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name="password"></td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인</td>
+            <td><input type="password" name="password_re"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" value="등록하기"></td>
+          </tr>
+        </tbody>
+      </form>
+    </table>
+  </body>
+</html>

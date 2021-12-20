@@ -67,7 +67,8 @@ def lists():
         query = {"$or": search_list}
 
     board = mongo.db.board
-    datas = board.find(query).skip((page - 1) * limit).limit(limit)
+    # 게시물 내림차순 정렬 내용 추가 .sort("_id", -1)
+    datas = board.find(query).sort("_id", -1).skip((page - 1) * limit).limit(limit)
 
     # 게시물의 총 개수
     total_count = board.find(query).count()
@@ -86,6 +87,7 @@ def lists():
     return render_template(
         "list.html",
         datas=datas,
+        total=total_count,
         limit=limit,
         page=page,
         block_start=block_start,

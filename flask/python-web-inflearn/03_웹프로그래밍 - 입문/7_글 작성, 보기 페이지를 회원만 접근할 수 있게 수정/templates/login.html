@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flask Board</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          alert("{{ messages[-1] }}");
+        </script>
+      {% endif %}
+    {% endwith %}
+    <table>
+      <form name="form" action="/login" method="POST">
+        {% if next_url %}
+          <input type="hidden" name="next_url" value="{{ next_url }}">
+        {% endif %}
+        <thead>
+          <caption>사용자 로그인</caption>
+        </thead>
+        <tbody>
+          <tr>
+            <td>이메일</td>
+            <td><input type="email" name="email"></td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name="password"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" value="로그인"></td>
+          </tr>
+        </tbody>
+      </form>
+    </table>
+  </body>
+</html>

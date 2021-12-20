@@ -51,7 +51,7 @@
         <tbody>
           {% for data in datas %}
           <tr>
-            <td>{{ loop.index + ((page - 1) * limit)}}</td>
+            <td>{{ total - ((page - 1) * limit) - loop.index0 }}</td>
             <td><a href="{{ url_for('board_view', idx=data._id, page=page, search=search, keyword=keyword) }}">{{ data.title }}</a></td>
             <td>{{ data.name }}</td>
             <td>{{ data.created_at|formatdatetime }}</td>
