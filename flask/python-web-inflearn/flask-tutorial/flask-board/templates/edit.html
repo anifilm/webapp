@@ -13,24 +13,24 @@
       {% endif %}
     {% endwith %}
     <table>
-      <form name="form" action="/write" method="POST">
+      <form name="form" action="/edit/{{ data._id }}" method="POST">
         <tr>
           <td>작성자</td>
           <td><input type="text" name="name" value="{{ session['name'] }}" readonly></td>
         </tr>
         <tr>
           <td>제목</td>
-          <td><input type="text" name="title"></td>
+          <td><input type="text" name="title" value="{{ data.title }}"></td>
         </tr>
         <tr>
           <td>내용</td>
-          <td><textarea name="contents" id="contents" cols="30" rows="10"></textarea></td>
+          <td><textarea name="contents" id="contents" cols="30" rows="10">{{ data.contents }}</textarea></td>
         </tr>
         <tr>
           <td colspan="2"><input type="submit"></td>
         </tr>
       </form>
     </table>
-    <a href="{{ url_for('lists') }}">목록보기</a>
+    <a href="{{ url_for('board_view', idx=data._id) }}">취소</a>
   </body>
 </html>

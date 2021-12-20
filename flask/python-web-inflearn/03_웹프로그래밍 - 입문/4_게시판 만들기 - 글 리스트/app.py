@@ -101,11 +101,12 @@ def lists():
 @app.route("/view/<idx>")
 def board_view(idx):
     # idx = request.args.get("idx")
-    page = request.args.get("page")
-    search = request.args.get("search")
-    keyword = request.args.get("keyword")
 
     if idx is not None:
+        page = request.args.get("page")
+        search = request.args.get("search")
+        keyword = request.args.get("keyword")
+
         board = mongo.db.board
         data = board.find_one({"_id": ObjectId(idx)})
 
