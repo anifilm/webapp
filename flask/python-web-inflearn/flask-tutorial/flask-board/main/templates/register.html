@@ -13,7 +13,7 @@
       {% endif %}
     {% endwith %}
     <table>
-      <form name="form" action="/member/register" method="POST">
+      <form name="form" action="{{ url_for('member.member_register') }}" method="POST">
         <thead>
           <caption>회원 등록</caption>
         </thead>

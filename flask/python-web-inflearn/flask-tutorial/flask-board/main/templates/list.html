@@ -34,10 +34,10 @@
     {% endwith %}
 
     {% if session.get("id") %}
-      {{ session["name"] }}님 <a href="/member/logout">(로그아웃)</a>
+      {{ session["name"] }}님 <a href="{{ url_for('member.member_logout') }}">(로그아웃)</a>
     {% else %}
-      <a href="/member/register">회원 등록</a>&nbsp;
-      <a href="/member/login">사용자 로그인</a>
+      <a href="{{ url_for('member.member_register') }}">회원 등록</a>&nbsp;
+      <a href="{{ url_for('member.member_login') }}">사용자 로그인</a>
     {% endif %}
     <div id="search-area">
       <select name="search" id="search">

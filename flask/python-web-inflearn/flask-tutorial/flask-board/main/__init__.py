@@ -33,9 +33,9 @@ mongo = PyMongo(app)
 from .common import login_required
 from .filter import format_datetime
 from . import home
-from . import board
 from . import member
+from . import board
 
 app.register_blueprint(home.blueprint)
-app.register_blueprint(board.blueprint)
 app.register_blueprint(member.blueprint)
+app.register_blueprint(board.blueprint)
