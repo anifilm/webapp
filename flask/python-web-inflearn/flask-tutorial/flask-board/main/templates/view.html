@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flask Board</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          alert("{{ messages[-1] }}");
+        </script>
+      {% endif %}
+    {% endwith %}
+
+    {{ result.name }} | {{ result.view }} | {{ result.created_at|formatdatetime }}
+    <br><br>
+    {{ result.title }}<br>
+    {{ result.contents }}
+    <br><br>
+
+    <a href="{{ url_for('lists', page=page, search=search, keyword=keyword) }}">목록보기</a>
+    {% if session["id"] == result.writer_id %}
+    <a href="{{ url_for('board_edit', idx=result.id)}}">수정</a>
+    <a href="{{ url_for('board_delete', idx=result.id)}}">삭제</a>
+    {% endif %}
+  </body>
+</html>
