@@ -1,4 +1,4 @@
-from main import *
+from main import request, redirect, url_for, flash, session
 from functools import wraps
 
 

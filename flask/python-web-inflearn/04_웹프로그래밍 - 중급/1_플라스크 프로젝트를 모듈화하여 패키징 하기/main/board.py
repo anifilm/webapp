@@ -1,11 +1,6 @@
 from main import *
 
 
-@app.route("/")
-def index():
-    return redirect(url_for("lists"))
-
-
 @app.route("/list")
 def lists():
     # 페이지 값 (값이 없는 경우 기본값은 1)
@@ -161,7 +156,7 @@ def board_edit(idx):
     return render_template("edit.html", data=data)
 
 
-@app.route("/delete/<idx>", methods=["GET", "POST"])
+@app.route("/delete/<idx>")
 @login_required
 def board_delete(idx):
     board = mongo.db.board

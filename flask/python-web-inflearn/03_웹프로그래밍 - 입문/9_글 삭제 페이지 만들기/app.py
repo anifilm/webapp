@@ -214,7 +214,7 @@ def board_edit(idx):
     return render_template("edit.html", data=data)
 
 
-@app.route("/delete/<idx>", methods=["GET", "POST"])
+@app.route("/delete/<idx>")
 @login_required
 def board_delete(idx):
     board = mongo.db.board
