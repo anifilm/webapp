@@ -1,0 +1,9 @@
+<div id="menu-area">
+  <a href="/">홈</a>&nbsp;
+  {% if session.get("id") %}
+    {{ session["name"] }}님 <a href="{{ url_for('member.member_logout') }}">(로그아웃)</a>
+  {% else %}
+    <a href="{{ url_for('member.member_register') }}">회원 등록</a>&nbsp;
+    <a href="{{ url_for('member.member_login') }}">사용자 로그인</a><br>
+  {% endif %}
+</div>

@@ -189,12 +189,12 @@ def board_delete(idx):
 @app.route("/register", methods=["GET", "POST"])
 def member_register():
     if request.method == "POST":
-        name = request.form.get("name", type=str)
         email = request.form.get("email", type=str)
+        name = request.form.get("name", type=str)
         password = request.form.get("password", type=str)
         password_re = request.form.get("password_re", type=str)
 
-        if name == "" or email == "" or password == "" or password_re == "":
+        if email == "" or name == "" or password == "" or password_re == "":
             flash("입력되지 않은 값이 있습니다.")
             return render_template("register.html")
         if password != password_re:
@@ -209,8 +209,8 @@ def member_register():
 
         reg_date = round(datetime.utcnow().timestamp() * 1000)
         post = {
-            "name": name,
             "email": email,
+            "name": name,
             "password": password,
             "reg_date": reg_date,
             "logintime": "",
