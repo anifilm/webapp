@@ -1,0 +1,20 @@
+body {
+  width: 900px;
+}
+#list {
+  width: 900px;
+}
+#list > thead > tr td,
+#list > tbody > tr td {
+  padding: 10px;
+}
+h3, #search-area, #pagenation-area {
+  margin: 20px 0;
+  text-align: center;
+}
+#menu-area, #new-post {
+  margin: 0 10px;
+}
+#register, #login, #write, #view {
+  margin: 20px 10px;
+}
