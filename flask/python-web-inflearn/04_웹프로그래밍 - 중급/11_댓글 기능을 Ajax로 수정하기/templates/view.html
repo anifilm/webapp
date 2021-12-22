@@ -79,12 +79,7 @@
 
 {% block script %}
 <script>
-  /*
   $(document).ready(function () {
-    get_comment_list();
-  });
-  */
-  $(function() {
     get_comment_list();
   });
 
@@ -170,7 +165,10 @@
         cache: false,
         data: data,
         success: function (data) {
+          if (data['error'] == 'success') {
             get_comment_list();
+            alert('댓글이 삭제 되었습니다.');
+          }
         },
         error: function (request, status, error) {
           let msg = 'Error: ' + request.status + '<br>' + '내용: ' + request.responseText + '<br>' + error;
