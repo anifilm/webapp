@@ -11,4 +11,4 @@ def format_datetime(value):
         now_timestamp
     )
     result = datetime.fromtimestamp(int(value / 1000)) + offset
-    return result.strftime("%Y-%m-%d %H:%M:%S")
+    return result.strftime("%Y-%m-%d %H:%M")

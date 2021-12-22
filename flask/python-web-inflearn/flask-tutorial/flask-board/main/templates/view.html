@@ -39,10 +39,10 @@
   <form name="commentForm" action="{{ url_for('board.comment_write') }}" method="POST" id="commentForm">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <input type="hidden" name="board_id" value="{{ result.id }}">
-    <div>
-      <span style="margin-left: 30px">댓글 목록</span>
+    <div id="commentArea" style="width: 900px">
+      <span style="margin-left: 12px;">댓글 목록</span>
       {% if comments.count() > 0 %}
-      <span id="comment_count">{{ comments.count() }}</span>
+      <span id="comment_count">&nbsp;{{ comments.count() }}</span>
       {% endif %}
       <table class="table" style="width: 900px">
         {% if comments.count() > 0 %}
@@ -54,8 +54,10 @@
               <span class="float-right"><small>{{ comment.created_at|formatdatetime }}</small></span>
             </td>
             <td class="text-center">
-              <small><a href="#">수정</a></small><span style="color: #808080"> | </span>
+              {% if comment.writer_id == session.get("id") %}
+              <small><a href="#">수정</a></small><span style="color: #808080">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <small><a href="#" class="text-danger">삭제</a></small>
+              {% endif %}
             </td>
           </tr>
           {% endfor %}
