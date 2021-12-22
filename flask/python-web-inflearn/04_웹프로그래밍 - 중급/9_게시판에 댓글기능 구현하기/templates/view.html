@@ -42,7 +42,7 @@
     <div id="commentArea" style="width: 900px">
       <span style="margin-left: 12px;">댓글 목록</span>
       {% if comments.count() > 0 %}
-      <span id="comment_count">&nbsp;{{ comments.count() }}</span>
+      <span id="commentCount">&nbsp;{{ comments.count() }}</span>
       {% endif %}
       <table class="table" style="width: 900px">
         {% if comments.count() > 0 %}
@@ -54,7 +54,7 @@
               <span class="float-right"><small>{{ comment.created_at|formatdatetime }}</small></span>
             </td>
             <td class="text-center">
-              {% if comment.writer_id == session.get("id") %}
+              {% if comment.writer_id == session.get('id') %}
               <small><a href="#">수정</a></small><span style="color: #808080">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <small><a href="#" class="text-danger">삭제</a></small>
               {% endif %}
