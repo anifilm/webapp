@@ -42,14 +42,21 @@
     <div>
       <span style="margin-left: 30px">댓글 목록</span>
       {% if comments.count() > 0 %}
-      <span id="cCnt">{{ comments.count() }}</span>
+      <span id="comment_count">{{ comments.count() }}</span>
       {% endif %}
       <table class="table" style="width: 900px">
         {% if comments.count() > 0 %}
           {% for comment in comments %}
           <tr>
-            <td><small>{{ comment.name }}님의 댓글: &nbsp;{{ comment.comment }}</small></td>
-            <td><small>{{ comment.created_at|formatdatetime }}</small></td>
+            <td>
+              <span style="display: inline-block; width: 80px; margin-left: 10px;"><small>{{ comment.name }}</small></span>
+              <span><small>{{ comment.comment }}</small></span>
+              <span class="float-right"><small>{{ comment.created_at|formatdatetime }}</small></span>
+            </td>
+            <td class="text-center">
+              <small><a href="#">수정</a></small><span style="color: #808080"> | </span>
+              <small><a href="#" class="text-danger">삭제</a></small>
+            </td>
           </tr>
           {% endfor %}
         {% endif %}
