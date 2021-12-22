@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card my-3" style="width: 800px">
+<div class="card" id="write" style="width: 800px">
   <div class="card-body">
     <h5 class="card-title mr-4 text-center">새로운 글 작성</h5>
     <form name="form" action="{{ url_for('board.board_write') }}" method="POST" onsubmit="return checkForm()" class="mt-4 mr-4">

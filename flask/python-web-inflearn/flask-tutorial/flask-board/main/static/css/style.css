@@ -1,9 +1,17 @@
-.card {
-  /*margin: 0 auto;*/
-  /*float: none;*/
+#register, #login {
   position: absolute;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+
+#write, #edit {
+  margin: 50px auto;
+  float: none;
+}
+
+table, #button {
+  margin: 0 auto;
+  float: none;
 }

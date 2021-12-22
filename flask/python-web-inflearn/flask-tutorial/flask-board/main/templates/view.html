@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="mt-5"></div>
-<table class="table">
+<table class="table" style="width: 900px">
   <tbody>
     <tr>
       <td colspan="3">{{ result.title }}</td>
@@ -13,12 +13,12 @@
       <td>조회수: {{ result.view }}</td>
     </tr>
     <tr>
-      <td colspan="3"><div style="min-height: 200px">{{ result.contents }}</div></td>
+      <td colspan="3"><div style="min-height: 200px">{% autoescape false %}{{ result.contents }}{% endautoescape %}</div></td>
     </tr>
     <tr><td colspan="3"></td></tr>
   </tbody>
 </table>
-<div>
+<div id="button" style="width: 900px">
   <a href="{{ url_for('board.lists', page=page, search=search, keyword=keyword) }}" class="btn btn-secondary">목록보기</a>
   {% if session["id"] == result.writer_id %}
   <a href="{{ url_for('board.board_edit', idx=result.id)}}" class="btn btn-outline-primary ml-1">수정</a>
