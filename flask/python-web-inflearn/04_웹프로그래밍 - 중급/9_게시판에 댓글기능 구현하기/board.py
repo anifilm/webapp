@@ -1,7 +1,7 @@
 from main import *
 from flask import Blueprint, send_from_directory
 
-blueprint = Blueprint("board", __name__, url_prefix='/board')
+blueprint = Blueprint("board", __name__, url_prefix="/board")
 
 
 @blueprint.route("/list")
@@ -229,7 +229,9 @@ def board_images(filename):
 
 @blueprint.route("/files/<filename>")
 def board_files(filename):
-    return send_from_directory(app.config["BOARD_ATTACH_FILE_PATH"], filename, as_attachment=True)
+    return send_from_directory(
+        app.config["BOARD_ATTACH_FILE_PATH"], filename, as_attachment=True
+    )
 
 
 # 댓글 작성

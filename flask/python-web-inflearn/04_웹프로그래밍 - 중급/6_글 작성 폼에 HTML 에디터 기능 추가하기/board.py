@@ -1,7 +1,7 @@
 from main import *
 from flask import Blueprint, send_from_directory
 
-blueprint = Blueprint("board", __name__, url_prefix='/board')
+blueprint = Blueprint("board", __name__, url_prefix="/board")
 
 
 @blueprint.route("/list")

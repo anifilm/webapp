@@ -1,7 +1,7 @@
 from main import *
 from flask import Blueprint, send_from_directory
 
-blueprint = Blueprint("board", __name__, url_prefix='/board')
+blueprint = Blueprint("board", __name__, url_prefix="/board")
 
 
 @blueprint.route("/list")
@@ -88,13 +88,13 @@ def board_view(idx):
                 "attachfile": data.get("attachfile", ""),
             }
             # 댓글 가져오기
-            #comment = mongo.db.comment
-            #comments = comment.find({"board_id": str(data.get("_id"))}).sort("_id", -1)
+            # comment = mongo.db.comment
+            # comments = comment.find({"board_id": str(data.get("_id"))}).sort("_id", -1)
 
             return render_template(
                 "view.html",
                 result=result,
-                #comments=comments,
+                # comments=comments,
                 page=page,
                 search=search,
                 keyword=keyword,
@@ -229,7 +229,9 @@ def board_images(filename):
 
 @blueprint.route("/files/<filename>")
 def board_files(filename):
-    return send_from_directory(app.config["BOARD_ATTACH_FILE_PATH"], filename, as_attachment=True)
+    return send_from_directory(
+        app.config["BOARD_ATTACH_FILE_PATH"], filename, as_attachment=True
+    )
 
 
 # 댓글 목록 가져오기 (ajax)
@@ -241,15 +243,17 @@ def comment_list(board_id):
     comment_lists = []
     for c in comments:
         owner = True if c.get("writer_id") == session.get("id") else False
-        comment_lists.append({
-            "id": str(c.get("_id")),
-            "board_id": c.get("board_id"),
-            "writer_id": c.get("writer_id"),
-            "name": c.get("name"),
-            "comment": c.get("comment"),
-            "created_at": format_datetime(c.get("created_at")),
-            "owner": owner,
-        })
+        comment_lists.append(
+            {
+                "id": str(c.get("_id")),
+                "board_id": c.get("board_id"),
+                "writer_id": c.get("writer_id"),
+                "name": c.get("name"),
+                "comment": c.get("comment"),
+                "created_at": format_datetime(c.get("created_at")),
+                "owner": owner,
+            }
+        )
     return jsonify(error="success", comment_lists=comment_lists)
 
 
