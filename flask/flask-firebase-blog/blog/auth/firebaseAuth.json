@@ -1,6 +1,7 @@
 {
     "apiKey": "AIzaSyAN7MTGylrRcUYbHb50CmzP26gsgFYZgUs",
     "authDomain": "flask-firebase-blog-3c7bd.firebaseapp.com",
+    "databaseURL": "https://flask-firebase-blog-3c7bd-default-rtdb.asia-southeast1.firebasedatabase.app",
     "projectId": "flask-firebase-blog-3c7bd",
     "storageBucket": "flask-firebase-blog-3c7bd.appspot.com",
     "messagingSenderId": "740055281415",
