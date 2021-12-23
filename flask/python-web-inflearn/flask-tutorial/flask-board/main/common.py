@@ -32,8 +32,13 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1] in ALLOWED_EXTENSIONS
 
 
+# 파일 확장자 가져오기
+def get_file_extension(filename):
+    return "." in filename and filename.rsplit(".", 1)[1]
+
+
 # 랜덤한 파일명 생성
-def random_generator(length=12):
+def random_generator(length=8):
     char = ascii_lowercase + ascii_uppercase + digits
     return "".join(random.sample(char, length))
 

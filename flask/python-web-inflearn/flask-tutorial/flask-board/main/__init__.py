@@ -61,6 +61,7 @@ from .common import (
     hash_password,
     check_password,
     allowed_file,
+    get_file_extension,
     random_generator,
     check_filename,
     board_delete_attach_file,

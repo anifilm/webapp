@@ -211,7 +211,8 @@ def upload_image():
     if request.method == "POST":
         file = request.files["image"]
         if file and allowed_file(file.filename):
-            filename = "{}.jpg".format(random_generator())
+            filename = "{}.{}".format(random_generator(12), get_file_extension(file.filename))
+            print(filename)
             savefilepath = os.path.join(app.config["BOARD_IMAGE_PATH"], filename)
             file.save(savefilepath)
             return url_for("board.board_images", filename=filename)

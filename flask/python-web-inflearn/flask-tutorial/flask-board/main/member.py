@@ -65,14 +65,12 @@ def member_login():
             if check_password_hash(data.get("password"), password):
                 # 접속시간 및 접속횟수 업데이트
                 current_utc_time = round(datetime.utcnow().timestamp() * 1000)
-                members.updata.one(
+                members.update_one(
+                    {"email": email},
                     {
-                        {"email": email},
-                        {
-                            "$set": {"logintime": current_utc_time},
-                            "$inc": {"logincount": 1},
-                        },
-                    }
+                        "$set": {"logintime": current_utc_time},
+                        "$inc": {"logincount": 1},
+                    },
                 )
                 session["email"] = email
                 session["name"] = data.get("name")
