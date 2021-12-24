@@ -1,5 +1,5 @@
 {
-    "python.defaultInterpreterPath": ".\\venv\\Scripts\\python.exe",
+    "python.defaultInterpreterPath": "~\\.conda\\envs\\venv_django\\python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
@@ -8,5 +8,6 @@
     "python.linting.flake8Args": [
         "--max-line-length=120",
         "--ignore=E265,E302,E501"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
