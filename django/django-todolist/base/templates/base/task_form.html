@@ -1,6 +1,6 @@
 {% extends 'base/main.html' %}
-{% block content %}
 
+{% block content %}
 <div class="header-bar">
   <a href="{% url 'tasks' %}">&#8592; back</a>
 </div>
@@ -8,15 +8,13 @@
 <div class="card-body">
   <form method="POST">
     {% csrf_token %}
-    <!-- {{form.as_p}} -->
-    <label>{{form.title.label}}</label>
-    {{form.title}}
-    <label>{{form.description.label}}</label>
-    {{form.description}}
-    <label>{{form.complete.label}} {{form.complete}}</label>
-
+    <!-- {{ form.as_p }} -->
+    <label>{{ form.title.label }}</label>
+    {{ form.title }}
+    <label>{{ form.description.label }}</label>
+    {{ form.description }}
+    <label>{{ form.complete.label }} {{ form.complete }}</label>
     <input style="margin-top: 15px;" class="button" type="submit" value="submit">
   </form>
 </div>
-
 {% endblock content %}

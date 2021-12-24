@@ -1,6 +1,6 @@
 {% extends 'base/main.html' %}
-{% block content %}
 
+{% block content %}
 <div class="header-bar">
   <a href="{% url 'tasks' %}">&#8592; back</a>
 </div>
@@ -9,9 +9,8 @@
   <form method="POST">
     {% csrf_token %}
     <p>Are you sure you want to delete this task?</p>
-    <p>"{{task}}"</p>
+    <p>"{{ task }}"</p>
     <input class="button" type="submit" value="Delete">
   </form>
 </div>
-
 {% endblock content %}
