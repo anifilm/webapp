@@ -3,13 +3,9 @@
 
 # 프로젝트 생성 및 기본 구성
 
-$ mkdir django-todolist
-
-$ cd django-todolist
-
 $ django-admin startproject config .
 
-$ python manage.py startapp base
+$ python manage.py startapp todolist
 
 
 # 개발 서버 실행
