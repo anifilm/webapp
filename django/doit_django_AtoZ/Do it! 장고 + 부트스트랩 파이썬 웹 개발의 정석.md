@@ -21,7 +21,7 @@ https://fontawesome.com/
 $ mkdir 프로젝트명
 $ cd 프로젝트명
 
-$ django-admin startproject mysite .
+$ django-admin startproject config .
 
 
 # 애플리케이션 생성
