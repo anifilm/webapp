@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -24,25 +26,26 @@
     <meta itemprop="description" content="instagram clone" />
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg" />
 
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/login.css" />
-    <link rel="shortcut icon" href="./images/instagram.png" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'images/instagram.png' %}" />
+
+    {% block head %}{% endblock %}
   </head>
   <body>
     <section id="container">
       <header id="header">
         <section class="h_inner">
           <h1 class="logo">
-            <a href="./index.html">
+            <a href="{% url 'post:post_list' %}">
               <div class="sprite_insta_icon"></div>
               <div class="sprite_write_logo"></div>
             </a>
           </h1>
 
           <div class="search_box">
-            <input type="text" placeholder="검색" id="search-field" />
+            <input type="text" placeholder="검색" tabindex="0" id="search-field" />
             <div class="fake_field">
               <span class="sprite_small_search_icon"></span>
               <span>검색</span>
@@ -50,41 +53,27 @@
           </div>
 
           <div class="right_icons">
-            <a href="new_post.html"><div class="sprite_camera_icon"></div></a>
-            <a href="login.html"><div class="sprite_compass_icon"></div></a>
-            <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-            <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+            <a href="#"><div class="sprite_camera_icon"></div></a>
+            <a href="#"><div class="sprite_compass_icon"></div></a>
+            <a href="#"><div class="sprite_heart_icon_outline"></div></a>
+            {% if user.is_authenticated %}
+            <a href="#"><div class="sprite_user_icon_outline"></div></a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}"><div class="sprite_user_icon_outline"></div></a>
+            {% endif %}
           </div>
         </section>
       </header>
 
-      <div id="main_container">
-        <div class="form_container">
-          <div class="form">
-            <h1 class="sprite_insta_big_logo title"></h1>
+      {% block content %}
+      {% endblock %}
 
-            <form action="#">
-              <p class="login_user_name">
-                <label for="user_name">사용자명:</label>
-                <input type="text" id="user_name" />
-              </p>
-
-              <p class="login_user_password">
-                <label for="user_password">비밀번호:</label>
-                <input type="text" id="user_password" />
-              </p>
-
-              <input type="submit" id="submit_btn" class="submit_btn" value="로그인" />
-            </form>
-          </div>
-
-          <div class="bottom_box">
-            <div><span>아이디가 없으신가요?</span> <a href="#">회원가입</a></div>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!--<script src="js/insta.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    {% block script %}
+    {% endblock %}
+
   </body>
 </html>
