@@ -17,7 +17,7 @@ def user_path(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     nickname = models.CharField('별명', max_length=30, unique=True)
-    pickure = ProcessedImageField(upload_to=user_path, processors=[ResizeToFill(150, 150)], format='JPEG', options={'quality': 90}, blank=True)
+    picture = ProcessedImageField(upload_to=user_path, processors=[ResizeToFill(150, 150)], format='JPEG', options={'quality': 90}, blank=True)
     about = models.CharField(max_length=300, blank=True)
     GENDER_C = (
         ('선택안함', '선택안함'),

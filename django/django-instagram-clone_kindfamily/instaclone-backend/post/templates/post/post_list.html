@@ -9,15 +9,26 @@
 <section id="main_container">
   <div class="b_inner">
     <div class="contents_box">
+      {% for post in posts %}
       <article class="contents">
         <header class="top">
           <div class="user_container">
             <div class="profile_img">
-              <img src="./images/thumb.jpeg" alt="프로필이미지" />
+              {% if post.author.profile.picture %} <!-- 포스트 저자의 프로필이미지가 있다면 -->
+              <img src="{{ post.author.profile.picture.url }}" alt="프로필이미지" />
+              {% else %} <!-- 프로필 사진이 없다면 기본 이미지 사용 -->
+              <img src="{% static 'images/thumb.jpeg' %}" alt="프로필이미지" />
+              {% endif %}
             </div>
             <div class="user_name">
-              <div class="nick_name m_text">KindTiger</div>
+              <div class="nick_name m_text">{{ post.author.profile.nickname }} {{ post.id }}</div>
               <div class="country s_text">Seoul, South Korea</div>
+            </div>
+            <div> <!-- TODO: 삭제 임시 -->
+              <form action="{% url 'post:post_delete' post.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="삭제" style="margin-left: 20px;">
+              </form>
             </div>
           </div>
           <div class="sprite_more_icon" data-name="more">
@@ -32,7 +43,7 @@
         <div class="img_section">
           <div class="trans_inner">
             <div>
-              <img src="./images/img_section/img01.jpg" alt="visual01" />
+              <img src="{{ post.photo.url }}" alt="visual01" />
             </div>
           </div>
         </div>
@@ -68,13 +79,14 @@
           </div>
         </div>
 
-        <div class="timer">1시간 전</div>
+        <div class="timer">{{ post.updated_at|timesince }}</div>
 
         <div class="comment_field" id="add-comment-post37">
           <input type="text" placeholder="댓글달기..." />
           <div class="upload_btn m_text" data-name="comment">게시</div>
         </div>
       </article>
+      {% endfor %}
     </div>
 
     <input type="hidden" id="page" value="0">
@@ -82,11 +94,17 @@
     <div class="side_box">
       <div class="user_profile">
         <div class="profile_thumb">
-          <img src="./images/thumb.jpeg" alt="프로필사진" />
+          {% if user_profile and user_profile.picture %}
+          <img src="{{ user_profile.picture.url }}" alt="프로필이미지" />
+          {% else %}
+          <img src="{% static 'images/thumb.jpeg' %}" alt="프로필이미지" />
+          {% endif %}
         </div>
         <div class="detail">
-          <div class="id m_text">KindTiger</div>
-          <div class="ko_name">심선범</div>
+          {% if user_profile %}
+          <div class="id m_text">{{ user_profile.user }}</div>
+          <div class="ko_name">{{ user_profile.nickname }}</div>
+          {% endif %}
         </div>
       </div>
 
@@ -98,7 +116,7 @@
         <div class="scroll_inner">
           <div class="thumb_user">
             <div class="profile_thumb">
-              <img src="./images/thumb02.jpg" alt="프로필사진" />
+              <img src="./images/thumb02.jpg" alt="프로필이미지" />
             </div>
             <div class="detail">
               <div class="id">kind_tigerrrr</div>
@@ -115,7 +133,7 @@
 
         <div class="thumb_user">
           <div class="profile_thumb">
-            <img src="./images/thumb02.jpg" alt="프로필사진" />
+            <img src="./images/thumb02.jpg" alt="프로필이미지" />
           </div>
           <div class="detail">
             <div class="id">kind_tigerrrr</div>
