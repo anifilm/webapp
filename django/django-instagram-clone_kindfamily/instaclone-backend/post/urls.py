@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import post_list, post_new, post_edit, post_delete
+from .views import *
 
 app_name = 'post'
 
@@ -8,4 +8,6 @@ urlpatterns = [
     path('new/', post_new, name='post_new'),
     path('edit/<int:pk>/', post_edit, name='post_edit'),
     path('delete/<int:pk>/', post_delete, name='post_delete'),
+    path('like', post_like, name='post_like'),
+    path('bookmark', post_bookmark, name='post_bookmark'),
 ]
