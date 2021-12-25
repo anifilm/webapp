@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "start": "next"
-  },
   "dependencies": {
     "axios": "^0.21.1",
     "next": "^11.0.1",
@@ -15,5 +12,8 @@
   },
   "devDependencies": {
     "webpack": "^5.44.0"
+  },
+  "scripts": {
+    "start": "next"
   }
 }
