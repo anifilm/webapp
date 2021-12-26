@@ -1,8 +1,37 @@
-header, footer {
-  height: 10rem;
-  background-color: #38df81;
-  border-radius: 1rem;
-  margin: 2rem;
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  text-align: center;
+  margin: 30px 0 20px;
+}
+header .menu {
+  margin: 20px 0;
+}
+header .menu span {
+  margin: 0 10px;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+footer {
+  text-align: center;
+}
+footer .menu {
+  font-size: .8rem;
+}
+footer .menu span {
+  margin: 0 10px;
+}
+footer .logo {
+  margin: 20px 0;
+}
+
+.logo {
+  font-family: 'Lobster', cursive;
 }
 
 main {
