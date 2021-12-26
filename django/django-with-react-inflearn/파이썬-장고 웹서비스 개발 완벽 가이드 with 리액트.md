@@ -1,4 +1,4 @@
-## Do it! 점프 투 장고
+## 파이썬-장고 웹서비스 개발 완벽 가이드 with 리액트
 
 
 # 프로젝트 만들기
@@ -11,12 +11,16 @@ $ django-admin startproject config .
 
 # 애플리케이션 생성
 
-$ python manage.py startapp polls
+$ python manage.py startapp accounts
 
 
 # 기본 테이블 생성
 
 $ python manage.py migrate
+
+# 관리자 계정 생성
+
+$ python manage.py createsuperuser
 
 
 # 데이터베이스 변경사항 반영

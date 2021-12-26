@@ -17,7 +17,12 @@ $ python manage.py runserver
 
 $ python manage.py migrate
 
-
 # 관리자 계정 생성
 
 $ python manage.py createsuperuser
+
+
+# 데이터베이스 변경사항 반영
+
+$ python manage.py makemigrations
+$ python manage.py migrate
