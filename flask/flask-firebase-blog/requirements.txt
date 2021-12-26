@@ -2,7 +2,7 @@ black==21.9b0
 click==8.0.1
 colorama==0.4.4
 flake8==3.9.2
-Flask==2.0.1
+Flask==2.0.2
 gcloud==0.17.0
 googleapis-common-protos==1.53.0
 httplib2==0.19.1
