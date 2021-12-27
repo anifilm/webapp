@@ -63,7 +63,7 @@ const MessageList = () => {
 
   return (
     <>
-      <MessageInput mutate={onCreate} />
+      {userId && <MessageInput mutate={onCreate} />}
       <ul className="messages">
         {messages.map((x) => (
           <MessageItem
