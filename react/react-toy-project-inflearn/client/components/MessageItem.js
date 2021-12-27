@@ -1,10 +1,11 @@
 import MessageInput from './MessageInput';
 
-const MessageItem = ({ id, userId, timestamp, text, onUpdate, onDelete, startEdit, isEditing, myId, user }) => {
+const MessageItem = ({ id, userId, timestamp, text, onUpdate, onDelete, startEdit, isEditing, myId }) => {
+  const user = 'test';
   return (
     <li className="messages__item">
       <h3>
-        {user.nickname}{' '}
+        {user}{' '}
         <sub>
           {new Date(timestamp).toLocaleString('ko-KR', {
             year: 'numeric',
