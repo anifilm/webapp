@@ -22,13 +22,6 @@ const MessageList = ({ startMesssages, users }) => {
   //const fetchMoreEl = useRef(null);
   //const intersecting = useInfiniteScroll(fetchMoreEl);
 
-  /*const onCreate = async (text) => {
-    const newMessage = await fetcher('post', '/messages', { text, userId });
-    if (!newMessage) throw Error('something wrong');
-    setMessages((messages) => {
-      return [newMessage, ...messages];
-    });
-  };*/
   const { mutate: onCreate } = useMutation(({ text }) => fetcher(CREATE_MESSAGE, { text, userId }), {
     onSuccess: ({ createMessage }) => {
       client.setQueryData(QueryKeys.MESSAGES, (old) => {
@@ -39,20 +32,6 @@ const MessageList = ({ startMesssages, users }) => {
     },
   });
 
-  /*const onUpdate = async (text, id) => {
-    const newMessage = await fetcher('put', `/messages/${id}`, { text, userId });
-    if (!newMessage) throw Error('something wrong');
-    setMessages((messages) => {
-      const targetIndex = messages.findIndex((message) => {
-        return message.id === id;
-      });
-      if (targetIndex < 0) return messages;
-      const newMessages = [...messages];
-      newMessages.splice(targetIndex, 1, newMessage);
-      return newMessages;
-    });
-    doneEdit();
-  };*/
   const { mutate: onUpdate } = useMutation(({ text, id }) => fetcher(UPDATE_MESSAGE, { text, id, userId }), {
     onSuccess: ({ updateMessage }) => {
       client.setQueriesData(QueryKeys.MESSAGES, (old) => {
@@ -68,18 +47,6 @@ const MessageList = ({ startMesssages, users }) => {
     },
   });
 
-  /*const onDelete = async (id) => {
-    const receivedId = await fetcher('delete', `/messages/${id}`, { params: { userId } });
-    setMessages((messages) => {
-      const targetIndex = messages.findIndex((message) => {
-        return message.id === receivedId + '';
-      });
-      if (targetIndex < 0) return messages;
-      const newMessages = [...messages];
-      newMessages.splice(targetIndex, 1);
-      return newMessages;
-    });
-  };*/
   const { mutate: onDelete } = useMutation(id => fetcher(DELETE_MESSAGE, { id, userId }), {
     onSuccess: ({ deleteMessage: deletedId }) => {
       client.setQueryData(QueryKeys.MESSAGES, (old) => {
@@ -98,16 +65,6 @@ const MessageList = ({ startMesssages, users }) => {
     setEditingId(null);
   }
 
-  /*const getMessages = async () => {
-    const newMessages = await fetcher('get', '/messages', { params: { cursor: messages[messages.length - 1]?.id || '' } });
-    if (newMessages.length === 0) {
-      setHasNext(false);
-      return;
-    }
-    setMessages((messages) => {
-      return [...messages, ...newMessages];
-    });
-  };*/
   const { data, error, isError } = useQuery(QueryKeys.MESSAGES, () => {
     return fetcher(GET_MESSAGES);
   });
