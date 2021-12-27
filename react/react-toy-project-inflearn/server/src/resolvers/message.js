@@ -27,8 +27,8 @@ const messageResolver = {
       if (!userId) throw Error('사용자가 없습니다.');
         const newMessage = {
           id: v4(),
-          userId: userId,
           text: text,
+          userId: userId,
           timestamp: Date.now(),
         };
       db.messages.unshift(newMessage);
