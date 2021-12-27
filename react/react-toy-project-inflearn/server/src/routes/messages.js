@@ -5,7 +5,7 @@ const getMessages = () => {
   return readDB('messages');
 };
 const setMessages = (data) => {
-  return writeDB('messages', data);
+  writeDB('messages', data);
 };
 
 const messagesRoute = [
@@ -41,16 +41,22 @@ const messagesRoute = [
     method: 'post',
     route: '/messages',
     handler: ({ body }, res) => {
-      const messages = getMessages();
-      const newMessage = {
-        id: v4(),
-        userId: body.userId,
-        text: body.text,
-        timestamp: Date.now(),
-      };
-      messages.unshift(newMessage);
-      setMessages(messages);
-      res.send(newMessage);
+      try {
+        if (!body.userId) throw Error('no userId');
+        const messages = getMessages();
+        const newMessage = {
+          id: v4(),
+          userId: body.userId,
+          text: body.text,
+          timestamp: Date.now(),
+        };
+        messages.unshift(newMessage);
+        setMessages(messages);
+        res.send(newMessage);
+      }
+      catch (err) {
+        res.status(500).send({ error: err });
+      }
     },
   },
   {
@@ -83,14 +89,14 @@ const messagesRoute = [
     // Delete Messages
     method: 'delete',
     route: '/messages/:id',
-    handler: (req, res) => {
+    handler: ({ params: { id }, query: { userId } }, res) => {
       try {
         const messages = getMessages();
         const targetIndex = messages.findIndex((message) => {
           return message.id === id;
         });
         if (targetIndex < 0) throw '메세지가 없습니다.';
-        if (messages[targetIndex].userId !== body.userId) throw '사용자가 다릅니다.';
+        if (messages[targetIndex].userId !== userId) throw '사용자가 다릅니다.';
 
         messages.splice(targetIndex, 1);
         setMessages(messages);

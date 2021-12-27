@@ -19,7 +19,7 @@ export const readDB = (target) => {
 
 export const writeDB = (target, data) => {
   try {
-    return fs.writeFileSync(filename[target], JSON.stringify(data));
+    return fs.writeFileSync(filenames[target], JSON.stringify(data));
   }
   catch (err) {
     console.error(err);

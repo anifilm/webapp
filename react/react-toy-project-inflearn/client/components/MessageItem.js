@@ -1,6 +1,6 @@
 import MessageInput from './MessageInput';
 
-const MessageItem = ({ id, userId, timestamp, text, onUpdate, onDelete, startEdit, isEditing }) => {
+const MessageItem = ({ id, userId, timestamp, text, onUpdate, onDelete, startEdit, isEditing, myId }) => {
   return (
     <li className="messages__item">
       <h3>
@@ -24,10 +24,12 @@ const MessageItem = ({ id, userId, timestamp, text, onUpdate, onDelete, startEdi
       ) : (
         <>
           {text}
-          <div className="messages__buttons">
-            <button onClick={startEdit}>수정</button>
-            <button onClick={onDelete}>삭제</button>
-          </div>
+          {myId === userId && (
+            <div className="messages__buttons">
+              <button onClick={startEdit}>수정</button>
+              <button onClick={onDelete}>삭제</button>
+            </div>
+          )}
         </>
       )}
     </li>
