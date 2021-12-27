@@ -47,8 +47,8 @@ const messagesRoute = [
         const messages = getMessages();
         const newMessage = {
           id: v4(),
-          userId: body.userId,
           text: body.text,
+          userId: body.userId,
           timestamp: Date.now(),
         };
         messages.unshift(newMessage);
