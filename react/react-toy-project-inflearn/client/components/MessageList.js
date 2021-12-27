@@ -6,11 +6,11 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import MessageItem from './MessageItem';
 import MessageInput from './MessageInput';
 
-const MessageList = () => {
+const MessageList = ({ startMesssages, users }) => {
   const { query } = useRouter();
   const userId = query.userId || query.userid || '';
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(startMesssages);
   const [editingId, setEditingId] = useState(null);
   const [hasNext, setHasNext] = useState(true);
 
@@ -85,6 +85,7 @@ const MessageList = () => {
             startEdit={() => setEditingId(x.id)}
             isEditing={editingId === x.id}
             myId={userId}
+            user={users[x.userId]}
           />
         ))}
       </ul>
