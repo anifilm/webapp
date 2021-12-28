@@ -48,16 +48,8 @@
               {% endif %}
             </div>
             <div class="user_name">
-              <div class="nick_name m_text">{{ post.author.profile.nickname }} {{ post.id }}</div>
-              <div class="country s_text">Seoul, South Korea</div>
-            </div>
-            <div> <!-- TODO: 삭제 임시 -->
-              <form action="{% url 'post:post_delete' post.pk %}" method="POST">
-                {% csrf_token %}
-                {% if user == post.author %}
-                <input type="submit" value="삭제" style="margin-left: 20px;">
-                {% endif %}
-              </form>
+              <div class="nick_name m_text">{{ post.author.profile.nickname }}</div>
+              <div class="country s_text" style="margin-top: 5px;">Seoul, South Korea</div>
             </div>
           </div>
           <div class="sprite_more_icon" data-name="more">
@@ -70,12 +62,14 @@
                 {% endif %}
               </li>
               {% if post.author == user %}
-              <li><a href="{% url 'post:post_edit' post.pk %}" class="post-edit">수정</a></li>
               <li>
-                <from action="{% url 'post:post_delete' post.pk %}" method="POST" class="post-delete-form">
+                <a href="{% url 'post:post_edit' post.pk %}" class="post-edit">수정</a>
+              </li>
+              <li>
+                <form action="{% url 'post:post_delete' post.pk %}" method="POST" class="post-delete-form">
                   {% csrf_token %}
                   <input type="submit" value="삭제" class="post-delete">
-                </from>
+                </form>
               </li>
               {% endif %}
             </ul>
@@ -179,15 +173,19 @@
           <div class="more">모두 보기</div>
         </header>
         <div class="scroll_inner">
-          <div class="thumb_user">
-            <div class="profile_thumb">
-              <img src="{% static 'images/thumb02.jpg' %}" alt="프로필이미지" />
+          {% if follow_post_list %}
+            {% for post in follow_post_list %}
+            <div class="thumb_user">
+              <div class="profile_thumb">
+                <img src="{{ post.photo.url }}" alt="포스트이미지" />
+              </div>
+              <div class="detail">
+                <div class="id">{{ post.content }}</div>
+                <div class="time">{{ post.updated_at|timesince }}</div>
+              </div>
             </div>
-            <div class="detail">
-              <div class="id">kind_tigerrrr</div>
-              <div class="time">1시간 전</div>
-            </div>
-          </div>
+            {% endfor %}
+          {% endif %}
       </article>
 
       <article class="recommend">
@@ -196,15 +194,17 @@
           <div class="more">모두 보기</div>
         </header>
 
+        {% for post in posts %}
         <div class="thumb_user">
           <div class="profile_thumb">
-            <img src="{% static 'images/thumb02.jpg' %}" alt="프로필이미지" />
+            <img src="{{ post.photo.url }}" alt="포스트이미지" />
           </div>
           <div class="detail">
-            <div class="id">kind_tigerrrr</div>
-            <div class="time">1시간 전</div>
+            <div class="id">{{ post.content }}</div>
+            <div class="time">{{ post.updated_at|timesince }}</div>
           </div>
         </div>
+        {% endfor %}
       </article>
     </div>
   </div>

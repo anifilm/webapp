@@ -36,7 +36,7 @@ class Profile(models.Model):
 
     @property
     def get_following(self):
-        return [i.to_user for i in self.follower_user.all()]
+        return [i.to_user for i in self.follow_user.all()]
 
     @property
     def follower_count(self):
