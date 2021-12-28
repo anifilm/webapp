@@ -50,7 +50,7 @@
           success: function (response) {
             //alert('성공');
             let bookmarkCount = document.querySelector(`#bookmark-count-${pk}`);
-            bookmarkCount.innerHTML = `북마크 ${response.bookmark_count}개`;
+            //bookmarkCount.innerHTML = `북마크 ${response.bookmark_count}개`;
           },
           error: function (request, status, error) {
             alert(`code: ${request.status}\nmessage: ${request.responseText}\nerror: ${error}`);

@@ -172,6 +172,16 @@ body {
 .contents .toggle_box > li input {
   border: none;
   font-size: inherit;
+  background: white;
+}
+.post-edit {
+  text-decoration: none;
+  color: black;
+  background: white;
+}
+.post-delete {
+  color: red;
+  background: white;
 }
 .contents .img_section {
   overflow: hidden;
