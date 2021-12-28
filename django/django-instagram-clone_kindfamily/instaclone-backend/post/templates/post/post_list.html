@@ -27,7 +27,9 @@
             <div> <!-- TODO: 삭제 임시 -->
               <form action="{% url 'post:post_delete' post.pk %}" method="POST">
                 {% csrf_token %}
+                {% if user == post.author %}
                 <input type="submit" value="삭제" style="margin-left: 20px;">
+                {% endif %}
               </form>
             </div>
           </div>
@@ -76,22 +78,37 @@
         </div>
 
         <div class="comment_container">
-          <div class="comment" id="comment-list-ajax-post37">
-            <div class="comment-detail">
-              <div class="nick_name m_text">dongdong2</div>
-              <div>강아지가 너무 귀여워요~!</div>
+          <div class="comment" id="comment-list-ajax-post{{post.id}}">
+            <div class="comment-detail" id="comment-post-author" style="margin-top: 8px;">
+              <div class="nick_name m_text">{{ post.author.profile.nickname }}</div>
+              <div>{{ post.content }}</div>
             </div>
+            {% for comment in post.comment_set.all %}
+            <div class="comment-detail" id="comment{{ comment.id }}" style="margin-top: 15px;">
+              <div class="nick_name m_text">{{ comment.author.profile.nickname }}</div>
+              <div>{{ comment.content }}</div>
+              {% if user == comment.author %}
+              <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px">
+              {% endif %}
+              <!--<div class="time">{{ comment.created_at|timesince }}</div>-->
+            </div>
+            {% endfor %}
           </div>
-          <div class="small_heart">
+          <!--<div class="small_heart">
             <div class="sprite_small_heart_icon_outline"></div>
-          </div>
+          </div>-->
         </div>
 
         <div class="timer">{{ post.updated_at|timesince }}</div>
 
-        <div class="comment_field" id="add-comment-post37">
+        <div class="comment_field" id="add-comment-post{{ post.id }}">
+          {% if user.is_authenticated %}
+          {{ comment_form }}
+          <div class="upload_btn m_text" name="{{ post.id }}" data-name="comment">게시</div>
+          {% else %}
           <input type="text" placeholder="댓글달기..." />
-          <div class="upload_btn m_text" data-name="comment">게시</div>
+          <div class="upload_btn m_text" name="{{ post.id }}" data-name="comment" onclick="alert('댓글을 작성하려면 로그인이 필요합니다.')">게시</div>
+          {% endif %}
         </div>
       </article>
       {% endfor %}

@@ -188,7 +188,7 @@ body {
 .contents .bottom_icons .left_icons {
   display: flex;
 }
-.contents .bottom_icons .left_icons > div {
+.contents .bottom_icons .left_icons > div > div {
   margin-right: 10px;
   cursor: pointer;
 }
