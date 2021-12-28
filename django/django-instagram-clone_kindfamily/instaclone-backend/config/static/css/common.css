@@ -40,9 +40,9 @@ body {
 }
 .sprite_more_icon {
   display: inline-block;
-  background: url('../images/background01.png') no-repeat -301px -218px;
-  width: 15px;
-  height: 3px;
+  background: url('../images/background01.png') no-repeat -299px -209px;
+  width: 19px;
+  height: 19px;
 }
 .sprite_bubble_icon {
   display: inline-block;
