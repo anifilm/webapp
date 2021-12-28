@@ -113,6 +113,32 @@
           }
         });
       }
+      else if (elem.matches('[data-name="follow"]')) {
+        //console.log('팔로우');
+        let pk = elem.getAttribute('name');
+
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'accounts:follow' %}",
+          data: {
+            'pk': pk,
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+          },
+          dataType: 'json',
+          success: function (response) {
+            //alert('성공');
+            if (response.status) {
+              document.querySelector(`input.follow[name="${pk}"]`).value = '팔로잉';
+            }
+            else {
+              document.querySelector(`input.follow[name="${pk}"]`).value = '팔로우';
+            }
+          },
+          error: function (request, status, error) {
+            alert(`code: ${request.status}\nmessage: ${request.responseText}\nerror: ${error}`);
+          }
+        });
+      }
       elem.classList.toggle('on');
     }
     delegation.addEventListener('click', delegationFunc);

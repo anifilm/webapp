@@ -6,6 +6,33 @@
 {% endblock %}
 
 {% block content %}
+<!-- hidden -->
+{% if user.profile.get_following %}
+<div class="hidden_menu">
+  <div class="scroll_inner">
+    {% for following in user.profile.get_following %}
+    <div class="user">
+      <div class="thumb_img">
+        {% if following.picture %}
+        <img src="{{ following.picture.url }}" alt="{{ following.nickname }}의 프로필이미지"></div>
+        {% else %}
+        <img src="{% static 'images/thumb.jpg' %}" alt="{{ following.nickname }}의 프로필이미지"></div>
+        {% endif %}
+      <div class="id">{{ following.nickname }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+<div class="hidden_menu">
+  <div class="scroll_inner">
+    <div class="notic" style="margin: 0 auto;">
+      팔로우한 사용자가 없습니다. 팔로우 해주세요.
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <section id="main_container">
   <div class="b_inner">
     <div class="contents_box">
@@ -17,7 +44,7 @@
               {% if post.author.profile.picture %} <!-- 포스트 저자의 프로필이미지가 있다면 -->
               <img src="{{ post.author.profile.picture.url }}" alt="프로필이미지" />
               {% else %} <!-- 프로필 사진이 없다면 기본 이미지 사용 -->
-              <img src="{% static 'images/thumb.jpeg' %}" alt="프로필이미지" />
+              <img src="{% static 'images/thumb.jpg' %}" alt="프로필이미지" />
               {% endif %}
             </div>
             <div class="user_name">
@@ -35,9 +62,22 @@
           </div>
           <div class="sprite_more_icon" data-name="more">
             <ul class="toggle_box">
-              <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-               <li>수정</li>
-               <li>삭제</li>
+              <li>
+                {% if user.profile in post.author.profile.get_follower %}
+                <input type="submit" value="팔로잉" class="follow" data-name="follow" name="{{ post.author.profile.id }}">
+                {% else %}
+                <input type="submit" value="팔로우" class="follow" data-name="follow" name="{{ post.author.profile.id }}">
+                {% endif %}
+              </li>
+              {% if post.author == user %}
+              <li><a href="{% url 'post:post_edit' post.pk %}" class="post-edit">수정</a></li>
+              <li>
+                <from action="{% url 'post:post_delete' post.pk %}" method="POST" class="post-delete-form">
+                  {% csrf_token %}
+                  <input type="submit" value="삭제" class="post-delete">
+                </from>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </header>
@@ -88,7 +128,7 @@
               <div class="nick_name m_text">{{ comment.author.profile.nickname }}</div>
               <div>{{ comment.content }}</div>
               {% if user == comment.author %}
-              <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px">
+              <!--<input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px">-->
               {% endif %}
               <!--<div class="time">{{ comment.created_at|timesince }}</div>-->
             </div>
@@ -122,7 +162,7 @@
           {% if user_profile and user_profile.picture %}
           <img src="{{ user_profile.picture.url }}" alt="프로필이미지" />
           {% else %}
-          <img src="{% static 'images/thumb.jpeg' %}" alt="프로필이미지" />
+          <img src="{% static 'images/thumb.jpg' %}" alt="프로필이미지" />
           {% endif %}
         </div>
         <div class="detail">
@@ -141,7 +181,7 @@
         <div class="scroll_inner">
           <div class="thumb_user">
             <div class="profile_thumb">
-              <img src="./images/thumb02.jpg" alt="프로필이미지" />
+              <img src="{% static 'images/thumb02.jpg' %}" alt="프로필이미지" />
             </div>
             <div class="detail">
               <div class="id">kind_tigerrrr</div>
@@ -158,7 +198,7 @@
 
         <div class="thumb_user">
           <div class="profile_thumb">
-            <img src="./images/thumb02.jpg" alt="프로필이미지" />
+            <img src="{% static 'images/thumb02.jpg' %}" alt="프로필이미지" />
           </div>
           <div class="detail">
             <div class="id">kind_tigerrrr</div>
