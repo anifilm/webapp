@@ -1,8 +1,8 @@
 import jsonServer from 'json-server';
 import cors from 'cors';
 
-import messagesRoute from './routes/messages.js';
-import usersRoute from './routes/users.js';
+//import messagesRoute from './routes/messages.js';
+//import usersRoute from './routes/users.js';
 
 const app = jsonServer.create();
 const router = jsonServer.router('./src/db.json');
@@ -16,10 +16,10 @@ app.use(
 
 app.use(jsonServer.bodyParser);
 
-const routes = [...messagesRoute, ...usersRoute];
-routes.forEach(({ method, route, handler }) => {
-  app[method](route, handler);
-});
+//const routes = [...messagesRoute, ...usersRoute];
+//routes.forEach(({ method, route, handler }) => {
+//  app[method](route, handler);
+//});
 
 app.use(router);
 
