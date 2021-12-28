@@ -1,9 +1,9 @@
 import { v4 } from 'uuid';
-import { writeDB } from '../dbController.js';
+import db from '../dbController.js';
 
-const setMessages = (data) => {
-  writeDB('messages', data);
-};
+//const setMessages = (data) => {
+//  writeDB('messages', data);
+//};
 
 /*
  * parent: parent 객체. 거의 사용X
@@ -12,18 +12,18 @@ const setMessages = (data) => {
  */
 const messageResolver = {
   Query: {
-    messages: (parent, { cursor='' }, { db }) => {
-      const fromIndex = db.messages.findIndex((message) => message.id === cursor) + 1;
-      return db.messages?.slice(fromIndex, fromIndex + 15) || [];
+    messages: (parent, { cursor='' }, { models }) => {
+      const fromIndex = models.messages.findIndex((message) => message.id === cursor) + 1;
+      return models.messages?.slice(fromIndex, fromIndex + 15) || [];
     },
-    message: (parent, { id='' }, { db }) => {
-      return db.messages.find((message) => {
+    message: (parent, { id='' }, { models }) => {
+      return models.messages.find((message) => {
         return message.id === id;
       });
     },
   },
   Mutation: {
-    createMessage: (parent, { text, userId }, { db }) => {
+    createMessage: (parent, { text, userId }, { models }) => {
       if (!userId) throw Error('사용자가 없습니다.');
         const newMessage = {
           id: v4(),
@@ -31,34 +31,34 @@ const messageResolver = {
           userId: userId,
           timestamp: Date.now(),
         };
-      db.messages.unshift(newMessage);
-      setMessages(db.messages);
+      models.messages.unshift(newMessage);
+      db.write();
       return newMessage;
     },
-    updateMessage: (parent, { id, text, userId }, { db }) => {
-      const targetIndex = db.messages.findIndex((message) => {
+    updateMessage: (parent, { id, text, userId }, { models }) => {
+      const targetIndex = models.messages.findIndex((message) => {
         return message.id === id;
       });
       if (targetIndex < 0) throw Error('메세지가 없습니다.');
-      if (db.messages[targetIndex].userId !== userId) throw Error('사용자가 다릅니다.');
+      if (models.messages[targetIndex].userId !== userId) throw Error('사용자가 다릅니다.');
 
       const newMessage = {
-        ...db.messages[targetIndex],
+        ...models.messages[targetIndex],
         text: text,
       };
-      db.messages.splice(targetIndex, 1, newMessage);
-      setMessages(db.messages);
+      models.messages.splice(targetIndex, 1, newMessage);
+      db.write();
       return newMessage;
     },
-    deleteMessage: (parent, { id, userId }, { db }) => {
-      const targetIndex = db.messages.findIndex((message) => {
+    deleteMessage: (parent, { id, userId }, { models }) => {
+      const targetIndex = models.messages.findIndex((message) => {
         return message.id === id;
       });
       if (targetIndex < 0) throw Error('메세지가 없습니다.');
-      if (db.messages[targetIndex].userId !== userId) throw Error('사용자가 다릅니다.');
+      if (models.messages[targetIndex].userId !== userId) throw Error('사용자가 다릅니다.');
 
-      db.messages.splice(targetIndex, 1);
-      setMessages(db.messages);
+      models.messages.splice(targetIndex, 1);
+      db.write();
       return id;
     },
   },
