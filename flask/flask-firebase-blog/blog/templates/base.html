@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Flask Blog</title>
+    <title>Flask Blog with Firebase</title>
   </head>
   <body>
-    <header></header>
+    <header>
+      {% if session["id"] %}
+      {{ session["username"]}} (<a href="{{ url_for('user_logout') }}">로그아웃</a>)
+      {% else %}
+      <a href="{{ url_for('user_signin') }}">회원가입</a>
+      <a href="{{ url_for('user_login') }}">로그인</a>
+      {% endif %}
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          alert("{{ messages[-1] }}");
+        </script>
+      {% endif %}
+    {% endwith %}
 
     {% block content %}
     {% endblock %}

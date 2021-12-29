@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>사용자 로그인</h1>
+<form action="{{ url_for('user_login') }}" method="POST">
+  <label for="email">이메일</label>
+  <input type="email" name="email" id="email"><br>
+  <label for="password">비밀번호</label>
+  <input type="password" name="password" id="pasword"><br>
+  <button type="submit">로그인</button>
+</form>
+{% endblock %}

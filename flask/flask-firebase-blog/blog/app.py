@@ -1,7 +1,10 @@
-from flask import Flask, request, render_template, redirect, url_for
-from DB_hander import DBModule
+from flask import Flask, request, render_template, redirect, url_for, flash, session
+from DBHander import DBModule
+
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "dev"
+
 DB = DBModule()
 
 
@@ -12,32 +15,104 @@ def index():
 
 @app.route("/list")
 def post_list():
-    pass
+    return render_template("index.html")
 
 
 @app.route("/post/<int:pid>")
 def post_detail(pid):
-    pass
+    return render_template("index.html")
 
 
 @app.route("/write", methods=["GET", "POST"])
 def post_write():
-    pass
+    if request.method == "POST":
+        pass
+    else:
+        return render_template("signin.html")
 
 
-@app.route("/write_done", methods=["POST"])
-def post_write_done():
-    pass
-
-
-@app.route("/signin")
+@app.route("/signin", methods=["GET", "POST"])
 def user_signin():
-    pass
+    if request.method == "POST":
+        email = request.form.get("email")
+        username = request.form.get("username")
+        password = request.form.get("password")
+        password_re = request.form.get("password_re")
+
+        if email == "" or username == "" or password == "" or password_re == "":
+            flash("입력되지 않은 값이 있습니다.")
+            return render_template("signin.html")
+        if password != password_re:
+            flash("비밀번호가 일치하지 않습니다.")
+            return render_template("signin.html")
+
+        # 이메일 중복이 있는지 DB 데이터를 가져와 검증
+        if not DB.email_verification(email):
+            flash("이미 가입된 이메일 주소입니다.")
+            return render_template("signin.html")
+
+        # 사용자명 중복이 있는지 DB 데이터를 가져와 검증
+        if not DB.username_verification(username):
+            flash("이미 사용중인 사용자명 입니다.")
+            return render_template("signin.html")
+
+        # 회원 정보 DB에 저장
+        DB.add_user(email, username, password)
+
+        flash("회원 가입이 완료되었습니다.")
+        return redirect(url_for("user_login"))
+    else:
+        if "id" not in session:
+            return render_template("signin.html")
+        else:
+            flash("이미 로그인 된 사용자입니다.")
+            return redirect(url_for("post_list"))
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def user_login():
-    pass
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        if email == "":
+            flash("이메일 주소를 입력하세요.")
+            return redirect(url_for("user_login"))
+        if password == "":
+            flash("비밀번호를 입력하세요.")
+            return redirect(url_for("user_login"))
+
+        # DB에서 회원 정보 가져옴
+        result = DB.get_user_info(email)
+        if result:
+            if password in result[1].values():
+                #flash("로그인되었습니다.")
+                session["id"] = result[0]
+                session["email"] = result[1]["email"]
+                session["username"] = result[1]["username"]
+                session.permanent = True
+            else:
+                flash("비밀번호가 일치하지 않습니다.")
+                return redirect(url_for("user_login"))
+        else:
+            flash("등록된 회원 정보를 찾을 수 없습니다.")
+            return redirect(url_for("user_login"))
+
+        return redirect(url_for("post_list"))
+    else:
+        if "id" not in session:
+            return render_template("login.html")
+        else:
+            flash("이미 로그인 된 사용자입니다.")
+            return redirect(url_for("post_list"))
+
+
+@app.route("/logout")
+def user_logout():
+    session.pop("id", None)
+    session.pop("email", None)
+    session.pop("username", None)
+    return redirect(url_for("post_list"))
 
 
 @app.route("/user/<uid>")
