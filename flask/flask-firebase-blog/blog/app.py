@@ -1,4 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, session
+
+import time
+from datetime import datetime
+
 from DBHander import DBModule
 
 
@@ -8,6 +12,16 @@ app.config["SECRET_KEY"] = "dev"
 DB = DBModule()
 
 
+@app.template_filter("formatdatetime")
+def format_datetime(value):
+    if value is None:
+        return ""
+    now_timestamp = time.time()
+    offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
+    result = datetime.fromtimestamp(int(value / 1000)) + offset
+    return result.strftime("%Y-%m-%d %H:%M:%S")
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -15,20 +29,36 @@ def index():
 
 @app.route("/list")
 def post_list():
-    return render_template("index.html")
+    # 작성된 포스트 목록 가져오기
+    posts = DB.post_list()
+    return render_template("post_list.html", posts=posts)
 
 
-@app.route("/post/<int:pid>")
+@app.route("/post/<pid>")
 def post_detail(pid):
-    return render_template("index.html")
+    # 포스트 상세 정보 가져오기
+    post = DB.post_detail(pid)
+    return render_template("post_detail.html", post=post)
 
 
 @app.route("/write", methods=["GET", "POST"])
 def post_write():
     if request.method == "POST":
-        pass
+        writer_id = session.get("id")
+        username = request.form.get("username")
+        title = request.form.get("title")
+        content = request.form.get("content")
+
+        # 새로운 포스트 DB에 저장
+        DB.post_write(writer_id, username, title, content)
+
+        return redirect(url_for("post_list"))
     else:
-        return render_template("signin.html")
+        if session.get("id") is not None:
+            return render_template("post_write.html")
+        else:
+            flash("로그인 후 작성할 수 있습니다.")
+            return redirect(url_for("user_login"))
 
 
 @app.route("/signin", methods=["GET", "POST"])
@@ -62,7 +92,7 @@ def user_signin():
         flash("회원 가입이 완료되었습니다.")
         return redirect(url_for("user_login"))
     else:
-        if "id" not in session:
+        if session.get("id") is None:
             return render_template("signin.html")
         else:
             flash("이미 로그인 된 사용자입니다.")
@@ -100,7 +130,7 @@ def user_login():
 
         return redirect(url_for("post_list"))
     else:
-        if "id" not in session:
+        if session.get("id") is None:
             return render_template("login.html")
         else:
             flash("이미 로그인 된 사용자입니다.")

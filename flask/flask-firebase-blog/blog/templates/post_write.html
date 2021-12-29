@@ -1,5 +1,15 @@
 {% include "base.html" %}
 
 {% block content %}
-<h1>포스트 작성 페이지</h1>
+<h1>새로운 포스트 작성</h1>
+<form action="{{ url_for('post_write') }}" method="POST">
+  <label for="username">작성자</label>
+  <input type="text" name="username" id="username" value="{{ session['username'] }}" readonly><br>
+  <label for="title">제목</label>
+  <input type="text" name="title" id="title" required><br>
+  <label for="content">내용</label>
+  <textarea name="content" id="content" cols="30" rows="10" required></textarea><br>
+  <button type="submit">작성 완료</button>
+</form>
+<a href="{{ url_for('post_list') }}">뒤로가기</a>
 {% endblock %}

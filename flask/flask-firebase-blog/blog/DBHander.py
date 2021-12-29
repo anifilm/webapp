@@ -16,13 +16,30 @@ class DBModule:
         print("initialize firebase success...")
 
     def post_list(self):
-        pass
+        posts = []
+        get_posts = self.db.child("posts").get()
+        for post in get_posts.each():
+            post.val()["id"] = post.key()
+            posts.append(post.val())
+        posts.reverse()
+        return posts
 
     def post_detail(self, pid):
-        pass
+        # TODO 해당 글의 view 카운트 증가
+        get_post = self.db.child("posts").get().val()[pid]
+        return get_post
 
-    def post_write(self, user, content):
-        pass
+    def post_write(self, writer_id, username, title, content):
+        reg_date = round(datetime.utcnow().timestamp() * 1000)
+        post_data = {
+            "writer_id": writer_id,
+            "username": username,
+            "title": title,
+            "content": content,
+            "created_at": reg_date,
+            "view": 0,
+        }
+        self.db.child("posts").push(post_data)
 
     # 회원가입 - 이메일 중복 검사
     def email_verification(self, email):

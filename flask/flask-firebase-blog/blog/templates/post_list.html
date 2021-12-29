@@ -2,4 +2,13 @@
 
 {% block content %}
 <h1>포스트 목록 페이지</h1>
+{% if posts %}
+  {% for post in posts %}
+  <h3><a href="{{ url_for('post_detail', pid=post.id) }}">{{ post.title }}</a></h3>
+  <p>{{ post.username }} {{ post.created_at|formatdatetime }} 조회수 {{ post.view }}</p>
+  {% endfor %}
+{% else %}
+<h2>등록된 포스트가 없습니다.</h2>
+{% endif %}
+<a href="{{ url_for('post_write') }}">새로운 포스트 작성</a>
 {% endblock %}
