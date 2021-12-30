@@ -27,8 +27,10 @@ class DBModule:
         return posts
 
     def post_detail(self, pid):
-        # TODO 해당 글의 view 카운트 증가
         get_post = self.db.child("posts").get().val()[pid]
+        # 해당 글의 view 카운트 증가
+        get_post["view"] += 1
+        self.db.child("posts").child(pid).update({"view": get_post.get("view")})
         return get_post
 
     def post_write(self, writer_id, username, title, content):
@@ -74,9 +76,19 @@ class DBModule:
 
     # 사용자 로그인 - DB에서 해당 email의 사용자 정보 반환
     def get_user_info(self, email):
-        # TODO: 로그인시 로그인 시간과 로그인카운트 증가 DB 업데이트 필요
         users = self.db.child("users").get()
         for user in users.each():
             if email in user.val().values():
                 return user.key(), user.val()
         return None
+
+    # 사용자 로그인 - 로그인 시간 및 로그인 횟수 DB 업데이트
+    def update_user_login_info(self, uid):
+        logintime = round(datetime.utcnow().timestamp() * 1000)
+        user = self.db.child("users").get().val()[uid]
+        # 해당 사용자의 logincount 카운트 증가
+        user["logincount"] += 1
+        self.db.child("users").child(uid).update({
+            "logintime": logintime,
+            "logincount": user.get("logincount"),
+        })
