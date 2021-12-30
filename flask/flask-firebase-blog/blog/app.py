@@ -117,6 +117,7 @@ def user_login():
         if result:
             if password in result[1].values():
                 #flash("로그인되었습니다.")
+                DB.update_user_login_info(result[0])
                 session["id"] = result[0]
                 session["email"] = result[1]["email"]
                 session["username"] = result[1]["username"]
