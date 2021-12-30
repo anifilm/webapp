@@ -16,6 +16,8 @@ class DBModule:
         print("initialize firebase success...")
 
     def post_list(self):
+        #get_post = self.db.child("posts").get().val()
+        #return get_post
         posts = []
         get_posts = self.db.child("posts").get()
         for post in get_posts.each():
@@ -72,6 +74,7 @@ class DBModule:
 
     # 사용자 로그인 - DB에서 해당 email의 사용자 정보 반환
     def get_user_info(self, email):
+        # TODO: 로그인시 로그인 시간과 로그인카운트 증가 DB 업데이트 필요
         users = self.db.child("users").get()
         for user in users.each():
             if email in user.val().values():
