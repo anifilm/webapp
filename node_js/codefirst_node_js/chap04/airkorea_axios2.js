@@ -61,7 +61,7 @@ app.get('/airkorea', async (req, res) => {
     }
 
     res.send(`관측 지역: ${airItem.location} / 관측 시간: ${airItem.time} <br>
-          미세먼지 ${badAir[0]} 초미세먼지 ${badAir[1]} 입니다.`);
+              미세먼지 ${badAir[0]} 초미세먼지 ${badAir[1]} 입니다.`);
   } catch (error) {
     console.log(error);
   }
