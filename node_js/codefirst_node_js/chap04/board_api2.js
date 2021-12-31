@@ -2,7 +2,6 @@ const express = require('express');
 const morgan = require('morgan');
 const url = require('url');
 const uuidAPIkey = require('uuid-apikey');
-const cors = require('cors');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -17,7 +16,6 @@ app.set('port', port);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // 모든 라우터에 cors 적용
 
 // 테스트를 위한 API키
 const key = {

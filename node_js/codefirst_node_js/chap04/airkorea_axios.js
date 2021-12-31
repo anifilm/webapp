@@ -34,7 +34,8 @@ app.get('/airkorea', async (req, res) => {
   try {
     const result = await axios.get(url);
     res.json(result.data);
-  } catch (error) {
+  }
+  catch (error) {
     console.log(error);
   }
 });

@@ -54,7 +54,8 @@ app.get('/naver/news', (req, res) => {
         newsJson.pubDate.push(newsItem[i].pubDate);
       }
       res.json(newsJson);
-    } else {
+    }
+    else {
       res.status(response.statusCode).end();
       console.log('error = ' + response.statusCode);
     }

@@ -1,8 +1,5 @@
 const express = require('express');
 const morgan = require('morgan');
-const url = require('url');
-const uuidAPIkey = require('uuid-apikey');
-const cors = require('cors');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -17,13 +14,6 @@ app.set('port', port);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // 모든 라우터에 cors 적용
-
-// 테스트를 위한 API키
-const key = {
-  apiKey: process.env.apiKey,
-  uuid: process.env.uuid,
-};
 
 // 테스트를 위한 게시글 데이터
 let boardList = [
@@ -40,12 +30,6 @@ let boardList = [
     title: '안녕하세요. 로드북 입니다.',
     content: '백견불여일타 시리즈 많이 사랑해주세요.',
     date: '2021-12-31T03:14:05.483Z',
-  },
-  {
-    id: '3',
-    userId: '김현정',
-    title: '벌써 연말이네요.',
-    content: '이번 년도는 특히 코로나 때문인지 시간이 순식간에 지나갔습니다. 앞으로...',
   },
 ];
 let numOfBoard = boardList.length;
@@ -104,35 +88,6 @@ app.delete('/board/:id', (req, res) => {
   boardList.splice(idx, 1);
 
   res.redirect('/board');
-});
-
-// 게시글 검색 API using uuid-key
-app.get('/board/:apikey/:type', (req, res) => {
-  let { type, apikey } = req.params;
-  const queryData = url.parse(req.url, true).query;
-
-  if (uuidAPIkey.isAPIKey(apikey) && uuidAPIkey.check(apikey, key.uuid)) {
-    if (type === 'search') {
-      const keyword = queryData.keyword;
-      const result = boardList.filter((e) => {
-        return e.title.includes(keyword);
-      });
-      res.send(result);
-    }
-    else if (type === 'user') {
-      const userId = queryData.userId;
-      const result = boardList.filter((e) => {
-        return e.userId === userId;
-      });
-      res.send(result);
-    }
-    else {
-      res.send('wrong URL');
-    }
-  }
-  else {
-    res.send('wrong API Key');
-  }
 });
 
 app.listen(port, () => {

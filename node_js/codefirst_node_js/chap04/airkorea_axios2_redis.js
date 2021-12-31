@@ -65,17 +65,21 @@ app.get('/airkorea', async (req, res) => {
         // pm10은 미세먼지 수치
         if (airItem.pm10 <= 30) {
           badAir.push('좋음😀');
-        } else if (airItem.pm10 > 30 && airItem.pm10 <= 80) {
+        }
+        else if (airItem.pm10 > 30 && airItem.pm10 <= 80) {
           badAir.push('보통😐');
-        } else {
+        }
+        else {
           badAir.push('나쁨😡');
         }
         //pm25는 초미세먼지 수치
         if (airItem.pm25 <= 15) {
           badAir.push('좋음😀');
-        } else if (airItem.pm25 > 15 && airItem.pm25 <= 35) {
+        }
+        else if (airItem.pm25 > 15 && airItem.pm25 <= 35) {
           badAir.push('보통😐');
-        } else {
+        }
+        else {
           badAir.push('나쁨😡');
         }
 
@@ -89,7 +93,8 @@ app.get('/airkorea', async (req, res) => {
 
         res.send(`관측 지역: ${airItem.location} / 관측 시간: ${airItem.time} <br>
                   미세먼지 ${badAir[0]} 초미세먼지 ${badAir[1]} 입니다.`);
-      } catch (error) {
+      }
+      catch (error) {
         console.log(error);
       }
     }
