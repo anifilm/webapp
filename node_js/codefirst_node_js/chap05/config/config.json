@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "lcy0200",
+    "database": "roadbook_nodejs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "lcy0200",
+    "database": "roadbook_nodejs_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "lcy0200",
+    "database": "roadbook_nodejs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

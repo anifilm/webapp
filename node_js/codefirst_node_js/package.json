@@ -19,8 +19,11 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
     "redis": "^3.1.2",
     "request": "^2.88.2",
+    "sequelize": "^6.12.4",
+    "sequelize-cli": "^6.3.0",
     "uuid-apikey": "^1.5.3"
   },
   "devDependencies": {
