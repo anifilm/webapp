@@ -1,20 +1,15 @@
 // docker redis-server 설정과 사용 연습
 const redis = require('redis');
 
-const client = redis.createClient({
-  host: 'localhost',
-  port: 6379,
+const client = redis.createClient(6379, 'localhost');
+
+client.on('error', function (err) {
+  console.log('Error ' + err);
 });
 
-client.on('error', (err) => {
-  console.log('Error occured while connecting or accessing redis server');
-});
+client.set('hello', 'Node.js');
 
-if (!client.get('customer_name', redis.print)) {
-  //create a new record
-  client.set('customer_name', 'John Doe', redis.print);
-  console.log('Writing Property : customer_name');
-} else {
-  let val = client.get('customer_name', redis.print);
-  console.log(`Reading property : customer_name - ${val}`);
-}
+client.get('hello', function (err, val) {
+  console.log(val);
+  client.quit();
+});
