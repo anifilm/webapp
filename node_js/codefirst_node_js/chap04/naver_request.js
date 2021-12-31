@@ -2,10 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const request = require('request');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express();
 
 // 포트 설정
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 app.set('port', port);
 
 // 공통 미들웨어
@@ -15,11 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우팅 설정
 app.get('/naver/news', (req, res) => {
-  const client_id = '';
-  const client_secret = '';
-  const api_url = `https://openapi.naver.com/v1/search/blog?query=${encodeURI(
-    '코스피',
-  )}`;
+  const client_id = process.env.naverClientId;
+  const client_secret = process.env.naverClientSecret;
+  const api_url = `https://openapi.naver.com/v1/search/blog?query=${encodeURI('코스피')}`;
   const option = {};
   const options = {
     url: api_url,
@@ -33,8 +34,8 @@ app.get('/naver/news', (req, res) => {
   request.get(options, (error, response, body) => {
     if (!error && response.statusCode === 200) {
       let newsItem = JSON.parse(body).items;
-      // items - title, link, description, pubDate
 
+      // items - title, link, description, pubDate
       const newsJson = {
         title: [],
         link: [],

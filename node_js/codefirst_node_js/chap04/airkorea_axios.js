@@ -2,10 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const axios = require('axios');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express();
 
 // 포트 설정
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 app.set('port', port);
 
 // 공통 미들웨어
@@ -15,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우팅 설정
 app.get('/airkorea', async (req, res) => {
-  const serviceKey = '';
+  const serviceKey = process.env.airServiceKey;
   const airUrl = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?';
 
   let params = encodeURI('serviceKey') + '=' + serviceKey;
