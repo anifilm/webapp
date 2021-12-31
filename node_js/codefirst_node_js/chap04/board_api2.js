@@ -48,7 +48,7 @@ let boardList = [
 ];
 let numOfBoard = boardList.length;
 
-// 라우팅 설정
+// 라우터 설정
 app.get('/', (req, res) => {
   res.send('This is api.js');
 });

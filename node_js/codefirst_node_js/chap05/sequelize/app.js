@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const models = require('./models');
+
 const app = express();
 
 // 포트 설정
@@ -15,9 +17,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const models = require('./models');
-
-// 라우팅 설정
+// 라우터 설정
 app.get('/', (req, res, next) => {
   models.newCustomer.findAll()
     .then((customers) => {

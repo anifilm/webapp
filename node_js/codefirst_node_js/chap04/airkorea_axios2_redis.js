@@ -24,7 +24,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 라우팅 설정
+// 라우터 설정
 app.get('/airkorea', async (req, res) => {
   await client.lrange('airItems', 0, -1, async (err, cachedItems) => {
     if (err) throw err;

@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 라우팅 설정
+// 라우터 설정
 app.get('/naver/news', (req, res) => {
   const client_id = process.env.naverClientId;
   const client_secret = process.env.naverClientSecret;

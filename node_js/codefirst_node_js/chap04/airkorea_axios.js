@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 라우팅 설정
+// 라우터 설정
 app.get('/airkorea', async (req, res) => {
   const serviceKey = process.env.airServiceKey;
   const airUrl = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?';

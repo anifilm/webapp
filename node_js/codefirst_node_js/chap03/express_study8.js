@@ -28,7 +28,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 라우팅 설정
+// 라우터 설정
 app.get('/', (req, res) => {
   let output = '';
   if (req.session.name) {
