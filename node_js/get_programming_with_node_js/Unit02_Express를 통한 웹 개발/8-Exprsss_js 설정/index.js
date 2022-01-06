@@ -6,9 +6,6 @@ app
   .get('/', (req, res) => {
     res.send('Hello, Universe!');
   })
-  .post('/contact', (req, res) => {
-    res.send('Contact information submitted successfully.');
-  })
   .listen(port, () => {
     console.log(
       `The Express.js server has started and is listening on port number: ${port}`,

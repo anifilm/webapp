@@ -4,10 +4,11 @@ const port = 3000,
 
 app
   .get('/', (req, res) => {
+    console.log(req.params);
+    console.log(req.body);
+    console.log(req.url);
+    console.log(req.query);
     res.send('Hello, Universe!');
-  })
-  .post('/contact', (req, res) => {
-    res.send('Contact information submitted successfully.');
   })
   .listen(port, () => {
     console.log(
