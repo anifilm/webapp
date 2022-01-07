@@ -1,7 +1,13 @@
 const port = 3000,
   express = require('express'),
+  path = require('path'),
   app = express(),
-  homeController = require("./controllers/homeController");
+  homeController = require('./controllers/homeController'),
+  hbs = require('hbs');
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -21,12 +27,9 @@ app.post('/', (req, res) => {
   res.send({ body: req.body, msg: 'POST Successful!' });
 });
 
-app.post('/contact', (req, res) => {
-  res.send('Contact information submitted successfully.');
-});
-
+app.get('/name', homeController.respondWithName);
 app.get('/items/:vegetable', homeController.sendReqParam);
 
 app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
