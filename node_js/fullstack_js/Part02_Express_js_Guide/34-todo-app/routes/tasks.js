@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
   name: String,
-  createTime: { type: Date, default: Date.now  },
+  createTime: { type: Date, default: Date.now },
   completed: Boolean,
 });
 
@@ -19,6 +19,7 @@ const list = function (req, res, next) {
     res.render('tasks', {
       title: 'Todo List',
       tasks: tasks || [],
+      csrfToken: req.csrfToken(),
     });
   });
 };
@@ -40,43 +41,53 @@ const add = function (req, res, next) {
 };
 
 const markAllCompleted = function (req, res, next) {
+  console.log('markAllCompleted');
   if (!req.body.all_done || req.body.all_done !== 'true') return next();
-  req.db.tasks.update({
-    completed: false
-  }, {$set: {
-    completeTime: new Date(),
-    completed: true
-  }}, {multi: true}, function (error, count){
-    if (error) return next(error);
-    console.info('Marked %s task(s) completed.', count);
-    res.redirect('/tasks');
-  })
+  Task.update({ completed: false },
+    { $set: {
+      completeTime: new Date(),
+      completed: true,
+    }},
+    { multi: true }, function (error, count) {
+      if (error) return next(error);
+      //console.info('Marked %s task(s) completed.', count);
+      res.redirect('/tasks');
+    },
+  );
 };
 
 const completed = function (req, res, next) {
   Task.find({ completed: 'true' }, function (error, tasks) {
+    if (error) return next(error);
     res.render('tasks_completed', {
       title: 'Completed',
       tasks: tasks || [],
+      csrfToken: req.csrfToken(),
     });
   });
 };
 
 const markCompleted = function (req, res, next) {
   if (!req.body.completed) return next(new Error('Param is missing.'));
-  var completed = req.body.completed === 'true';
-  req.db.tasks.updateById(req.task._id, {$set: {completeTime: completed ? new Date() : null, completed: completed}}, function(error, count) {
-    if (error) return next(error);
-    if (count !==1) return next(new Error('Something went wrong.'));
-    console.info('Marked task %s with id=%s completed.', req.task.name, req.task._id);
-    res.redirect('/tasks');
-  })
+  let completed = req.body.completed === 'true';
+  Task.update({ _id: req.body.id },
+    { $set: {
+      completeTime: completed ? new Date() : null,
+      completed: completed,
+    }},
+    function (error, count) {
+      if (error) return next(error);
+      //if (count !== 1) return next(new Error('Something went wrong.'));
+      //console.info('Marked task %s with id=%s completed.', req.task.name, req.task._id);
+      res.redirect('/tasks');
+    },
+  );
 };
 
 const del = function (req, res, next) {
-  Task.remove(req.task._id, function (error, count) {
+  Task.deleteOne({ _id: req.params.task_id }, function (error, count) {
     if (error) return next(error);
-    //if (count !==1) return next(new Error('Something went wrong.'));
+    //if (count !== 1) return next(new Error('Something went wrong.'));
     //console.info('Deleted task %s with id=%s completed.', req.task.name, req.task._id);
     res.status(204).send();
   });

@@ -17,7 +17,7 @@ $(document).ready(function () {
       type: 'DELETE',
       url: '/tasks/' + $target.attr('data-task-id'),
       data: {
-        _csrf: $target.attr('data-csrf'),
+        'csrf-token': $target.attr('data-csrf'),
       },
       success: function (response) {
         $target.parent().parent().remove();

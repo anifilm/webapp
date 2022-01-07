@@ -26,6 +26,9 @@
           <small>(Completed at: {{dateFormat task.completeTime}})</small>
         </span>
       </div>
+      <div class="delete">
+        <a href="" class="btn btn-danger btn-xs task-delete" data-task-id="{{task._id}}" data-csrf="{{csrfToken}}">delete</a>
+      </div>
     </div>
     {{/each}}
   {{else}}

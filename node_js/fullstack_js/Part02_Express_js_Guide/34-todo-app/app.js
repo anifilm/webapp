@@ -1,4 +1,3 @@
-//import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import lessMiddleware from 'less-middleware';
@@ -42,7 +41,6 @@ import tasks from './routes/tasks';
 const app = express();
 
 app.locals.appname = 'Express.js Todo App';
-//app.locals.moment = moment;
 
 const port = process.env.PORT || '3000';
 app.set('port', port);
@@ -51,15 +49,16 @@ app.set('port', port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-import hb from 'hbs';
-hb.registerHelper('num', function (index) {
+import hbs from 'hbs';
+hbs.registerHelper('num', function (index) {
   return index + 1;
 });
-hb.registerHelper('dateFormat', function (date, options) {
+hbs.registerHelper('dateFormat', function (date, options) {
   const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "YYYY/MM/DD"
   return moment(date).format(formatToUse);
 });
 
+const csrfProtection = csrf({ cookie: true });
 
 app.use(favicon(path.join('public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -74,32 +73,17 @@ app.use(
     saveUninitialized: true,
   }),
 );
-app.use(csrf());
 
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function (req, res, next) {
-  res.locals._csrf = req.csrfToken();
-  console.log('_csrf:', res.locals._csrf);
-  return next();
-});
-
-//app.param('task_id', function (req, res, next, taskId) {
-//  req.db.tasks.findById(taskId, function (error, task) {
-//    if (error) return next(error);
-//    if (!task) return next(new Error('Task is not found.'));
-//    req.task = task;
-//    return next();
-//  });
-//});
 
 app.get('/', routes.index);
-app.get('/tasks', tasks.list);
-app.post('/tasks', tasks.markAllCompleted)
-app.post('/tasks', tasks.add);
+app.get('/tasks', csrfProtection, tasks.list);
+app.post('/tasks', csrfProtection, tasks.markAllCompleted)
+app.post('/tasks', csrfProtection, tasks.add);
 app.post('/tasks/:task_id', tasks.markCompleted);
 app.delete('/tasks/:task_id', tasks.del);
-app.get('/tasks/completed', tasks.completed);
+app.get('/tasks/completed', csrfProtection, tasks.completed);
 
 app.all('*', function (req, res) {
   res.status(404).send();
@@ -113,5 +97,3 @@ if ('development' == app.get('env')) {
 app.listen(port, function () {
   console.log(`The server is running, please open your browser at http://localhost:${port}\n`);
 });
-
-//export default app;
