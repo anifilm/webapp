@@ -54,7 +54,6 @@ const markAllCompleted = function (req, res, next) {
 };
 
 const completed = function (req, res, next) {
-  // TODO: completed: true인 항목만 보기
   Task.find({ completed: 'true' }, function (error, tasks) {
     res.render('tasks_completed', {
       title: 'Completed',
@@ -75,10 +74,10 @@ const markCompleted = function (req, res, next) {
 };
 
 const del = function (req, res, next) {
-  req.db.tasks.removeById(req.task._id, function (error, count) {
+  Task.remove(req.task._id, function (error, count) {
     if (error) return next(error);
-    if (count !==1) return next(new Error('Something went wrong.'));
-    console.info('Deleted task %s with id=%s completed.', req.task.name, req.task._id);
+    //if (count !==1) return next(new Error('Something went wrong.'));
+    //console.info('Deleted task %s with id=%s completed.', req.task.name, req.task._id);
     res.status(204).send();
   });
 };

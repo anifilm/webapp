@@ -80,6 +80,7 @@ app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
   res.locals._csrf = req.csrfToken();
+  console.log('_csrf:', res.locals._csrf);
   return next();
 });
 
