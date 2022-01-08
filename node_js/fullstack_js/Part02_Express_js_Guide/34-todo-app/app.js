@@ -58,8 +58,6 @@ hbs.registerHelper('dateFormat', function (date, options) {
   return moment(date).format(formatToUse);
 });
 
-const csrfProtection = csrf({ cookie: true });
-
 app.use(favicon(path.join('public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
@@ -73,17 +71,32 @@ app.use(
     saveUninitialized: true,
   }),
 );
+app.use(csrf({ cookie: true }));
 
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  res.locals._csrfToken = req.csrfToken();
+  return next();
+});
+
+/*app.param('task_id', function(req, res, next, taskId) {
+  req.db.tasks.findById(taskId, function(error, task){
+    if (error) return next(error);
+    //if (!task) return next(new Error('Task is not found.'));
+    //req.task = task;
+    return next();
+  });
+});*/
+
 app.get('/', routes.index);
-app.get('/tasks', csrfProtection, tasks.list);
-app.post('/tasks', csrfProtection, tasks.markAllCompleted)
-app.post('/tasks', csrfProtection, tasks.add);
+app.get('/tasks', tasks.list);
+app.post('/tasks', tasks.markAllCompleted)
+app.post('/tasks', tasks.add);
 app.post('/tasks/:task_id', tasks.markCompleted);
 app.delete('/tasks/:task_id', tasks.del);
-app.get('/tasks/completed', csrfProtection, tasks.completed);
+app.get('/tasks/completed', tasks.completed);
 
 app.all('*', function (req, res) {
   res.status(404).send();

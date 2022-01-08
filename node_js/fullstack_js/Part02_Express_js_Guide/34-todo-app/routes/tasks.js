@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
@@ -19,7 +20,6 @@ const list = function (req, res, next) {
     res.render('tasks', {
       title: 'Todo List',
       tasks: tasks || [],
-      csrfToken: req.csrfToken(),
     });
   });
 };
@@ -62,7 +62,6 @@ const completed = function (req, res, next) {
     res.render('tasks_completed', {
       title: 'Completed',
       tasks: tasks || [],
-      csrfToken: req.csrfToken(),
     });
   });
 };

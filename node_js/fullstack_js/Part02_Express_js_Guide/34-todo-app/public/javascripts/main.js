@@ -16,9 +16,10 @@ $(document).ready(function () {
     $.ajax({
       type: 'DELETE',
       url: '/tasks/' + $target.attr('data-task-id'),
-      data: {
-        'csrf-token': $target.attr('data-csrf'),
+      headers: {
+        'X-CSRF-Token': $target.attr('data-csrf'),
       },
+      data: {},
       success: function (response) {
         $target.parent().parent().remove();
         $alert.trigger('success', 'Task was removed.');

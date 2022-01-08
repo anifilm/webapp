@@ -19,13 +19,13 @@
   <div class="item add-task">
     <div class="action">
       <form action="/tasks" method="POST">
-        <input type="hidden" value="true" name="all_done">
-        <input type="hidden" value="{{csrfToken}}" name="_csrf">
+        <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+        <input type="hidden" name="all_done" value="true">
         <button type="submit" class="btn btn-success btn-xs">all done</button>
       </form>
     </div>
     <form action="/tasks" method="POST">
-      <input type="hidden" value="{{csrfToken}}" name="_csrf">
+      <input type="hidden" name="_csrf" value="{{_csrfToken}}">
       <div class="name">
         <input type="text" name="name" placeholder="Add a new task">
       </div>
@@ -39,9 +39,9 @@
     <div class="item">
       <div class="action">
         <form action="/tasks/{{task._id}}" method="POST">
-          <input type="hidden" value="{{task._id}}" name="id">
-          <input type="hidden" value="true" name="completed">
-          <input type="hidden" value="{{csrfToken}}" name="_csrf">
+          <input type="hidden" name="id" value="{{task._id}}">
+          <input type="hidden" name="completed" value="true">
+          <input type="hidden" name="_csrf" value="{{../_csrfToken}}">
           <button type="submit" class="btn btn-success btn-xs task-done">done</button>
         </form>
       </div>
@@ -53,7 +53,7 @@
         </span>
       </div>
       <div class="delete">
-        <a href="" class="btn btn-danger btn-xs task-delete" data-task-id="{{task._id}}" data-csrf="{{csrfToken}}">delete</a>
+        <a href="" class="btn btn-danger btn-xs task-delete" data-task-id="{{task._id}}" data-csrf="{{../_csrfToken}}">delete</a>
       </div>
     </div>
     {{/each}}
