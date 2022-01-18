@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './Movie.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import './Movie.css';
 
 function Movie({ title, year, summary, poster, genres }) {
   return (
@@ -19,9 +20,7 @@ function Movie({ title, year, summary, poster, genres }) {
           <ul className="movie__genres">
             {genres.map((genre, index) => {
               return (
-                <li key={index} className="movie__genre">
-                  {genre}
-                </li>
+                <li key={index} className="movie__genre">{genre}</li>
               );
             })}
           </ul>

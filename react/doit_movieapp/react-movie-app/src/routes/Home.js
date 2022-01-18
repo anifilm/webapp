@@ -15,7 +15,7 @@ class Home extends Component {
         data: { movies },
       },
     } = await axios.get(
-      'https://yts-proxy.now.sh/list_movies.json?sort_by=like_count',
+      'https://yts.mx/api/v2/list_movies.json?sort_by=rating',
     );
     //console.log(movies);
     this.setState({ movies: movies, isLoading: false });
