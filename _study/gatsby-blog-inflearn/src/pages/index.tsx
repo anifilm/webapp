@@ -61,7 +61,9 @@ export const getPostList = graphql`
             date(formatString: "YYYY.MM.DD.")
             categories
             thumbnail {
-              publicURL
+              childImageSharp {
+                gatsbyImageData(width: 768, height: 400)
+              }
             }
           }
         }
