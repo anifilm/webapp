@@ -5,6 +5,7 @@ import { Link } from 'gatsby'
 type CategoryItemProps = {
   active: boolean;
 }
+
 type GatsbyLinkProps = {
   children: ReactNode;
   className?: string;
