@@ -1,7 +1,7 @@
 const tag = '[Controller]';
 
 export default class Controller {
-  constructor(store, { searchFormView, searchResultView  }) {
+  constructor(store, { searchFormView, searchResultView }) {
     console.log(tag, 'constructor');
 
     this.store = store;
@@ -27,6 +27,10 @@ export default class Controller {
 
   reset() {
     console.log(tag, 'reset');
+
+    this.store.searchKeyword = '';
+    this.store.searchResult = [];
+    this.render();
   }
 
   render() {
