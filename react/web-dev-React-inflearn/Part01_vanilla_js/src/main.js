@@ -3,6 +3,7 @@ import Store from './store.js';
 import storage from './storage.js';
 
 import SearchFormView from './views/SearchFormView.js';
+import SearchResultView from './views/SearchResultView.js';
 
 const tag = '[main]';
 
@@ -15,6 +16,7 @@ function main() {
 
   const views = {
     searchFormView: new SearchFormView(),
+    searchResultView: new SearchResultView(),
   };
 
   new Controller(store, views);
