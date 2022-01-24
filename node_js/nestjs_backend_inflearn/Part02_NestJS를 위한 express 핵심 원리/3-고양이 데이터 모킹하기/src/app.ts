@@ -1,19 +1,13 @@
 import * as express from 'express';
 
+import { Cat, CatType } from './app.model';
+
 const app: express.Express = express();
 const port: number = 3000;
 
 app.get('/', (req: express.Request, res: express.Response) => {
-  res.send('Hello, world!');
-});
-
-app.get('/test', (req: express.Request, res: express.Response) => {
   console.log(req);
-  res.send({
-    name: 'yoon sang seok',
-    age: 99,
-    friends: ['ss', 'ys', 'ye'],
-  });
+  res.send({ cats: Cat });
 });
 
 app.listen(port, () => {

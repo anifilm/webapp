@@ -1,4 +1,9 @@
 {
+  "name": "typescript-node-boilerplate",
+  "version": "1.0.0",
+  "description": "⚡️ minimal boilerplate based on typescript with node ⚡️",
+  "main": "index.js",
+  "license": "ISC",
   "scripts": {
     "build": "tsc",
     "dev": "tsc-watch --onSuccess \"node dist/app.js\"",
