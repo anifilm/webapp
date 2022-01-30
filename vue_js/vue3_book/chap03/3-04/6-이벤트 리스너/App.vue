@@ -22,12 +22,12 @@ export default {
 
     return {
       counter,
-      onClick
+      onClick,
     };
   },
   data() {
     return {
-      counter2: 0
+      counter2: 0,
     };
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
         event.preventDefault();
       }
       this.counter2++;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -17,8 +17,8 @@ export default {
 
     return {
       abbr,
-      normal
+      normal,
     };
-  }
+  },
 };
 </script>

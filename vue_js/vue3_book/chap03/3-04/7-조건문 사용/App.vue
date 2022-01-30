@@ -14,8 +14,8 @@ export default {
     let counter = ref(0);
 
     return {
-      counter
+      counter,
     };
-  }
+  },
 };
 </script>

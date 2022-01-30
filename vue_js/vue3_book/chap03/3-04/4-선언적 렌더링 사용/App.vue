@@ -13,14 +13,14 @@ export default {
   setup() {
     const date = Date().toString();
     return {
-      date
+      date,
     };
   },
   // Options API
   data() {
     return {
-      date2: Date().toString()
+      date2: Date().toString(),
     };
-  }
+  },
 };
 </script>
