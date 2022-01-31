@@ -34,8 +34,8 @@ const addFour = addX(4);
 const multiplyTwo = multiplyX(2);
 const multiplyThree = multiplyX(3);
 
-// => ((x * 2) * 3) + 4
+// => ((x + 4) * 3) + 4
 const formula = (x) => addFour(multiplyThree(multiplyTwo(x)));
 
-// => ((x + 4) * 3) * 2
+// => ((x * 2) * 3) * 2
 const formulaB = (x) => multiplyTwo(multiplyThree(addFour(x)));
