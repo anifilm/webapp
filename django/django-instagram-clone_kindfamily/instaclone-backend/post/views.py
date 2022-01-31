@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 import json
 
@@ -11,8 +12,24 @@ from .forms import PostForm, CommentForm
 from .models import Post, Comment
 
 def post_list(request, tag=None):
-    posts = Post.objects.all()
+    post_list = Post.objects.all()
     comment_form = CommentForm()
+
+    paginator = Paginator(post_list, 3)
+    page_num = request.POST.get('page')
+
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request, 'post/post_list_ajax.html', {
+            'posts': posts,
+            'comment_form': comment_form,
+        })
 
     if request.user.is_authenticated:
         username = request.user

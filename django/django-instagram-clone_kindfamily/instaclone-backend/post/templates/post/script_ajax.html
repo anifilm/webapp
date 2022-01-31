@@ -1,6 +1,9 @@
-<script>
+<script type="text/javascript">
   (function () {
     const delegation = document.querySelector('.contents_box');
+    const side_box = document.querySelector('.side_box');
+    const header = document.querySelector('#header');
+
     function delegationFunc(e) {
       let elem = e.target;
       //console.log(elem);
@@ -141,6 +144,85 @@
       }
       elem.classList.toggle('on');
     }
+
+    function resizefunc() {
+      //console.log('리사이즈');
+      if (pageYOffset >= 10) {
+        let calcWidth = (window.innerWidth * 0.5) + 167;
+        if (side_box) {
+          side_box.style.left = calcWidth + 'px';
+        }
+      }
+    }
+
+    function scrollfunc() {
+      let scrollHeight = pageYOffset + window.innerHeight;
+      let documentHeight = document.body.scrollHeight;
+
+      //console.log(pageYOffset);
+      //console.log('scrollHeight:', scrollHeight);
+      //console.log('documentHeight:', documentHeight);
+
+      if (pageYOffset >= 10) {
+        header.classList.add('on');
+        resizefunc();
+        if (side_box) {
+          side_box.classList.add('on');
+        }
+      }
+      else {
+        header.classList.remove('on');
+        if (side_box) {
+          side_box.classList.remove('on');
+          side_box.removeAttribute('style');
+        }
+      }
+
+      if (scrollHeight >= documentHeight - 30) {
+        let page = document.querySelector('#page').value;
+        //console.log('page:', page);
+
+        let end_page = {{ posts.paginator.num_pages }};
+        if (page > end_page) {
+          return;
+        }
+
+        document.querySelector('#page').value = parseInt(page) + 1;
+        callMorePostAjax(page);
+      }
+    }
+
+    function callMorePostAjax(page) {
+      let end_page = {{ posts.paginator.num_pages }}; // post의 페이지 수를 불러오는 작업
+      if (page > end_page) {
+        return;
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'post:post_list' %}",
+        data: {
+          'page': page,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        dataType: 'html',
+        success: addMorePostAjax,
+        error: function (request, status, error) {
+          alert(`code: ${request.status}\nmessage: ${request.responseText}\nerror: ${error}`);
+        }
+      })
+    }
+
+    function addMorePostAjax(data, textStatus, jqXHR) {
+      let post = document.querySelector('#post_list_ajax');
+      post.insertAdjacentHTML('beforeend', data);
+    }
+
+    // 뷰의 크기가 변할 때 resizefunc 함수 실행
+    window.addEventListener('resize', resizefunc);
+    // 스크롤이 이동했을 때 scrollfunc 함수 실행
+    window.addEventListener('scroll', scrollfunc);
+
     delegation.addEventListener('click', delegationFunc);
   })();
 </script>
