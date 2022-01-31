@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load post_extras %}
 {% for post in posts %}
 <article class="contents"> <!-- post_list.html의 내용과 동일한 부분 -->
   <header class="top">
@@ -79,7 +79,7 @@
     <div class="comment" id="comment-list-ajax-post{{post.id}}">
       <div class="comment-detail" id="comment-post-author" style="margin-top: 8px;">
         <div class="nick_name m_text">{{ post.author.profile.nickname }}</div>
-        <div>{{ post.content }}</div>
+        <div content="content">{{ post|add_link|safe|linebreaksbr }}</div> <!-- 포스트 작성자의 post.content -->
       </div>
       {% for comment in post.comment_set.all %}
       <div class="comment-detail" id="comment{{ comment.id }}" style="margin-top: 15px;">

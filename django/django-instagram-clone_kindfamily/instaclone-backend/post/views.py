@@ -14,9 +14,9 @@ from .models import Post, Tag, Like, Comment
 
 def post_list(request, tag=None):
     if tag:
-        post_list = Post.objects.filter(tag_set__name__iexact=tag)  # .prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile', 'author__profile__follower_user', 'author__profile__follower_user__from_user').select_related('author__profile')
+        post_list = Post.objects.filter(tag_set__name__iexact=tag).prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile', 'author__profile__follower_user', 'author__profile__follower_user__from_user').select_related('author__profile')
     else:
-        post_list = Post.objects.all()  # .prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile', 'author__profile__follower_user', 'author__profile__follower_user__from_user').select_related('author__profile')
+        post_list = Post.objects.all().prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile', 'author__profile__follower_user', 'author__profile__follower_user__from_user').select_related('author__profile')
 
     comment_form = CommentForm()
 
@@ -35,6 +35,11 @@ def post_list(request, tag=None):
             'posts': posts,
             'comment_form': comment_form,
         })
+
+    if request.method == 'POST':
+        tag = request.POST.get('tag')
+        tag_clean = ''.join(e for e in tag if e.isalnum())
+        return redirect('post:post_search', tag_clean)
 
     if request.user.is_authenticated:
         username = request.user
@@ -81,8 +86,8 @@ def post_edit(request, pk):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save()
-            #post.tag_set.clear()
-            #post.tag_save()
+            post.tag_set.clear()
+            post.tag_save()
             messages.success(request, '수정 완료')
             return redirect('post:post_list')
     else:
