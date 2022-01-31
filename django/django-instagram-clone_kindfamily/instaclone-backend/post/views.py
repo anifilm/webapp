@@ -109,6 +109,15 @@ def post_delete(request, pk):
 
     return redirect('post:post_list')
 
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comment_form = CommentForm()
+
+    return render(request, 'post/post_detail.html', {
+        'post': post,
+        'comment_form': comment_form,
+    })
+
 @login_required
 @require_POST
 def post_like(request):

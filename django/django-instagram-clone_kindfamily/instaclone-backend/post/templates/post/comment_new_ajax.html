@@ -2,7 +2,7 @@
   <div class="nick_name m_text">{{ comment.author.profile.nickname }}</div>
   <div>{{ comment.content }}</div>
   {% if user == comment.author %}
-  <!--<input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px">-->
+  <!--<input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px;">-->
   {% endif %}
   <!--<div class="time">{{ comment.created_at|timesince }}</div>-->
 </div>

@@ -78,6 +78,7 @@
 
 .top .more_detail > li {
   padding: 10px 20px;
+  background: white;
   cursor: pointer;
 }
 
@@ -123,7 +124,7 @@
 
 .detail--right_box .top .sprite_more_icon {
   cursor: pointer;
-  padding: 5px 5px;
+  /*padding: 5px 5px;*/
 }
 
 .scroll_section {
@@ -295,7 +296,7 @@
 }
 
 .content {
-  font-size: 35px;
+  font-size: 16px;
   font-weight: 200;
   display: inline-block;
   padding-right: 25px;

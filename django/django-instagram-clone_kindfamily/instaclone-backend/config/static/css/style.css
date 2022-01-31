@@ -152,6 +152,7 @@ body {
 }
 .contents .sprite_more_icon {
   position: relative;
+  cursor: pointer;
 }
 .contents .toggle_box {
   text-align: center;
@@ -164,6 +165,7 @@ body {
 }
 .contents .sprite_more_icon.on .toggle_box {
   display: block;
+  cursor: pointer;
 }
 .contents .toggle_box > li {
   padding: 5px 10px;
@@ -173,6 +175,7 @@ body {
   border: none;
   font-size: inherit;
   background: white;
+  cursor: pointer;
 }
 .post-edit {
   text-decoration: none;

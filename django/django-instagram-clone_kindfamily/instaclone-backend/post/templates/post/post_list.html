@@ -93,8 +93,10 @@
               {% else %}
               <div class="sprite_heart_icon_outline" name="{{ post.id }}" data-name="heartbeat"></div>
               {% endif %}
-              <div class="sprite_bubble_icon"></div>
-              <div class="sprite_share_icon" data-name="share"></div>
+              <a href="{% url 'post:post_detail' post.pk %}">
+                <div class="sprite_bubble_icon"></div>
+              </a>
+              <!--<div class="sprite_share_icon" data-name="share"></div>-->
             </div>
           </div>
 
@@ -116,14 +118,14 @@
           <div class="comment" id="comment-list-ajax-post{{post.id}}">
             <div class="comment-detail" id="comment-post-author" style="margin-top: 8px;">
               <div class="nick_name m_text">{{ post.author.profile.nickname }}</div>
-              <div content="content">{{ post|add_link|safe|linebreaksbr }}</div> <!-- 포스트 작성자의 post.content -->
+              <div class="content">{{ post|add_link|safe|linebreaksbr }}</div> <!-- 포스트 작성자의 post.content -->
             </div>
             {% for comment in post.comment_set.all %}
             <div class="comment-detail" id="comment{{ comment.id }}" style="margin-top: 15px;">
               <div class="nick_name m_text">{{ comment.author.profile.nickname }}</div>
               <div>{{ comment.content }}</div>
               {% if user == comment.author %}
-              <!--<input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px">-->
+              <!--<input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}" style="margin-left: 10px;">-->
               {% endif %}
               <!--<div class="time">{{ comment.created_at|timesince }}</div>-->
             </div>
