@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Post, Like, Bookmark, Comment
+from .models import Post, Tag, Like, Bookmark, Comment
 
 class PostForm(forms.ModelForm):
     content = forms.CharField(widget=forms.Textarea)
@@ -25,6 +25,10 @@ class PostAdmin(admin.ModelAdmin):
 
     def nickname(request, post):
         return post.author.profile.nickname
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):

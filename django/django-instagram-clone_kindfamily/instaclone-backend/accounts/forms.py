@@ -23,14 +23,14 @@ class SignupForm(UserCreationForm):
 
     def clean_nickname(self):
         nickname = self.cleaned_data.get('nickname')
-        if Profile.Objects.filter(nickname=nickname).exists():
+        if Profile.objects.filter(nickname=nickname).exists():
             raise forms.ValidationError('이미 사용중인 닉네임 입니다.')
         return nickname
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
         User = get_user_model()
-        if User.Objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             raise forms.ValidationError('이미 등록된 이메일 입니다.')
         return email
 

@@ -53,7 +53,7 @@
           </div>
 
           <div class="right_icons">
-            <a href="#"><div class="sprite_camera_icon"></div></a>
+            <a href="{% url 'post:post_new' %}"><div class="sprite_camera_icon"></div></a>
             <a href="#"><div class="sprite_compass_icon"></div></a>
             <a href="#"><div class="sprite_heart_icon_outline"></div></a>
             {% if user.is_authenticated %}

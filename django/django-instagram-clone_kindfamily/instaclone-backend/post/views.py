@@ -5,14 +5,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Count
 
 import json
 
 from .forms import PostForm, CommentForm
-from .models import Post, Comment
+from .models import Post, Tag, Like, Comment
 
 def post_list(request, tag=None):
-    post_list = Post.objects.all()
+    if tag:
+        post_list = Post.objects.filter(tag_set__name__iexact=tag)  # .prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile', 'author__profile__follower_user', 'author__profile__follower_user__from_user').select_related('author__profile')
+    else:
+        post_list = Post.objects.all()  # .prefetch_related('tag_set', 'like_user_set__profile', 'comment_set__author__profile', 'author__profile__follower_user', 'author__profile__follower_user__from_user').select_related('author__profile')
+
     comment_form = CommentForm()
 
     paginator = Paginator(post_list, 3)
@@ -58,7 +63,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            #post.tag_save()
+            post.tag_save()
             messages.info(request, '새 글이 등록되었습니다.')
             return redirect('post:post_list')
     else:
@@ -95,7 +100,7 @@ def post_delete(request, pk):
         messages.warning(request, '잘못된 접근입니다.')
     else:
         post.delete()
-        #mesasges.success(request, '삭제 완료')
+        #messages.success(request, '삭제 완료')
 
     return redirect('post:post_list')
 
