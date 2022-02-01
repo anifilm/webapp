@@ -23,10 +23,10 @@
           <header class="top">
             <div class="user_container">
               <div class="profile_img">
-                {% if post.author.profile.picture %} <!-- 포스트 저자의 프로필이미지가 있다면 -->
-                <img src="{{ post.author.profile.picture.url }}" alt="프로필이미지" />
-                {% else %} <!-- 프로필 사진이 없다면 기본 이미지 사용 -->
-                <img src="{% static 'images/thumb.jpg' %}" alt="프로필이미지" />
+                {% if post.author.profile.picture %} <!-- 포스트 저자의 프로필 이미지가 있다면 -->
+                <img src="{{ post.author.profile.picture.url }}" alt="프로필 이미지" />
+                {% else %} <!-- 프로필 이미지가 없다면 기본 이미지 사용 -->
+                <img src="{% static 'images/thumb.jpg' %}" alt="기본 프로필이미지" />
                 {% endif %}
               </div>
               <div class="user_name">

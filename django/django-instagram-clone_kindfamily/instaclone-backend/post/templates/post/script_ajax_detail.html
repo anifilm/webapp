@@ -75,7 +75,7 @@
 
         $.ajax({
           type: 'POST',
-          url: "{% url 'post:comment_new' %}",
+          url: "{% url 'post:comment_new_detail' %}",
           data: {
             'pk': pk,
             'content': content,

@@ -15,9 +15,9 @@
     <div class="user">
       <div class="thumb_img">
         {% if following.picture %}
-        <img src="{{ following.picture.url }}" alt="{{ following.nickname }}의 프로필이미지"></div>
+        <img src="{{ following.picture.url }}" alt="{{ following.nickname }}의 프로필 이미지"></div>
         {% else %}
-        <img src="{% static 'images/thumb.jpg' %}" alt="{{ following.nickname }}의 프로필이미지"></div>
+        <img src="{% static 'images/thumb.jpg' %}" alt="기본 프로필 이미지"></div>
         {% endif %}
       <div class="id">{{ following.nickname }}</div>
     </div>
@@ -42,10 +42,10 @@
         <header class="top">
           <div class="user_container">
             <div class="profile_img">
-              {% if post.author.profile.picture %} <!-- 포스트 저자의 프로필이미지가 있다면 -->
-              <img src="{{ post.author.profile.picture.url }}" alt="프로필이미지" />
-              {% else %} <!-- 프로필 사진이 없다면 기본 이미지 사용 -->
-              <img src="{% static 'images/thumb.jpg' %}" alt="프로필이미지" />
+              {% if post.author.profile.picture %} <!-- 포스트 저자의 프로필 이미지가 있다면 -->
+              <img src="{{ post.author.profile.picture.url }}" alt="프로필 이미지" />
+              {% else %} <!-- 프로필 이미지가 없다면 기본 이미지 사용 -->
+              <img src="{% static 'images/thumb.jpg' %}" alt="기본 프로필 이미지" />
               {% endif %}
             </div>
             <div class="user_name">
@@ -158,9 +158,9 @@
       <div class="user_profile">
         <div class="profile_thumb">
           {% if user_profile and user_profile.picture %}
-          <img src="{{ user_profile.picture.url }}" alt="프로필이미지" />
+          <img src="{{ user_profile.picture.url }}" alt="프로필 이미지" />
           {% else %}
-          <img src="{% static 'images/thumb.jpg' %}" alt="프로필이미지" />
+          <img src="{% static 'images/thumb.jpg' %}" alt="기본 프로필 이미지" />
           {% endif %}
         </div>
         <div class="detail">
