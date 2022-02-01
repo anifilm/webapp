@@ -1,61 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Styled from 'styled-components';
 
-import Styled, { keyframes } from 'styled-components';
+import { Button, Input, ToDoItem } from 'components';
 
 const Container = Styled.div`
-  text-align: center;
-`;
-
-const Header = Styled.header`
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 `;
-
-const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+const Contents = Styled.div`
+  display: flex;
+  background-color: #ffffff;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 `;
-
-const AppLogo = Styled.img`
-  height: 40vmin;
-  pointer-events: none;
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation: ${spin} infinite 20s linear;
-  }
+const InputContainer = Styled.div`
+  display: flex;
 `;
-
-const AppLink = Styled.a`
-  color: #61dafb;
+const ToDoListContainer = Styled.div`
+  min-width: 350px;
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 20px;
 `;
 
 function App() {
+  const [toDo, setToDo] = useState('');
+  const [toDoList, setToDoList] = useState<string[]>([]);
+
+  const addToDo = (): void => {
+    if (toDo.trim() !== '') {
+      setToDoList([...toDoList, toDo]);
+    }
+    setToDo('');
+  };
+  const deleteToDo = (index: number): void => {
+    let list = [...toDoList];
+    list.splice(index, 1);
+    setToDoList(list);
+  };
+
   return (
     <Container>
-      <Header>
-        <AppLogo src={logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <AppLink
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </AppLink>
-      </Header>
+      <Contents>
+        <ToDoListContainer>
+          {toDoList.map((item, index) => (
+            <ToDoItem
+              key={index}
+              label={item}
+              onDelete={() => deleteToDo(index)}
+            />
+          ))}
+        </ToDoListContainer>
+        <InputContainer>
+          <Input
+            placeholder="할 일을 입력해 주세요"
+            value={toDo}
+            onChange={(text) => setToDo(text)}
+          />
+          <Button label="추가" onClick={addToDo} />
+        </InputContainer>
+      </Contents>
     </Container>
   );
 }
