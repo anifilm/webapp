@@ -21,7 +21,7 @@ db.connect(DB_HOST);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  content: () => {
+  context: () => {
     // content에 db models 추가
     return { models };
   },
