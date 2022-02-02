@@ -23,6 +23,6 @@ module.exports = {
     });
   },
   close: () => {
-    mongoose.connections.close();
+    mongoose.connection.close();
   },
 };
