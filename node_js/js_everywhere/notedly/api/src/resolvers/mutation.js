@@ -5,4 +5,12 @@ module.exports = {
       author: 'Adam Scott',
     });
   },
+  deleteNote: async (parent, { id }, { models }) => {
+    try {
+      await models.Note.findOneAndRemove({ _id: id });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  },
 };
