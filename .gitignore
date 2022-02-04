@@ -9,5 +9,6 @@ __new__/
 .env
 *.exe
 *.lnk
+*.pdf
 
 .DS_Store
