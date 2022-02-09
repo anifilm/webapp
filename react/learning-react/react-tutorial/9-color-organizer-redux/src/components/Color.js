@@ -6,7 +6,7 @@ import FaTrash from 'react-icons/lib/fa/trash-o';
 import '../../stylesheets/Color.scss';
 
 const Color = ({ title, color, rating, timestamp, onRemove, onRate }) => (
-  <section className="color" style={this.style}>
+  <section className="color">
     <h1>{title}</h1>
     <button onClick={onRemove}>
       <FaTrash />
@@ -23,6 +23,7 @@ Color.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   rating: PropTypes.number,
+  timestamp: PropTypes.string,
   onRemove: PropTypes.func,
   onRate: PropTypes.func,
 };

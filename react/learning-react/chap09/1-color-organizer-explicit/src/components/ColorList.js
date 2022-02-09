@@ -8,8 +8,6 @@ import '../../stylesheets/ColorList.scss';
 const ColorList = ({ store }) => {
   const { colors, sort } = store.getState();
   const sortedColors = [...colors].sort(sortFunction(sort));
-  // TODO: 내용 확인 및 timestamp 타입 체크
-  console.log(colors);
 
   return (
     <div className="color-list">
