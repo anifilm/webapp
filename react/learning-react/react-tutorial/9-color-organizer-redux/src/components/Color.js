@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import StarRating from './StarRating';
+import TimeAgo from './TimeAgo';
+import FaTrash from 'react-icons/lib/fa/trash-o';
+
 import '../../stylesheets/Color.scss';
 
-const Color = ({ title, color, rating = 0, onRemove = (f) => f, onRate = (f) => f }) => (
+const Color = ({ title, color, rating, timestamp, onRemove, onRate }) => (
   <section className="color">
     <h1>{title}</h1>
     <button onClick={onRemove}>X</button>

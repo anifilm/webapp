@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import Color from './Color';
+import { rateColor, removeColor } from '../actions';
+import { sortFunction } from '../lib/array-helpers';
+
 import '../../stylesheets/ColorList.scss';
 
-const ColorList = ({ colors = [], onRate = (f) => f, onRemove = (f) => f }) => (
+const ColorList = ({ store }) => (
   <div className="color-list">
     {colors.length === 0 ? (
       <p>색이 없습니다. (색을 추가해주세요.)</p>
@@ -20,9 +23,7 @@ const ColorList = ({ colors = [], onRate = (f) => f, onRemove = (f) => f }) => (
 );
 
 ColorList.propTypes = {
-  colors: PropTypes.array,
-  onRate: PropTypes.func,
-  onRemove: PropTypes.func,
+  store: PropTypes.object,
 };
 
 export default ColorList;
