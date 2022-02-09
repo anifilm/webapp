@@ -10,7 +10,7 @@
     <div id="react-container"></div>
 
     <script type="text/babel">
-      const sort = (state = 'SORTED_BY_DATE', action) => {
+      const sort = (state='SORTED_BY_DATE', action) => {
         switch (action.type) {
           case 'SORT_COLORS':
             return action.sortBy;

@@ -10,7 +10,7 @@
     <div id="react-container"></div>
 
     <script type="text/babel">
-      const color = (state = {}, action) => {
+      const color = (state={}, action) => {
         switch (action.type) {
           case 'ADD_COLOR':
             return {
@@ -32,10 +32,13 @@
         }
       };
 
-      const colors = (state = [], action) => {
+      const colors = (state=[], action) => {
         switch (action.type) {
           case 'ADD_COLOR':
-            return [...state, color({}, action)];
+            return [
+              ...state,
+              color({}, action)
+            ];
           case 'RATE_COLOR':
             return state.map((c) => color(c, action));
           case 'REMOVE_COLOR':
