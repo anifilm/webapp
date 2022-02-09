@@ -14,9 +14,9 @@ export const color = (state={}, action) => {
       return state.id !== action.id
         ? state
         : {
-          ...state,
-          rating: action.rating
-        };
+            ...state,
+            rating: action.rating
+          };
     default:
       return state;
   }
