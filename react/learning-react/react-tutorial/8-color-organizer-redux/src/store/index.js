@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { colors, sort } from './reducers';
 import stateData from '../../data/initialState';
 
+// 미들웨어
 const logger = (store) => (next) => (action) => {
   let result;
   console.groupCollapsed('디스패칭', action.type);
@@ -12,14 +13,14 @@ const logger = (store) => (next) => (action) => {
   console.groupEnd();
   return result;
 };
-
+// 미들웨어
 const saver = (store) => (next) => (action) => {
   let result = next(action);
   localStorage['redux-store'] = JSON.stringify(store.getState());
   return result;
 };
 
-const storeFactory = (initialState = stateData) =>
+const storeFactory = (initialState=stateData) =>
   applyMiddleware(logger, saver)(createStore)(
     combineReducers({ colors, sort }),
     localStorage['redux-store']

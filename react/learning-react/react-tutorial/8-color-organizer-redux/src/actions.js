@@ -1,8 +1,8 @@
-import C from './constants';
+import { ADD_COLOR, RATE_COLOR, REMOVE_COLOR, SORT_COLORS } from './constants';
 import { v4 } from 'uuid';
 
 export const addColor = (title, color) => ({
-  type: C.ADD_COLOR,
+  type: ADD_COLOR,
   id: v4(),
   title,
   color,
@@ -10,12 +10,12 @@ export const addColor = (title, color) => ({
 });
 
 export const removeColor = (id) => ({
-  type: C.REMOVE_COLOR,
+  type: REMOVE_COLOR,
   id,
 });
 
 export const rateColor = (id, rating) => ({
-  type: C.RATE_COLOR,
+  type: RATE_COLOR,
   id,
   rating,
 });
@@ -23,15 +23,15 @@ export const rateColor = (id, rating) => ({
 export const sortColors = (sortedBy) =>
   sortedBy === 'rating'
     ? {
-        type: C.SORT_COLORS,
+        type: SORT_COLORS,
         sortBy: 'SORTED_BY_RATING',
       }
     : sortedBy === 'title'
     ? {
-        type: C.SORT_COLORS,
+        type: SORT_COLORS,
         sortBy: 'SORTED_BY_TITLE',
       }
     : {
-        type: C.SORT_COLORS,
+        type: SORT_COLORS,
         sortBy: 'SORTED_BY_DATE',
       };
