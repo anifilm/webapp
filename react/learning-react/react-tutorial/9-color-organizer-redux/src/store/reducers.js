@@ -1,4 +1,4 @@
-import { ADD_COLOR, RATE_COLOR, REMOVE_COLOR, SORT_COLORS } from './constants';
+import { ADD_COLOR, RATE_COLOR, REMOVE_COLOR, SORT_COLORS } from '../constants';
 
 export const color = (state={}, action) => {
   switch (action.type) {

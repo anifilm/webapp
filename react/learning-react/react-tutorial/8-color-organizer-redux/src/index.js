@@ -1,6 +1,7 @@
 import storeFactory from './store';
 import { addColor, removeColor, rateColor, sortColors } from './actions';
-
+import { ADD_COLOR, RATE_COLOR, REMOVE_COLOR, SORT_COLORS } from './constants';
+console.log(ADD_COLOR);
 const store = storeFactory();
 
 //store.dispatch(addColor("미친 파랑", "#1122FF"));
