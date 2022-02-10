@@ -3,13 +3,13 @@ import { addColor } from '../actions';
 
 import '../../stylesheets/AddColorForm.scss';
 
-const AddColorForm = (props, { store }) => {
+const AddColorForm = ({ onNewColor=(f) => f }) => {
   // TODO: useState로 변경할 것
   let _title, _color;
 
   const submit = (e) => {
     e.preventDefault();
-    store.dispatch(addColor(_title.value, _color.value));
+    onNewColor(_title.value, _color.value);
     _title.value = '';
     _color.value = '#000000';
     _title.focus();
@@ -29,8 +29,7 @@ const AddColorForm = (props, { store }) => {
   );
 };
 
-AddColorForm.contextTypes = {
-  store: PropTypes.object,
+AddColorForm.propTypes = {
+  onNewColor: PropTypes.func,
 };
-
 export default AddColorForm;

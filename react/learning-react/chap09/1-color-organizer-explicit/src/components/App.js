@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import AddColorForm from './AddColorForm';
 import SortMenu from './SortMenu';
+import AddColorForm from './AddColorForm';
 import ColorList from './ColorList';
 
 import '../../stylesheets/APP.scss';

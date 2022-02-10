@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { sortColors } from '../actions';
 
-import '../../stylesheets/Menu.scss'
+import '../../stylesheets/Menu.scss';
 
 const options = {
   date: 'SORTED_BY_DATE',
@@ -9,7 +9,7 @@ const options = {
   rating: 'SORTED_BY_RATING',
 };
 
-const SortMenu = (props, { store }) => {
+const SortMenu = ({ sort='SORTED_BY_DATE', onSelect=(f) => f }) => {
   return (
     <nav className="menu">
       <h1>Sort Colors</h1>
@@ -17,12 +17,10 @@ const SortMenu = (props, { store }) => {
         <a
           key={index}
           href="#"
-          className={
-            store.getState().sort === options[item] ? 'selected' : null
-          }
+          className={sort === options[item] ? 'selected' : null}
           onClick={(e) => {
             e.preventDefault();
-            store.dispatch(sortColors(options[item]));
+            onSelect(options[item]);
           }}
         >
           {item}
@@ -32,8 +30,8 @@ const SortMenu = (props, { store }) => {
   );
 };
 
-SortMenu.contextTypes = {
-  store: PropTypes.object,
+SortMenu.propTypes = {
+  sort: PropTypes.string,
+  onSelect: PropTypes.func,
 };
-
 export default SortMenu;

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import AddColorForm from './AddColorForm';
 import SortMenu from './SortMenu';
+import AddColorForm from './AddColorForm';
 import ColorList from './ColorList';
 import { sortFunction } from '../lib/array-helpers';
 
