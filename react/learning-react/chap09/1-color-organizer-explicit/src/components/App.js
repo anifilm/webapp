@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import AddColorForm from './AddColorForm';
 import SortMenu from './SortMenu';
 import ColorList from './ColorList';
@@ -12,6 +13,10 @@ const App = ({ store }) => {
       <ColorList store={store} />
     </div>
   );
+};
+
+App.propTypes = {
+  store: PropTypes.object.isRequired,
 };
 
 export default App;

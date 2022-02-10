@@ -8,7 +8,6 @@ const AddColorForm = ({ store }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    //onNewColor(_title.value, _color.value);
     store.dispatch(addColor(_title.value, _color.value));
     _title.value = '';
     _color.value = '#000000';
@@ -30,7 +29,7 @@ const AddColorForm = ({ store }) => {
 };
 
 AddColorForm.propTypes = {
-  store: PropTypes.object
+  store: PropTypes.object,
 };
 
 export default AddColorForm;
