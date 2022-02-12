@@ -29,7 +29,7 @@ class TodoInput extends Component {
           onChange={this.handleChange}
           placeholder="새로운 할 일을 입력하세요."
         />
-        <button onClick={this.handleClick}>등록</button>
+        <button onClick={this.handleClick}>추가</button>
       </div>
     );
   }
