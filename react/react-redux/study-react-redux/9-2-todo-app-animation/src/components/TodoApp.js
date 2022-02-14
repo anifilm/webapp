@@ -10,6 +10,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import './TodoApp.css';
+
 export default function TodoApp({ task, tasks, inputTask, addTask }) {
   return (
     <div>
@@ -21,21 +24,21 @@ export default function TodoApp({ task, tasks, inputTask, addTask }) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <div style={{ padding: '16px' }}>   　　
-        <Input onChange={(e) => inputTask(e.target.value)} />   　　　　　
+      <div style={{ padding: '16px' }}>
+        <Input onChange={(e) => inputTask(e.target.value)} />
         <Button variant="contained" color="secondary" onClick={() => addTask(task)}>add</Button>
-        <List>   　　　　　　　
-          {
-            tasks.map(function(item, i) {
+        <List>
+          <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={300}>
+            {tasks.map(function (item, i) {
               return (
                 <ListItem key={i}>
                   <ListItemText primary={`・${item}`} />
                 </ListItem>
               );
-            })
-          }
-        </List>   　　　　　　　
-      </div>   　　
+            })}
+          </ReactCSSTransitionGroup>
+        </List>
+      </div>
     </div>
   );
 }

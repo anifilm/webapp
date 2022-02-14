@@ -1,0 +1,10 @@
+.example-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: 300ms ease-in;
+}

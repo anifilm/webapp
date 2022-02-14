@@ -25,15 +25,13 @@ export default function TodoApp({ task, tasks, inputTask, addTask }) {
         <Input onChange={(e) => inputTask(e.target.value)} />   　　　　　
         <Button variant="contained" color="secondary" onClick={() => addTask(task)}>add</Button>
         <List>   　　　　　　　
-          {
-            tasks.map(function(item, i) {
-              return (
-                <ListItem key={i}>
-                  <ListItemText primary={`・${item}`} />
-                </ListItem>
-              );
-            })
-          }
+          {tasks.map(function (item, i) {
+            return (
+              <ListItem key={i}>
+                <ListItemText primary={`・${item}`} />
+              </ListItem>
+            );
+          })}
         </List>   　　　　　　　
       </div>   　　
     </div>
