@@ -1,5 +1,5 @@
 import fetchJsonp from 'fetch-jsonp';
-//import { replace } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 
 const API_URL = 'http://api.github.com/users';
 
@@ -38,8 +38,8 @@ export const fetchUser = (user) => {
     const categories = getState().users.categories;
     const category = categories.find((category) => category.id === user);
     // 대응하는 데이터가 없을 경우 최상위 페이지로 리다이렉트
-    if (typeof catogory === 'undefined') {
-      //dispatch(replace('/'));
+    if (typeof category === 'undefined') {
+      dispatch(replace('/'));
       return;
     }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-export default function Nav({ categories }) {
+export default function Nav({ categories, onClick }) {
   const to = (users) => `/user/${users.id}`;
 
   return (

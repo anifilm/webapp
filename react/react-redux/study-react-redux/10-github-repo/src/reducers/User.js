@@ -7,8 +7,8 @@ const getUser = (response) => {
     repos.push({
       name: item.name,
       description: item.description,
-      url: item.html_url,
-    });
+      url: item.html_url
+    })
   }
   return repos;
 };

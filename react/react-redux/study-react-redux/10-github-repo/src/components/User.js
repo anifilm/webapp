@@ -31,8 +31,8 @@ export default class User extends React.Component {
             return (
               <ol>
                 {repos.map((item, index) => (
-                  <li>
-                    <h3><a href={item.url}>{item.name}</a></h3>
+                  <li key={index}>
+                    <h3><a href={item.url} target="_blank">{item.name}</a></h3>
                     <p>{item.description}</p>
                   </li>
                 ))}

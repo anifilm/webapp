@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onUpdate(user) {
     dispatch(actions.fetchUser(user));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
