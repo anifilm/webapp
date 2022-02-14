@@ -1,21 +1,17 @@
 {
-  "name": "todo-app-react-redux",
+  "name": "todo-app-react-router",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "history": "^4.10.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^3.4.4",
     "redux": "^4.1.2",
-    "redux-logger": "^3.0.6",
-    "web-vitals": "^2.1.4"
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,8 +21,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
