@@ -1,20 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 export default function Nav({ categories, onClick }) {
   const to = (users) => `/user/${users.id}`;
 
   return (
-    <ul>
+    <Drawer variant="permanent">
+      <List style={{ width: 200 }}>
       {/* props.categories를 기반으로 링크 생성 */}
-      {categories.map((users) => (
-        <li key={`nav-item-${users.id}`}>
-          <Link to={to(users)}>{users.name}</Link>
-        </li>
+      {categories.map((user) => (
+        <ListItem
+          button
+          key={`nav-item-${user.id}`}
+          onClick={() => onClick(to(user))}
+        >
+          <ListItemText primary={user.name} />
+        </ListItem>
       ))}
-    </ul>
+      </List>
+    </Drawer>
   );
 }
 
