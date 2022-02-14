@@ -18,7 +18,7 @@ export default function createStore(history) {
     }),
     applyMiddleware(
       logger,
-      //thunk,
+      thunk,
       routerMiddleware(history), // react-router-redux의 리덕스 미들웨어
     ),
   );

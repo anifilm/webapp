@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.0.3",
+    "fetch-jsonp": "^1.2.1",
     "history": "^4.10.1",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
