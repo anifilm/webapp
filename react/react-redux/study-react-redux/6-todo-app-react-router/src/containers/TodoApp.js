@@ -4,10 +4,10 @@ import { inputTask, addTask } from '../actions/tasks';
 
 import TodoApp from '../components/TodoApp';
 
-function mapStateToProps(state) {
+function mapStateToProps({ task, tasks }) {
   return {
-    task: state.tasks.task,
-    tasks: state.tasks.tasks,
+    task,
+    tasks,
   };
 }
 
