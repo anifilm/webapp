@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react quickly</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h2>모든 이벤트 실행하기</h2>
+    </div>
+    <div id="content"></div>
+
+    <script type="text/babel">
+      // users.jsx
+      // 표에 입력할 데이터 가져오기
+      class Users extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            users: [],
+          };
+        }
+        componentDidMount() {
+          fetch(this.props['data-url'])
+            .then((response) => response.json())
+            .then((users) => this.setState({ users: users }));
+        }
+        render() {
+          return (
+            <div className="container-fluid">
+              <h1>List of Users</h1>
+              <table className="table-striped table-condensed table table-bordered table-hover">
+                <tbody>
+                  {this.state.users.map((user) => (
+                    <tr key={user.id}>
+                      <td>{user.first_name} {user.last_name}</td>
+                      <td>{user.email}</td>
+                      <td>{user.ip_address}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+      }
+      const dataUrl = './real-user-data.json';
+      ReactDOM.render(
+        <Users data-url={dataUrl} />,
+        document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>

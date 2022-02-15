@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react quickly</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h2>모든 이벤트 실행하기</h2>
+      <div id="content"></div>
+    </div>
+
+    <script type="text/babel">
+      // logger.jsx
+      // 컴포넌트 라이프사이클 이벤트 관찰
+      class Logger extends React.Component {
+        constructor(props) {
+          super(props);
+          console.log('constructor');
+        }
+        UNSAFE_componentWillMount() {
+          console.log('componentWillMount 실행');
+        }
+        componentDidMount(e) {
+          console.log('componentDidMount 실행');
+          console.log('DOM 노드:', ReactDOM.findDOMNode(this))
+        }
+        UNSAFE_componentWillReceiveProps(newProps) {
+          console.log('componentWillReceiveProps 실행');
+          console.log('새로운 속성:', newProps);
+        }
+        shouldComponentUpdate(newProps, newState) {
+          console.log('shouldComponentUpdate 실행');
+          console.log('새로운 속성:', newProps);
+          console.log('새로운 상태:', newState);
+          return true;
+        }
+        UNSAFE_componentWillUpdate(newProps, newState) {
+          console.log('componentWillUpdate 실행');
+          console.log('새로운 속성:', newProps);
+          console.log('새로운 상태:', newState);
+        }
+        componentDidUpdate(oldProps, oldState) {
+          console.log('componentDidUpdate 실행');
+          console.log('이전 속성:', oldProps);
+          console.log('이전 상태:', oldState);
+        }
+        componentWillUnmount() {
+          console.log('componentWillUnmount');
+        }
+        render() {
+          console.log('rendering... Display');
+          return (
+            <div>{this.props.time}</div>
+          );
+        }
+      }
+      // content.jsx
+      // Logger 컴포넌트의 렌더링과 세 번의 갱신 실행
+      class Content extends React.Component {
+        constructor(props) {
+          super(props);
+          this.launchClock();
+          this.state = {
+            counter: 0,
+            currentTime: (new Date()).toLocaleString(),
+          };
+        }
+        launchClock() {
+          setInterval(() => {
+            this.setState({
+              counter: ++this.state.counter,
+              currentTime: (new Date()).toLocaleString(),
+            });
+          }, 1000);
+        }
+        render() {
+          if (this.state.counter > 2) return;
+          return <Logger time={this.state.currentTime}></Logger>;
+        }
+      }
+      ReactDOM.render(
+        <Content />,
+        document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>
