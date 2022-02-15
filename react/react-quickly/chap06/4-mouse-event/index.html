@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>react quickly</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>React에서 DOM 이벤트 다루기</h2>
+    <div id="content"></div>
+
+    <script type="text/babel">
+      // mouse.jsx
+      // 합성 이벤트는 이벤트 핸들러 실행 후 null이 된다.
+      class Mouse extends React.Component {
+        handleMouseOver(event) {
+          console.log('mouse is over with event');
+          window.e = event; // 안티패턴
+          console.dir(event.target);
+          setTimeout(() => {
+            console.table(event.target);
+            console.table(window.e.target);
+          }, 2345);
+        }
+        render() {
+          return (
+            <div>
+              <div
+                style={{ border: '1px solid red' }}
+                onMouseOver={this.handleMouseOver.bind(this)}
+              >
+                Open DevTools and move your mouse cursor over here
+              </div>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <Mouse />,
+        document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>
