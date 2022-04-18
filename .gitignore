@@ -6,6 +6,7 @@ out/
 target/
 __using_assets__/
 __new__/
+
 .env
 *.exe
 *.lnk
