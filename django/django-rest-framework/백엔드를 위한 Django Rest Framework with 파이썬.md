@@ -1,4 +1,4 @@
-## Two Scoops of Django - 모범 사례로 배우는 Django 테크닉
+## 백엔드를 위한 Django Rest Framework with 파이썬
 
 
 # 프로젝트 만들기
@@ -6,12 +6,12 @@
 $ mkdir 프로젝트명
 $ cd 프로젝트명
 
-$ django-admin startproject config .
+$ django-admin startproject myweb .
 
 
 # 애플리케이션 생성
 
-$ python manage.py startapp polls
+$ python manage.py startapp photo
 
 
 # 기본 테이블 생성
