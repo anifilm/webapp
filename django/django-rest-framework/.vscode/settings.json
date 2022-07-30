@@ -1,5 +1,5 @@
 {
-    "terminal.integrated.cwd": ".\\ch2_photo",
+    "terminal.integrated.cwd": ".\\ch3_todo",
     "python.defaultInterpreterPath": "~\\.conda\\envs\\venv_django\\python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
