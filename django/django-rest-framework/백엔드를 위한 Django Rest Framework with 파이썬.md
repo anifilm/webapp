@@ -6,12 +6,12 @@
 $ mkdir 프로젝트명
 $ cd 프로젝트명
 
-$ django-admin startproject myweb .
+$ django-admin startproject config .
 
 
 # 애플리케이션 생성
 
-$ python manage.py startapp photo
+$ python manage.py startapp myapp
 
 
 # 기본 테이블 생성
