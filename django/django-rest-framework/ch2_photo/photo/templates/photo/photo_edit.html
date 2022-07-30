@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Photo App</title>
+  </head>
+  <body>
+    <h3><a href="{% url 'photo_detail' pk=pk %}">뒤로가기</a></h3>
+    <section>
+      <div>
+        <h2>Edit Photo</h2>
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button type="submit">등록</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
