@@ -28,7 +28,7 @@ class BookSerializer(serializers.Serializer):
 
         return instance
 '''
-class BookSerializser(serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = [
