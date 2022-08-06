@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 from .models import Book
-from .serializsers import BookSerializer
+from .serializers import BookSerializer
 
 
 @api_view(['GET'])
