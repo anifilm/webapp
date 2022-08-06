@@ -1,11 +1,14 @@
 {
-    "terminal.integrated.cwd": ".\\ch4_DRF_basic",
+    "terminal.integrated.cwd": ".\\ch5_DRF_todo",
     "python.defaultInterpreterPath": "~\\.conda\\envs\\venv_django\\python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
     "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--skip-string-normalization"
+    ],
     "python.linting.flake8Args": [
         "--max-line-length=120",
         "--ignore=E265,E302,E402,E501,F401"
