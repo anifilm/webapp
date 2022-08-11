@@ -1,6 +1,6 @@
 {
     "terminal.integrated.cwd": ".\\ch6_board",
-    "python.defaultInterpreterPath": "~\\.conda\\envs\\venv_django\\python.exe",
+    "python.pythonPath": "~\\.conda\\envs\\venv_django\\python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
@@ -12,6 +12,5 @@
     "python.linting.flake8Args": [
         "--max-line-length=120",
         "--ignore=E265,E302,E402,E501,F401"
-    ],
-    "python.pythonPath": "~\\.conda\\envs\\venv_django\\python.exe"
+    ]
 }
