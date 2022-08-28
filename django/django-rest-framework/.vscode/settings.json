@@ -1,6 +1,6 @@
 {
     "terminal.integrated.cwd": ".\\ch6_board",
-    "python.pythonPath": "~\\anaconda3\\envs\\venv_django\\python.exe",
+    "python.defaultInterpreterPath": "~\\anaconda3\\envs\\venv_django\\python.exe",
     "python.terminal.activateEnvironment": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
