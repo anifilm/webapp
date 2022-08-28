@@ -25,7 +25,7 @@ pyparsing==2.4.7
 Pyrebase==3.0.27
 python-jwt==2.0.1
 regex==2021.9.30
-requests==2.11.1
+requests==2.20.0
 requests-toolbelt==0.7.0
 rsa==4.7.2
 six==1.16.0
