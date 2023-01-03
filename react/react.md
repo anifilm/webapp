@@ -8,6 +8,16 @@ $ npm install -g create-react-app
 # 리액트 프로젝트 생성하기 - 이전 방법
 $ create-react-app 프로젝트명
 
+해당 패키지로 인한 오류 발생시 다음 명령을 통해 패키지 삭제
+
+$ npm uninstall -g create-react-app  또는
+$ yarn global remove create-react-app
+
+이후 아래 명령 실행시 오류 발생한다면...
+
+$ npx create-react-app@latest 프로젝트명
+
+---------------------------------------------------------------
 
 # 리액트 프로젝트 생성하기 - npx
 $ npx create-react-app 프로젝트명
