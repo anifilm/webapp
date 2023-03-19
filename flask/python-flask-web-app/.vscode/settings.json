@@ -1,0 +1,20 @@
+{
+    //"terminal.integrated.cwd": ".\\flask-tutorial",
+    "python.defaultInterpreterPath": "~\\anaconda3\\envs\\py310_64\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "python.linting.flake8Args": [
+        "--max-line-length=120",
+        "--ignore=E265,E302,E402,E501,F401,F403,F405"
+    ],
+    "[python]": {
+        "editor.formatOnSave": false,
+    },
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "python.linting.mypyEnabled": true
+}
