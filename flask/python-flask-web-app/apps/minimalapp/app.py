@@ -1,14 +1,41 @@
+# logging을 import한다.
+import logging
+import os
+
 from email_validator import EmailNotValidError, validate_email
 from flask import (Flask, current_app, flash, g, redirect, render_template,
                    request, url_for)
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_mail import Mail, Message
 
-# Flask 클래스를 인스턴스화한다
+# Flask 클래스를 인스턴스화한다.
 app = Flask(__name__)
 
-# SECRET_KEY를 추가한다
+# SECRET_KEY를 추가한다.
 app.config["SECRET_KEY"] = "3RZSMss3p5QPbcY2hBsL"
 
+# 로그 레벨을 설정한다.
+app.logger.setLevel(logging.DEBUG)
 
+# 리다이렉트를 중단하지 않도록 한다.
+app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
+
+# Mail 클래스의 컨피그를 추가한다.
+app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
+app.config["MAIL_PORT"] = os.environ.get("MAIL_PORT")
+app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS")
+app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
+
+# DebugToolbarExtension에 애플리케이션을 세트한다.
+toolbar = DebugToolbarExtension(app)
+
+# flask-mail 확장을 등록한다.
+mail = Mail(app)
+
+
+# URL과 실행하는 함수를 매핑한다.
 @app.route("/")
 def index():
     return "Hello, Flaskbook!"
@@ -20,8 +47,8 @@ def hello(name):
 
 
 @app.route("/name/<name>")
-def show_name(name):
-    return render_template("index.html", name=name)
+def show_name(name):  # show_name 엔드포인트를 작성한다.
+    return render_template("index.html", name=name)  # 변수를 템플릿 엔진에게 건넨다.
 
 
 """
@@ -98,7 +125,14 @@ def contact_complete():
         if not is_valid:
             return redirect(url_for("contact"))  # redirect -> http://127.0.0.1:5000/contact
 
-        # 이메일을 보낸다. (나중에 구현할 부분)
+        # 이메일을 보낸다.
+        send_email(
+            email,
+            "문의 감사합니다.",
+            "contact_mail",
+            username=username,
+            description=description,
+        )
 
         flash("문의해 주셔서 감사합니다.")
 
@@ -110,3 +144,18 @@ def contact_complete():
         return redirect(url_for("contact_complete"))  # redirect -> http://127.0.0.1:5000/contact/complete
 
     return render_template("contact_complete.html")  # 해당 페이지를 표시
+
+
+app.logger.critical("fatal error")
+app.logger.error("error")
+app.logger.warning("warning")
+app.logger.info("info")
+app.logger.debug("debug")
+
+
+def send_email(to, subject, template, **kwargs):
+    """메일을 송신하는 함수"""
+    msg = Message(subject, recipients=[to])
+    msg.body = render_template(template + ".txt", **kwargs)
+    msg.html = render_template(template + ".html", **kwargs)
+    mail.send(msg)
