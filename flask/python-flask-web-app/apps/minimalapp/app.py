@@ -72,7 +72,7 @@ with app.test_request_context():
 # 여기에서 호출하면 오류가 된다.
 #print(current_app)
 
-# 어플리케이션 컨텍스트를 취득하여 스택에 push한다.
+# 애플리케이션 컨텍스트를 취득하여 스택에 push한다.
 ctx = app.app_context()
 ctx.push()
 
