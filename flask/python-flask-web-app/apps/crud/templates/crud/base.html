@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="{{ url_for('crud.static', filename='style.css') }}">
   </head>
   <body>
+    <div>
+      {% if current_user.is_authenticated %}
+      <p>
+        <span>{{ current_user.username }}</span>
+        <span><a href="{{ url_for('auth.logout') }}">로그아웃</a></span>
+      </p>
+      {% endif %}
+    </div>
     <!-- content를 상속처에서 구현한다. -->
     {% block content %}{% endblock %}
   </body>
