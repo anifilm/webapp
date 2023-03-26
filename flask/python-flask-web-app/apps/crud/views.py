@@ -39,7 +39,6 @@ def create_user():
             email=form.email.data,
             password=form.password.data,
         )
-
         # 사용자를 추가하고 커밋한다.
         db.session.add(user)
         db.session.commit()
@@ -70,7 +69,6 @@ def edit_user(user_id):
         user.username = form.username.data
         user.email = form.email.data
         user.password = form.password.data
-
         db.session.add(user)
         db.session.commit()
 
@@ -86,4 +84,5 @@ def delete_user(user_id):
     user = User.query.filter_by(id=user_id).first()
     db.session.delete(user)
     db.session.commit()
+
     return redirect(url_for("crud.users"))

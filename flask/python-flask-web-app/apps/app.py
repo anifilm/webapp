@@ -43,10 +43,14 @@ def create_app(config_key):  # config의 키를 전달한다.
     from apps.auth import views as auth_views
     # crud 패키지로부터 views를 import한다.
     from apps.crud import views as crud_views
+    # detector 패키지로부터 views를 import한다.
+    from apps.detector import views as dt_views
 
     # register_blueprint를 사용해 views의 crud를 앱에 등록한다.
     app.register_blueprint(crud_views.crud, url_prefix="/crud")
     # register_blueprint를 사용해 views의 auth를 앱에 등록한다.
     app.register_blueprint(auth_views.auth, url_prefix="/auth")
+    # register_blueprint를 사용해 views의 dt를 앱애 등록한다.
+    app.register_blueprint(dt_views.dt)
 
     return app

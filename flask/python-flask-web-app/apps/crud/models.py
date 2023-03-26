@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
+    # backref를 이용하여 relation 정보를 설정한다
+    user_images = db.relationship("UserImage", backref="user")
+
     # 비밀번호를 설정하기 위한 프로퍼티
     @property
     def password(self):
