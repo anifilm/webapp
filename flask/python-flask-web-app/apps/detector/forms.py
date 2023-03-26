@@ -12,3 +12,7 @@ class UploadImageForm(FlaskForm):
         ],
     )
     submit = SubmitField("업로드")
+
+
+class DetectorForm(FlaskForm):
+    submit = SubmitField("감지")
