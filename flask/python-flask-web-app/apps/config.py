@@ -9,7 +9,7 @@ class BaseConfig:
     WTF_CSRF_SECRET_KEY = "FuzzyszU5sugKN7KZs8f"
     # 이미지 업로드 경로에 apps/images를 지정한다.
     UPLOAD_FOLDER = str(Path(basedir, "apps", "images"))
-
+    LABELS = []
 
 # BaseConfig 클래스를 상속하여 LocalConfig 클래스를 작성한다.
 class LocalConfig(BaseConfig):
