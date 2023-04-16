@@ -1,0 +1,29 @@
+# server 변수 설정
+@server = http://localhost:3000
+
+### GET 요청 보내기
+GET {{server}}/person
+
+### POST 요청 보내기
+POST {{server}}/person
+Content-Type: application/json
+
+{
+    "name": "Andy Park",
+    "age": 30,
+    "email": "andy@backend.com"
+}
+
+### 생성한 문서 확인
+GET {{server}}/person/andy@backend.com
+
+### PUT 요청 보내기, 문서 수정하기
+PUT {{server}}/person/andy@backend.com
+Content-Type: application/json
+
+{
+    "age": 32
+}
+
+### 문서 삭제하기
+DELETE {{server}}/person/andy@backend.com
