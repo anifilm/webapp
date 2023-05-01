@@ -1,0 +1,44 @@
+<h2>{{ title }}</h2> <!-- 타이틀 영역 -->
+
+<!-- 검색어 영역 -->
+<input type="text" name="search" id="search" value="" size="50" placeholder="검색어를 입력하세요." />
+<button>검색</button>
+<br />
+
+<!-- 글쓰기 페이지 이동 링크 -->
+<a href="/write">글쓰기</a>
+<br />
+
+<!-- 글 목록 -->
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th width="50%">제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>등록일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="/detail">타이틀</a></td>
+        <td align="center">작성자이름</td>
+        <td align="center">99999</td>
+        <td align="center">2022.12.25</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 페이징 영역 -->
+<div>
+  <a>&lt;&lt;</a>
+  <a>&lt;</a>
+  <a>1</a>
+  <a>2</a>
+  <a>3</a>
+  <a>4</a>
+  <a>&gt;</a>
+  <a>&gt;&gt;</a>
+</div>

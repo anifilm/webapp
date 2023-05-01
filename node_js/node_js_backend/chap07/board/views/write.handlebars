@@ -1,0 +1,31 @@
+<h1>[{{ title }}] 글 작성</h1>
+<div>
+  <!-- 글쓰기 홈 -->
+  <form name="boardForm" method="post" action="/write">
+    <!-- 제목 입력 칸 -->
+    <div>
+      <label>제목</label>
+      <input type="text" name="title" placeholder="제목을 넣어주세요" value="" />
+    </div>
+    <!-- 이름 입력 칸 -->
+    <div>
+      <label>이름</label>
+      <input type="text" name="writer" placeholder="제목을 넣어주세요" value="" />
+    </div>
+    <!-- 비밀번호 입력 칸 -->
+    <div>
+      <label>비밀번호</label>
+      <input type="password" name="password" placeholder="비밀번호를 넣어주세요" />
+    </div>
+    <!-- 본문 입력 칸 -->
+    <div>
+      <label>본문을 입력하세요</label><br>
+      <textarea name="content" cols="50" rows="10" placeholder="본문"></textarea>
+    </div>
+    <!-- 버튼 영역 -->
+    <div>
+      <button type="submit">저장</button>
+      <button type="button" onclick="location.href='/'">취소</button>
+    </div>
+  </form>
+</div>
