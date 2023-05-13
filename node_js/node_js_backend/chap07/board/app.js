@@ -43,8 +43,14 @@ app.post('/write', async (req, res) => {
   // 생성된 도큐먼트의 _id를 사용해 상세페이지로 이동
   res.redirect(`/detail/${result.insertedId}`);
 });
+// 상세 페이지 이동
 app.get('/detail/:id', async (req, res) => {
-  res.render('detail', { title: '테스트 게시판' });
+  // 게시글 정보 가져오기
+  const result = await postService.getDetailPost(collection, req.params.id);
+  res.render('detail', {
+    title: '테스트 게시판',
+    post: result.value,
+  });
 });
 
 let collection;
