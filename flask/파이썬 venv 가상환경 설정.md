@@ -1,4 +1,5 @@
-# 파이썬 가상환경 생성
+# 파이썬 venv 가상환경 설정
+
 
 $ python -m venv venv
 
@@ -19,10 +20,8 @@ $ source ./venv/Scripts/activate
 $ deactivate
 
 
-# 가상 환경 패키지 정보 freeze
+# 패키지 관리
 
 $ pip freeze > requirements.txt
-
-# 가상 환경에 패키지 설치
 
 $ pip install -r requirements.txt
