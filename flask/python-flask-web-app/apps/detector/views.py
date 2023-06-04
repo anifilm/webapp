@@ -36,7 +36,28 @@ def index():
         .all()
     )
 
-    return render_template("detector/index.html", user_images=user_images)
+    # 태그 일람을 가져온다.
+    user_image_tag_dict = {}
+    for user_image in user_images:
+        # 이미지에 연결할 태그 일람을 가져온다.
+        user_image_tags = (
+            db.session.query(UserImageTag)
+            .filter(UserImageTag.user_image_id == user_image.UserImage.id)
+            .all()
+        )
+        user_image_tag_dict[user_image.UserImage.id] = user_image_tags
+
+    # 물체 감지 폼을 인스턴스화한다.
+    detector_form = DetectorForm()
+
+    return render_template(
+        "detector/index.html",
+        user_images=user_images,
+        # 태그 일람을 템플릿에 전달한다.
+        user_image_tag_dict=user_image_tag_dict,
+        # 물체 감지 폼을 템플릿에 전달한다.
+        detector_form=detector_form,
+    )
 
 
 @dt.route("/images/<path:filename>")
