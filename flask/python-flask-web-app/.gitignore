@@ -1,3 +1,4 @@
 migrations/
-local.sqlite
+images/
 model.pt
+local.sqlite
