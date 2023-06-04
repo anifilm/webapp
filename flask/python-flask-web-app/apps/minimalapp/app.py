@@ -1,4 +1,4 @@
-# logging을 import한다.
+# logging을 import한다
 import logging
 import os
 
@@ -8,19 +8,19 @@ from flask import (Flask, current_app, flash, g, make_response, redirect,
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_mail import Mail, Message
 
-# Flask 클래스를 인스턴스화한다.
+# Flask 클래스를 인스턴스화한다
 app = Flask(__name__)
 
-# SECRET_KEY를 추가한다.
+# SECRET_KEY를 추가한다
 app.config["SECRET_KEY"] = "3RZSMss3p5QPbcY2hBsL"
 
-# 로그 레벨을 설정한다.
+# 로그 레벨을 설정한다
 app.logger.setLevel(logging.DEBUG)
 
-# 리다이렉트를 중단하지 않도록 한다.
+# 리다이렉트를 중단하지 않도록 한다
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
-# Mail 클래스의 컨피그를 추가한다.
+# Mail 클래스의 컨피그를 추가한다
 app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
 app.config["MAIL_PORT"] = os.environ.get("MAIL_PORT")
 app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS")
@@ -28,14 +28,14 @@ app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
 app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
 
-# DebugToolbarExtension에 애플리케이션을 세트한다.
+# DebugToolbarExtension에 애플리케이션을 세트한다
 toolbar = DebugToolbarExtension(app)
 
-# flask-mail 확장을 등록한다.
+# flask-mail 확장을 등록한다
 mail = Mail(app)
 
 
-# URL과 실행하는 함수를 매핑한다.
+# URL과 실행하는 함수를 매핑한다
 @app.route("/")
 def index():
     return "Hello, Flaskbook!"
@@ -47,12 +47,12 @@ def hello(name):
 
 
 @app.route("/name/<name>")
-def show_name(name):  # show_name 엔드포인트를 작성한다.
-    return render_template("index.html", name=name)  # 변수를 템플릿 엔진에게 건넨다.
+def show_name(name):  # show_name 엔드포인트를 작성한다
+    return render_template("index.html", name=name)  # 변수를 템플릿 엔진에게 건넨다
 
 
 """
-Flask2부터는 @app.get("/hello"), @app.post("/hello")라고 기술하는 것이 가능하다.
+Flask2부터는 @app.get("/hello"), @app.post("/hello")라고 기술하는 것이 가능하다
 @app.get("/hello")
 @app.post("/hello")
 def hello():
@@ -69,23 +69,23 @@ with app.test_request_context():
     print(url_for("show_name", name="AK", page="1"))
 
 
-# 여기에서 호출하면 오류가 된다.
+# 여기에서 호출하면 오류가 된다
 #print(current_app)
 
-# 애플리케이션 컨텍스트를 취득하여 스택에 push한다.
+# 애플리케이션 컨텍스트를 취득하여 스택에 push한다
 ctx = app.app_context()
 ctx.push()
 
-# current_app에 접근할 수 있게 된다.
+# current_app에 접근할 수 있게 된다
 print(current_app.name)  # >> apps.minimalapp.app
 
-# 전역 임시 영역에 값을 설정한다.
+# 전역 임시 영역에 값을 설정한다
 g.connection = "connection"
 print(g.connection)  # >> connection
 
 
 with app.test_request_context("/users?updated=true"):
-    print(request.args.get("updated"))  # true가 출력된다.
+    print(request.args.get("updated"))  # true가 출력된다
 
 
 @app.route("/contact")
@@ -105,7 +105,7 @@ def contact():
 @app.route("/contact/complete", methods=["GET", "POST"])
 def contact_complete():
     if request.method == "POST":
-        # form 속성을 사용해서 폼의 값을 취득한다.
+        # form 속성을 사용해서 폼의 값을 취득한다
         username = request.form["username"]
         email = request.form["email"]
         description = request.form["description"]
@@ -134,7 +134,7 @@ def contact_complete():
         if not is_valid:
             return redirect(url_for("contact"))  # redirect -> http://127.0.0.1:5000/contact
 
-        # 이메일을 보낸다.
+        # 이메일을 보낸다
         send_email(
             email,
             "문의 감사합니다.",
@@ -145,7 +145,7 @@ def contact_complete():
 
         flash("문의해 주셔서 감사합니다.")
 
-        # contact 엔드포인트(해당 경로)로 리다이렉트 한다.
+        # contact 엔드포인트(해당 경로)로 리다이렉트 한다
         # (venv) $ flask routes
         # EndPoint           Methods    Rule
         # contact            GET        /contact

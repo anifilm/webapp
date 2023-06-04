@@ -2,13 +2,13 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <!-- title을 상속처에서 구현한다. -->
+    <!-- title을 상속처에서 구현한다 -->
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
-    <!-- 내비게이션 바를 작성한다. -->
+    <!-- 내비게이션 바를 작성한다 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">　
       <div class="container">
           <a class="navbar-brand " href="{{ url_for('detector.index') }}">detector</a>
@@ -34,9 +34,9 @@
       </div>
     </nav>
 
-    <!-- block content를 section class="container"로 감싼다. -->
+    <!-- block content를 section class="container"로 감싼다 -->
     <section class="container">
-      <!-- content를 상속처에서 구현한다. -->
+      <!-- content를 상속처에서 구현한다 -->
       {% block content %}{% endblock %}
     </section>
   </body>

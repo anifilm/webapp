@@ -11,7 +11,7 @@
   </tr>
   {% for user in users %}
   <tr>
-    <!-- a 태그로 링크를 추가한다. -->
+    <!-- a 태그로 링크를 추가한다 -->
     <td><a href="{{ url_for('crud.edit_user', user_id=user.id) }}">{{ user.id }}</a></td>
     <td>{{ user.username }}</td>
     <td>{{ user.email }}</td>
