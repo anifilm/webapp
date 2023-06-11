@@ -14,7 +14,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from apps.app import db
 from apps.crud.models import User
-from apps.detector.forms import DetectorForm, UploadImageForm
+from apps.detector.forms import DeleteForm, DetectorForm, UploadImageForm
 from apps.detector.models import UserImage, UserImageTag
 
 # template_folder를 지정한다 (static은 지정하지 않는다)
@@ -49,6 +49,8 @@ def index():
 
     # 물체 감지 폼을 인스턴스화한다
     detector_form = DetectorForm()
+    # DeleteForm을 인스턴스화한다
+    delete_form = DeleteForm()
 
     return render_template(
         "detector/index.html",
@@ -57,6 +59,8 @@ def index():
         user_image_tag_dict=user_image_tag_dict,
         # 물체 감지 폼을 템플릿에 전달한다
         detector_form=detector_form,
+        # 이미지 삭제 폼을 템플릿에 전달한다
+        delete_form=delete_form
     )
 
 
@@ -207,5 +211,23 @@ def detect(image_id):
         # 오류 로그 출력
         current_app.logger.error(e)
         return redirect(url_for("detector.index"))
+
+    return redirect(url_for("detector.index"))
+
+
+@dt.route("/image/delete/<string:image_id>", methods=["POST"])
+@login_required
+def delete_image(image_id):
+    try:
+        # user_image_tags 테이블로부터 레코드를 삭제한다
+        db.session.query(UserImageTag).filter(UserImageTag.user_image_id == image_id).delete()
+        # user_images 테이블로부터 레코드를 삭제한다
+        db.session.query(UserImage).filter(UserImage.id == image_id).delete()
+        db.session.commit()
+    except SQLAlchemyError as e:
+        flash("이미지 삭제 처리에서 오류가 발생했습니다.")
+        # 오류 로그 출력
+        current_app.logger.error(e)
+        db.session.rollback()
 
     return redirect(url_for("detector.index"))

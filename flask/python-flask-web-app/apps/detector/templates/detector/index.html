@@ -21,13 +21,24 @@
     <div class="dt-image-username">{{ user_image.User.username }}</div>
     <!-- 물체 감지 폼을 추가한다 -->
     <div class="d-flex flex-row-reverse">
+      <!-- 삭제 버튼의 폼을 추가한다 -->
+      <div class="p-2">
+        <form action="{{ url_for('detector.delete_image', image_id=user_image.UserImage.id) }}" method="POST">
+          {{ delete_form.csrf_token }}
+          {% if current_user.id == user_image.User.id %}
+            {{ delete_form.submit(class="btn btn-danger") }}
+          {% else %}
+            <!--{{ delete_form.submit(class="btn btn-danger", disabled="disabled") }}-->
+          {% endif %}
+        </form>
+      </div>
       <div class="p-2">
         <form action="{{ url_for('detector.detect', image_id=user_image.UserImage.id) }}" method="POST">
           {{ detector_form.csrf_token }}
           {% if current_user.id == user_image.User.id and user_image.UserImage.is_detected == False %}
             {{ detector_form.submit(class="btn btn-primary") }}
           {% else %}
-            {{ detector_form.submit(class="btn btn-primary", disabled="disabled") }}
+            <!--{{ detector_form.submit(class="btn btn-primary", disabled="disabled") }}-->
           {% endif %}
         </form>
       </div>
