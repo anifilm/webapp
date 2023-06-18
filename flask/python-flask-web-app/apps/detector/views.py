@@ -7,7 +7,7 @@ import numpy as np
 import torch
 import torchvision
 from flask import (Blueprint, current_app, flash, redirect, render_template,
-                   send_from_directory, url_for)
+                   request, send_from_directory, url_for)
 from flask_login import current_user, login_required
 from PIL import Image
 from sqlalchemy.exc import SQLAlchemyError
@@ -231,3 +231,50 @@ def delete_image(image_id):
         db.session.rollback()
 
     return redirect(url_for("detector.index"))
+
+
+@dt.route("/image/search", methods=["GET"])
+def search():
+    # 이미지 일람을 가져온다
+    user_images = db.session.query(User, UserImage).join(UserImage, User.id == UserImage.user_id)
+
+    # GET 파라미터로부터 검색 단어를 가져온다
+    search_text = request.args.get("search")
+    user_image_tag_dict = {}
+    filtered_user_images = []
+
+    # user_images를 반복하여 user_images에 연결된 정보를 검색한다
+    for user_image in user_images:
+        # 검색 단어가 빈 경우는 모든 태그를 가져온다
+        if not search_text:
+            # 태그 일람을 가져온다
+            user_image_tags = (db.session.query(UserImageTag).filter(UserImageTag.user_image_id == user_image.UserImage.id).all())
+        else:
+            # 검색 단어로 추출한 태그를 가져온다
+            user_image_tags = (db.session.query(UserImageTag).filter(UserImageTag.user_image_id == user_image.UserImage.id).filter(UserImageTag.tag_name.like("%" + search_text + "%")).all())
+
+            # 태그를 찾을 수 없었다면 이미지를 반환하지 않는다
+            if not user_image_tags:
+                continue
+
+            # 태그가 있는 경우는 태그 정보를 다시 가져온다
+            user_image_tags = (db.session.query(UserImageTag).filter(UserImageTag.user_image_id == user_image.UserImage.id).all())
+
+        # user_image_id를 키로 하는 사전에 태그 정보를 설정한다
+        user_image_tag_dict[user_image.UserImage.id] = user_image_tags
+
+        # 추출 결과의 user_image 정보를 배열 설정한다
+        filtered_user_images.append(user_image)
+
+        delete_form = DeleteForm()
+        detector_form = DetectorForm()
+
+        return render_template(
+            "detector/index.html",
+            # 추출한 user_images 배열을 전달한다
+            user_images=filtered_user_images,
+            # 이미지에 연결된 태그 일람의 사전을 전달한다
+            user_image_tag_dict=user_image_tag_dict,
+            delete_form=delete_form,
+            detector_form=detector_form,
+        )
