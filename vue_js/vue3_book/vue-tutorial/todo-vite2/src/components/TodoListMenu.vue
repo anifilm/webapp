@@ -16,7 +16,7 @@
         <ul class="dropdown-menu dropdown-menu-end">
           <li v-for="key in Object.keys(filters)" :key="key">
             <a class="dropdown-item" @click="filter = key">{{
-              filter[key].str
+              filters[key].str
             }}</a>
           </li>
         </ul>
@@ -32,7 +32,7 @@ export default {
   name: 'TodoListMenu',
   emits: ['change-filter'],
   setup(props, context) {
-    const filters = inject('filter');
+    const filters = inject('filters');
     const filter = ref(0);
     const state = computed(() => {
       return filters[filter.value].str;

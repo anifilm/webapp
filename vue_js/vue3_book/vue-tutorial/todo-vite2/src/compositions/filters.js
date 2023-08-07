@@ -1,7 +1,7 @@
 import { inject } from 'vue';
 
 export const useFilter = () => {
-  const today = inject('todya');
+  const today = inject('today');
   const fnSort = (a, b) => {
     const a_date = Date.parse(a.date);
     const b_date = Date.parse(b.date);
@@ -17,7 +17,7 @@ export const useFilter = () => {
       .sort(fnSort);
   };
 
-  const getActivateTodayTodos = (todos) => {
+  const getActiveTodayTodos = (todos) => {
     return todos.value
       .filter((todo) => todo.date == today && !todo.completed)
       .slice()
@@ -26,13 +26,13 @@ export const useFilter = () => {
 
   const getCompletedTodayTodos = (todos) => {
     return todos.value
-      .filter((todo) => (todo.date == today) & todo.completed)
+      .filter((todo) => todo.date == today && todo.completed)
       .slice()
       .sort(fnSort);
   };
 
   const getAllTodayTodos = (todos) => {
-    return getActivateTodayTodos(todos)
+    return getActiveTodayTodos(todos)
       .concat(getCompletedTodayTodos(todos))
       .slice()
       .sort(fnSort);
@@ -44,7 +44,7 @@ export const useFilter = () => {
 
   return {
     getPendingTodos,
-    getActivateTodayTodos,
+    getActiveTodayTodos,
     getCompletedTodayTodos,
     getAllTodayTodos,
     getAllTodos,
