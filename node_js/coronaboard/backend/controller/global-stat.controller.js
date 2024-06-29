@@ -1,11 +1,13 @@
 const { GlobalStat } = require('../database');
 const { wrapWithErrorHandler } = require('../util');
 
+// 데이터 조회
 async function getAll(req, res) {
   const result = await GlobalStat.findAll();
   res.status(200).json({ result });
 }
 
+// 데이터 삽입 또는 업데이트
 async function insertOrUpdate(req, res) {
   const { cc, date } = req.body;
   if (!cc || !date) {
@@ -13,6 +15,7 @@ async function insertOrUpdate(req, res) {
     return;
   }
 
+  // 조건 (국가 코드와 날짜)에 맞는 데이터 개수 확인
   const count = await GlobalStat.count({ where: { cc, date } });
 
   if (count === 0) {
@@ -24,6 +27,7 @@ async function insertOrUpdate(req, res) {
   res.status(200).json({ result: 'success' });
 }
 
+// 데이터 삭제
 async function remove(req, res) {
   const { cc, date } = req.body;
   if (!cc || !date) {
