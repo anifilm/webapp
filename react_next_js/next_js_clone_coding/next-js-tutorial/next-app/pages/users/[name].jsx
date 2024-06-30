@@ -108,13 +108,21 @@ export const getServerSideProps = async ({ query }) => {
     let user;
     let repos;
 
-    const userRes = await fetch(`https://api.github.com/users/${name}`);
+    const userRes = await fetch(`https://api.github.com/users/${name}`, {
+      headers: {
+        Authorization: process.env.GITHUB_USER_API_TOKEN,
+      },
+    });
     if (userRes.status === 200) {
       user = await userRes.json();
     }
 
     const repoRes = await fetch(
-      `https://api.github.com/users/${name}/repos?sort=updated&page=1&per_page=10`,
+      `https://api.github.com/users/${name}/repos?sort=updated&page=1&per_page=10`, {
+        headers: {
+          Authorization: process.env.GITHUB_USER_API_TOKEN,
+        },
+      }
     );
     if (repoRes.status === 200) {
       repos = await repoRes.json();
