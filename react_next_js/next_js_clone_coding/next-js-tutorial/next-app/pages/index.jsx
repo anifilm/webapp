@@ -1,19 +1,17 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 const App = () => {
+  const [username, setUsername] = useState('');
   return (
     <div>
-      <h2>Link to 'tomato' Page</h2>
-      <p>
-        <Link href="/tomato">
-          <a>Move to '/tomato'</a>
-        </Link>
-      </p>
-      <p>
-        <Link href="/vegetable/potato">
-          <a>Move to '/vegetable/tomato'</a>
-        </Link>
-      </p>
+      <label htmlFor="">
+        username <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <p>{username} 깃허브 검색하기</p>
+      <Link href={`/users/${username}`}>
+        <a>검색하기</a>
+      </Link>
     </div>
   );
 };
