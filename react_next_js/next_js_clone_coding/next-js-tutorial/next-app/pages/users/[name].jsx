@@ -103,7 +103,7 @@ const name = ({ user, repos }) => {
 };
 
 export const getServerSideProps = async ({ query }) => {
-  const { name } = query;
+  const { name, page } = query;
   try {
     let user;
     let repos;
@@ -118,7 +118,7 @@ export const getServerSideProps = async ({ query }) => {
     }
 
     const repoRes = await fetch(
-      `https://api.github.com/users/${name}/repos?sort=updated&page=1&per_page=10`, {
+      `https://api.github.com/users/${name}/repos?sort=updated&page=${page}&per_page=10`, {
         headers: {
           Authorization: process.env.GITHUB_USER_API_TOKEN,
         },
